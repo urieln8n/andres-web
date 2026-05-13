@@ -96,7 +96,7 @@ export default function SeoDynamicPage({ params }: Props) {
         <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[.06] p-8 text-center shadow-premium md:p-12">
           <h2 className="text-3xl font-semibold text-white">¿Quieres ver cómo se aplicaría a tu negocio?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-slate-300">Pide una auditoría gratis y recibirás una ruta clara para mejorar presencia digital, captación y automatización.</p>
-          <div className="mt-7 flex justify-center"><ButtonLink href="/auditoria-gratis">Solicitar auditoría gratis</ButtonLink></div>
+          <div className="mt-7 flex justify-center"><ButtonLink href="/auditoria-gratis">Auditoría gratis</ButtonLink></div>
         </div>
       </section>
     </>

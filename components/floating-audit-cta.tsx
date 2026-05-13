@@ -59,7 +59,7 @@ export function FloatingAuditCta() {
           </span>
         </span>
         <span className="shrink-0 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-ink shadow-[0_0_28px_rgba(103,232,249,.14)]">
-          Solicitar
+          Gratis
         </span>
       </Link>
     </>

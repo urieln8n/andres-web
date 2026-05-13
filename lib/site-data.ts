@@ -23,7 +23,7 @@ export const services: SeoPage[] = [
     solution: "Creo webs con estética premium, copywriting comercial, SEO local, CTA claros y estructura preparada para convertir visitas en leads.",
     benefits: ["Diseño visual de alto impacto", "SEO técnico desde la base", "Formulario de captación", "WhatsApp y llamadas integradas", "Mobile-first", "Preparada para escalar a CRM"],
     deliverables: ["Home premium", "Páginas de servicios", "Formulario de leads", "Optimización SEO", "Diseño responsive", "Documentación de entrega"],
-    cta: "Solicitar auditoría web gratuita",
+    cta: "Auditoría gratis",
     priceAnchor: "Proyectos desde 1.500 € hasta sistemas completos de 15.000 €",
   },
   {
@@ -36,7 +36,7 @@ export const services: SeoPage[] = [
     solution: "Diseño flujos de automatización con IA para captar, responder, clasificar y dar seguimiento a clientes desde web, WhatsApp y CRM.",
     benefits: ["Respuestas automáticas", "Clasificación de leads", "Seguimientos", "Menos trabajo manual", "Más velocidad comercial", "Integración con herramientas existentes"],
     deliverables: ["Mapa de procesos", "Automatización inicial", "Webhook", "Notificaciones", "Integración CRM", "Manual de uso"],
-    cta: "Auditar mi proceso comercial",
+    cta: "Auditoría gratis",
   },
   {
     slug: "chatbot-whatsapp-para-empresas",
@@ -48,7 +48,7 @@ export const services: SeoPage[] = [
     solution: "Creo asistentes WhatsApp para responder FAQ, enviar enlaces, captar datos y escalar a humano cuando sea necesario.",
     benefits: ["Atención 24/7", "Menos mensajes repetidos", "Más reservas", "Captación de datos", "Escalado a humano", "Seguimiento automático"],
     deliverables: ["Flujo conversacional", "Mensajes base", "Integración webhook", "Formulario de fallback", "Dashboard de leads", "Pruebas de seguridad"],
-    cta: "Quiero un chatbot para mi negocio",
+    cta: "Auditoría gratis",
   },
   {
     slug: "seo-local-para-negocios",
@@ -60,7 +60,7 @@ export const services: SeoPage[] = [
     solution: "Creo arquitectura SEO, páginas por servicio, páginas locales, contenido útil y optimización técnica para captar tráfico cualificado.",
     benefits: ["Páginas por servicio", "Páginas por ciudad", "Estructura semántica", "Schema", "Sitemap", "Contenido con intención comercial"],
     deliverables: ["Keyword map", "Arquitectura SEO", "Metadata", "Sitemap", "Contenido base", "Plan de publicaciones"],
-    cta: "Solicitar diagnóstico SEO",
+    cta: "Auditoría gratis",
   },
   {
     slug: "software-saas-para-empresas",
@@ -72,7 +72,7 @@ export const services: SeoPage[] = [
     solution: "Construyo sistemas web privados con dashboard, roles, base de datos, clientes, métricas y automatizaciones.",
     benefits: ["Dashboard propio", "Base de datos", "Roles", "Métricas", "Automatizaciones", "Escalable a producto SaaS"],
     deliverables: ["Arquitectura", "MVP", "Dashboard", "Auth", "Base de datos", "Deploy"],
-    cta: "Diseñar mi sistema SaaS",
+    cta: "Auditoría gratis",
   },
   {
     slug: "auditoria-digital-para-negocios",
@@ -84,7 +84,7 @@ export const services: SeoPage[] = [
     solution: "Reviso tu presencia digital y te entrego un plan claro para mejorar conversión, SEO, automatización y experiencia del cliente.",
     benefits: ["Diagnóstico web", "Revisión SEO", "Análisis WhatsApp", "Ideas de automatización", "Prioridades claras", "Plan de acción"],
     deliverables: ["Informe resumen", "Lista de mejoras", "Mapa de oportunidades", "Prioridad por impacto", "Propuesta de implementación"],
-    cta: "Pedir auditoría gratis",
+    cta: "Auditoría gratis",
   },
   {
     slug: "crm-para-negocios-locales",
@@ -96,7 +96,7 @@ export const services: SeoPage[] = [
     solution: "Diseño un CRM visual para centralizar oportunidades, estados, servicios solicitados, valor estimado, próximos pasos y automatizaciones.",
     benefits: ["Pipeline claro", "Estados comerciales", "Seguimientos", "Métricas de conversión", "Valor estimado", "Integración con formularios"],
     deliverables: ["Dashboard CRM", "Tabla de leads", "Estados personalizados", "Métricas", "Notificaciones", "Base Supabase preparada"],
-    cta: "Quiero ordenar mis leads",
+    cta: "Auditoría gratis",
   },
   {
     slug: "sistemas-de-reservas-para-negocios",
@@ -108,7 +108,7 @@ export const services: SeoPage[] = [
     solution: "Construyo sistemas de reservas con agenda, servicios, disponibilidad, confirmaciones, WhatsApp y dashboard de seguimiento.",
     benefits: ["Agenda online", "Menos errores", "Confirmaciones", "QR para el local", "Datos de clientes", "Preparado para automatizar"],
     deliverables: ["Flujo de reserva", "Página de servicios", "Panel visual", "Mensajes", "Integración CRM", "Documentación"],
-    cta: "Diseñar mi sistema de reservas",
+    cta: "Auditoría gratis",
   },
 ];
 
@@ -123,7 +123,7 @@ export const niches: SeoPage[] = [
     solution: "Creo una web con reservas, QR, servicios, barberos, WhatsApp, reseñas y SEO local para llenar mejor la agenda.",
     benefits: ["Reservas online", "QR para el local", "SEO local", "WhatsApp", "Servicios claros", "Diseño premium"],
     deliverables: ["Landing", "Página de reservas", "Servicios", "CTA WhatsApp", "SEO básico", "QR"],
-    cta: "Quiero captar más reservas",
+    cta: "Auditoría gratis",
   },
   {
     slug: "software-para-barberias",
@@ -135,7 +135,7 @@ export const niches: SeoPage[] = [
     solution: "Implemento sistemas tipo BarberíaOS para controlar reservas, barberos, servicios, clientes, caja y acciones de marketing.",
     benefits: ["Agenda", "Caja", "Clientes", "Barberos", "Promociones", "Reseñas"],
     deliverables: ["Dashboard", "Agenda", "CRM", "Caja", "Reportes", "Onboarding"],
-    cta: "Ver sistema para barberías",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-restaurantes",
@@ -147,7 +147,7 @@ export const niches: SeoPage[] = [
     solution: "Creo webs para restaurantes con carta digital, CTA de pedido, reservas, WhatsApp, Google Maps y SEO local.",
     benefits: ["Carta digital", "Pedidos", "Reservas", "WhatsApp", "Google Maps", "SEO local"],
     deliverables: ["Home", "Carta", "Reservas", "CTA pedido", "SEO", "Diseño mobile"],
-    cta: "Mejorar mi restaurante online",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-pizzerias",
@@ -159,7 +159,7 @@ export const niches: SeoPage[] = [
     solution: "Creo una web mobile-first con carta, combos, CTA de pedido, reseñas, ubicación, SEO local y seguimiento de contactos.",
     benefits: ["Carta clara", "Pedidos por WhatsApp", "Promos", "SEO local", "Google Maps", "Más confianza"],
     deliverables: ["Home", "Carta digital", "CTA pedido", "SEO local", "Reseñas", "Analítica"],
-    cta: "Mejorar mi pizzería online",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-empresas-de-limpieza",
@@ -171,7 +171,7 @@ export const niches: SeoPage[] = [
     solution: "Creo una web con servicios claros, antes/después, zonas de trabajo, formulario de presupuesto y seguimiento de leads.",
     benefits: ["Presupuestos", "Galería antes/después", "SEO local", "WhatsApp", "Confianza", "Formulario avanzado"],
     deliverables: ["Landing", "Servicios", "Formulario", "Galería", "SEO local", "CTA WhatsApp"],
-    cta: "Captar presupuestos de limpieza",
+    cta: "Auditoría gratis",
   },
   {
     slug: "automatizacion-para-negocios-locales",
@@ -183,7 +183,7 @@ export const niches: SeoPage[] = [
     solution: "Conecto web, WhatsApp, formularios y CRM para que cada oportunidad llegue ordenada y tenga seguimiento.",
     benefits: ["Respuesta rápida", "CRM", "WhatsApp", "Recordatorios", "Menos tareas", "Más cierres"],
     deliverables: ["Flujos", "Webhook", "CRM", "Mensajes", "Notificaciones", "Panel"],
-    cta: "Automatizar mi negocio",
+    cta: "Auditoría gratis",
   },
   {
     slug: "chatbot-whatsapp-para-restaurantes",
@@ -195,7 +195,7 @@ export const niches: SeoPage[] = [
     solution: "Implemento un chatbot WhatsApp con flujos claros para carta, reservas, pedidos, horarios, ubicación y derivación a humano.",
     benefits: ["Atención 24/7", "Carta automática", "Reservas", "Pedidos", "Menos interrupciones", "Datos ordenados"],
     deliverables: ["Flujo conversacional", "FAQ", "Webhook", "Mensajes", "Pruebas", "Panel de leads"],
-    cta: "Automatizar WhatsApp de mi restaurante",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-autonomos",
@@ -207,7 +207,7 @@ export const niches: SeoPage[] = [
     solution: "Construyo una web personal/profesional con oferta clara, servicios, prueba social, SEO y formulario de captación.",
     benefits: ["Marca personal", "Servicios claros", "Formulario", "SEO", "Confianza", "WhatsApp"],
     deliverables: ["Home", "Sobre mí", "Servicios", "Contacto", "SEO", "CTA"],
-    cta: "Crear mi web profesional",
+    cta: "Auditoría gratis",
   },
 ];
 
@@ -222,7 +222,7 @@ export const localPages: SeoPage[] = [
     solution: "Creo webs premium enfocadas en conversión, SEO local y automatización para que tu negocio compita con más fuerza.",
     benefits: ["SEO Barcelona", "Diseño premium", "Mobile-first", "Captación", "WhatsApp", "Automatización"],
     deliverables: ["Estrategia", "Web", "SEO", "Formulario", "Analytics", "Deploy"],
-    cta: "Solicitar auditoría en Barcelona",
+    cta: "Auditoría gratis",
   },
   {
     slug: "automatizacion-ia-barcelona",
@@ -234,7 +234,7 @@ export const localPages: SeoPage[] = [
     solution: "Implemento automatizaciones con IA, WhatsApp, webhooks y CRM para ordenar tu captación comercial.",
     benefits: ["IA", "WhatsApp", "CRM", "Leads", "Seguimiento", "Ahorro de tiempo"],
     deliverables: ["Mapa de procesos", "Automatización", "Webhook", "Mensajes", "Dashboard", "Pruebas"],
-    cta: "Automatizar mi negocio en Barcelona",
+    cta: "Auditoría gratis",
   },
   {
     slug: "seo-local-para-negocios-barcelona",
@@ -246,7 +246,7 @@ export const localPages: SeoPage[] = [
     solution: "Creo arquitectura SEO local con páginas por servicio, ciudad, contenido, schema y medición de resultados.",
     benefits: ["Google", "Páginas locales", "Schema", "Sitemap", "Contenido", "Conversión"],
     deliverables: ["Keyword map", "Páginas SEO", "Metadata", "Schema", "Sitemap", "Plan de contenido"],
-    cta: "Revisar mi SEO local",
+    cta: "Auditoría gratis",
   },
   {
     slug: "chatbot-whatsapp-empresas-barcelona",
@@ -258,7 +258,7 @@ export const localPages: SeoPage[] = [
     solution: "Diseño flujos WhatsApp con IA, formularios, derivación a humano y registro de leads en CRM para empresas locales.",
     benefits: ["Respuesta rápida", "Captación", "FAQ", "Derivación", "CRM", "Seguimiento"],
     deliverables: ["Mapa de conversación", "Mensajes", "Webhook", "Integración CRM", "Pruebas", "Manual"],
-    cta: "Crear mi chatbot WhatsApp",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-restaurantes-barcelona",
@@ -270,7 +270,7 @@ export const localPages: SeoPage[] = [
     solution: "Creo webs premium para restaurantes con carta digital, reservas, WhatsApp, ubicación, reseñas y SEO local por intención comercial.",
     benefits: ["Carta digital", "Reservas", "Pedidos", "SEO Barcelona", "Mobile-first", "Analítica"],
     deliverables: ["Home", "Carta", "Reservas", "SEO", "CTA WhatsApp", "Deploy"],
-    cta: "Auditar mi restaurante",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-barberias-barcelona",
@@ -282,7 +282,7 @@ export const localPages: SeoPage[] = [
     solution: "Construyo webs para barberías con reservas, servicios, QR, WhatsApp, reseñas, Google Maps y páginas SEO locales.",
     benefits: ["Reservas", "QR", "SEO local", "Servicios", "WhatsApp", "Confianza"],
     deliverables: ["Landing", "Agenda", "Servicios", "SEO", "QR", "Analítica"],
-    cta: "Crear sistema para mi barbería",
+    cta: "Auditoría gratis",
   },
 ];
 

@@ -58,7 +58,7 @@ export function LeadForm() {
         <label className="grid gap-2 text-sm text-slate-300 md:col-span-2">Mensaje<textarea name="message" rows={5} placeholder="Cuéntame qué quieres mejorar y qué problema quieres resolver." className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white outline-none focus:border-cyan-300" /></label>
       </div>
       <button disabled={status === "loading"} className="focus-premium mt-6 w-full rounded-full bg-white px-6 py-4 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan-100 disabled:opacity-50">
-        {status === "loading" ? "Enviando..." : "Solicitar auditoría gratis"}
+        {status === "loading" ? "Enviando..." : "Auditoría gratis"}
       </button>
       {status === "success" && <p className="mt-4 rounded-2xl bg-emerald-400/10 p-4 text-sm text-emerald-200">Gracias. He recibido tu solicitud. Revisaré tu negocio y te contactaré para ayudarte a detectar oportunidades de mejora.</p>}
       {status === "error" && <p className="mt-4 rounded-2xl bg-red-400/10 p-4 text-sm text-red-200">{error}</p>}

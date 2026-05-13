@@ -29,7 +29,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <h2>Qué implementar primero</h2>
           <p>Empieza por una propuesta de valor clara, páginas por servicio, formulario de auditoría y un CRM simple.</p>
         </div>
-        <div className="mt-8"><ButtonLink href="/auditoria-gratis">Solicitar auditoría gratis</ButtonLink></div>
+          <div className="mt-8"><ButtonLink href="/auditoria-gratis">Auditoría gratis</ButtonLink></div>
       </div>
     </article>
   );

@@ -1,4 +1,4 @@
-import { CheckCircle2, Search, ShieldCheck, Sparkles } from "lucide-react";
+import { CheckCircle2, Search, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
 import { LeadForm } from "@/components/lead-form";
 import { PremiumCard } from "@/components/premium-card";
@@ -8,6 +8,15 @@ const faqs = [
   { question: "¿La auditoría gratis tiene compromiso?", answer: "No. Sirve para detectar oportunidades reales y decidir si tiene sentido construir una web, automatización, CRM o sistema completo." },
   { question: "¿Qué negocio puedo enviar?", answer: "Barberías, restaurantes, pizzerías, clínicas, gimnasios, empresas locales, autónomos y negocios de servicios." },
   { question: "¿Qué revisas exactamente?", answer: "Web, SEO, Instagram, WhatsApp, velocidad, experiencia móvil, propuesta de valor, competencia y oportunidades de automatización." },
+];
+
+const audience = [
+  "Barberías que quieren llenar agenda y ordenar reservas.",
+  "Restaurantes que necesitan más reservas, pedidos y visibilidad local.",
+  "Empresas de limpieza que quieren captar presupuestos cualificados.",
+  "Clínicas y comercios que necesitan transmitir confianza en móvil.",
+  "Negocios locales que reciben mensajes pero no tienen seguimiento claro.",
+  "Autónomos que quieren convertir su presencia digital en captación.",
 ];
 
 export const metadata = createMetadata({
@@ -62,6 +71,17 @@ export default function AuditPage() {
               <Sparkles className="mb-5 h-7 w-7 text-gold" />
               <h3 className="text-xl font-semibold text-white">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Para quién es" title="Negocios locales que quieren convertir su presencia digital en clientes reales.">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {audience.map((item) => (
+            <PremiumCard key={item}>
+              <UsersRound className="mb-4 h-6 w-6 text-cyan-300" />
+              <p className="text-sm leading-6 text-slate-200">{item}</p>
             </PremiumCard>
           ))}
         </div>

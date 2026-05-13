@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Bot, BrainCircuit, CalendarCheck, CheckCircle2, Database, Globe2, LineChart, MessageSquare, Rocket, Search, Sparkles, Workflow } from "lucide-react";
-import { createMetadata } from "@/lib/seo";
+import { createMetadata, serviceJsonLd } from "@/lib/seo";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button-link";
 import { PremiumCard } from "@/components/premium-card";
@@ -49,6 +49,12 @@ const authorityMetrics = [
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd("Auditoría gratis de sistemas digitales", "Auditoría gratis para negocios locales que quieren mejorar captación, automatización, SEO local y software a medida.", "/auditoria-gratis")),
+        }}
+      />
       <section className="relative overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
         <div className="absolute left-1/2 top-0 h-80 w-[min(52rem,92vw)] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
         <div className="absolute right-[8%] top-32 hidden h-72 w-72 rounded-full bg-gold/10 blur-3xl lg:block" />
@@ -67,7 +73,7 @@ export default function HomePage() {
               Convierto negocios locales en sistemas digitales que captan clientes, automatizan procesos y venden más.
             </p>
             <p className="mt-5 max-w-2xl border-l border-cyan-200/30 pl-4 text-sm leading-7 text-slate-200 sm:pl-5 sm:text-base">
-              Webs premium, SEO local, automatizaciones con IA, CRM, dashboards, chatbots y software para que cada visita tenga una ruta comercial clara.
+              Webs premium, automatizaciones con IA, SEO local y software a medida para barberías, restaurantes, limpieza, clínicas y comercios.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
               <ButtonLink href="/auditoria-gratis">Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
