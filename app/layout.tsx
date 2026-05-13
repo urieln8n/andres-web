@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { createMetadata, organizationJsonLd, personJsonLd, websiteJsonLd } from "@/lib/seo";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { MarketingShell } from "@/components/marketing-shell";
 
 export const metadata: Metadata = createMetadata();
 
@@ -16,9 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <div className="fixed inset-0 -z-20 bg-radial-premium" />
         <div className="noise pointer-events-none fixed inset-0 -z-10 opacity-[.12]" />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <MarketingShell>{children}</MarketingShell>
       </body>
     </html>
   );
