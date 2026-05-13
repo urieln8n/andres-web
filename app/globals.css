@@ -140,6 +140,28 @@ body::after {
   box-shadow: 0 28px 90px rgba(0,0,0,.44), 0 0 44px rgba(103,232,249,.08);
 }
 
+.legal-content h2 {
+  font-size: 1.35rem;
+  line-height: 1.25;
+  font-weight: 650;
+  color: #fff;
+}
+
+.legal-content p {
+  margin-top: .85rem;
+  line-height: 1.75;
+}
+
+.legal-content section {
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-bottom: 2rem;
+}
+
+.legal-content section:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
 .orb-3d {
   transform-style: preserve-3d;
   animation: float-orb 8s ease-in-out infinite;

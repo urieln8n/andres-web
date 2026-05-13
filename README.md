@@ -141,6 +141,19 @@ Checklist Cloudflare/Vercel:
 4. Anade dolores, proceso, FAQs y enlaces internos cuando sea una pagina comercial.
 5. Ejecuta `npm run lint`, `npm run typecheck` y `npm run build`.
 
+## Paginas legales
+
+Rutas legales disponibles:
+
+- `/aviso-legal`
+- `/politica-privacidad`
+- `/politica-cookies`
+- `/terminos-condiciones`
+
+Los textos son una base profesional editable para una web personal/profesional en Espana que capta leads mediante formulario. Deben revisarse por un profesional legal antes de la publicacion definitiva o antes de activar analitica, cookies no esenciales, proveedores adicionales, campanas publicitarias o procesos comerciales mas complejos.
+
+Actualmente no hay analitica activa ni banner de cookies invasivo. Si se anaden cookies no esenciales, hay que implementar consentimiento previo y enlazar el panel de preferencias desde `/politica-cookies`.
+
 ## Automatizaciones
 
 `LEAD_WEBHOOK_URL` permite enviar cada lead a n8n, CRM externo o automatizaciones internas. Mantener webhooks y claves privadas siempre en servidor.
