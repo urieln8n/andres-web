@@ -1,5 +1,5 @@
 import { CheckCircle2, Search, ShieldCheck, Sparkles } from "lucide-react";
-import { createMetadata, faqJsonLd } from "@/lib/seo";
+import { createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
 import { LeadForm } from "@/components/lead-form";
 import { PremiumCard } from "@/components/premium-card";
 import { Section } from "@/components/section";
@@ -11,8 +11,8 @@ const faqs = [
 ];
 
 export const metadata = createMetadata({
-  title: "Auditoría digital gratis | Web, SEO, WhatsApp e IA",
-  description: "Solicita una auditoría gratis de tu web, Instagram, WhatsApp, SEO, experiencia móvil y oportunidades de automatización con IA.",
+  title: "Auditoría gratis | Web, SEO, WhatsApp, IA y captación",
+  description: "Solicita una auditoría gratis con Andrés Fabián Rendón Ramírez para revisar web, SEO, WhatsApp, captación y automatización con IA.",
   path: "/auditoria-gratis",
 });
 
@@ -20,15 +20,16 @@ export default function AuditPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd("Auditoría gratis de captación digital", "Revisión de web, SEO, WhatsApp, captación, experiencia móvil y oportunidades de automatización con IA.", "/auditoria-gratis")) }} />
       <section className="px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.88fr_1.12fr]">
           <div>
             <p className="premium-kicker text-sm">Auditoría digital gratis</p>
             <h1 className="text-balance mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl">
-              Descubre qué está frenando tu captación digital.
+              Auditoría gratis para descubrir qué frena tu captación digital.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-300">
-              Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
+              Soy Andrés Fabián Rendón Ramírez. Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
             </p>
             <div className="mt-8 grid gap-3 text-sm text-slate-300">
               {["Diagnóstico profesional", "Errores principales", "Oportunidades rápidas", "Propuesta de mejora", "Plan de acción"].map((item) => (

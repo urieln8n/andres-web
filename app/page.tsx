@@ -6,12 +6,12 @@ import { ButtonLink } from "@/components/button-link";
 import { PremiumCard } from "@/components/premium-card";
 import { DashboardPreview } from "@/components/dashboard-preview";
 import { FloatingSystem3D } from "@/components/three/FloatingSystem3D";
-import { niches, services } from "@/lib/site-data";
+import { sectors, services } from "@/lib/site-data";
 
 export const metadata = createMetadata({
   path: "/",
-  title: "Andrés Rendón | IA, SEO, automatización y sistemas digitales",
-  description: "Web personal premium de Andrés Rendón: webs premium, SEO local, CRM, chatbots, dashboards, automatización con IA y sistemas de captación para negocios.",
+  title: "Andrés Fabián Rendón Ramírez | IA, webs premium, SEO local y software",
+  description: "Convierto negocios locales en sistemas digitales que captan clientes, automatizan procesos y venden más con IA, webs premium, SEO local y software.",
 });
 
 const pains = [
@@ -38,7 +38,7 @@ const projects = [
   { title: "Automatizaciones IA", text: "Conexión entre web, WhatsApp, formularios, n8n, Supabase y seguimiento.", href: "/servicios/automatizacion-con-inteligencia-artificial" },
 ];
 
-const authorityItems = ["Webs premium", "SEO local", "Automatizaciones IA", "CRM de leads", "Sistemas para negocios"];
+const authorityItems = ["Auditoría gratis", "Webs premium", "SEO local", "Automatizaciones IA", "Software para negocios"];
 
 const authorityMetrics = [
   { label: "Captación 24/7", text: "Páginas, formularios y rutas de conversión siempre activos." },
@@ -56,22 +56,22 @@ export default function HomePage() {
           <div className="relative z-10">
             <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/[.06] px-3.5 py-2 text-xs font-medium text-cyan-100 shadow-glow backdrop-blur sm:px-4 sm:text-sm">
               <Sparkles className="h-4 w-4 text-gold" />
-              <span className="truncate">Sistemas digitales premium para captación comercial</span>
+              <span className="truncate">Andrés Fabián Rendón Ramírez · IA aplicada a negocios locales</span>
             </div>
             <h1 className="text-balance max-w-4xl text-[2.7rem] font-semibold leading-[.96] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              <span className="block">Construyo sistemas digitales con IA</span>
-              <span className="block">para negocios que quieren</span>
-              <span className="premium-gradient-text block">captar más clientes.</span>
+              <span className="block">Convierto negocios locales</span>
+              <span className="block">en sistemas digitales que</span>
+              <span className="premium-gradient-text block">captan clientes.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:mt-7 sm:text-xl sm:leading-8">
-              Webs premium, SEO, automatizaciones, CRM, dashboards y chatbots para convertir visitas en clientes reales.
+              Convierto negocios locales en sistemas digitales que captan clientes, automatizan procesos y venden más.
             </p>
             <p className="mt-5 max-w-2xl border-l border-cyan-200/30 pl-4 text-sm leading-7 text-slate-200 sm:pl-5 sm:text-base">
-              No creo páginas web decorativas. Diseño sistemas digitales que captan, ordenan y convierten oportunidades comerciales.
+              Webs premium, SEO local, automatizaciones con IA, CRM, dashboards, chatbots y software para que cada visita tenga una ruta comercial clara.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
-              <ButtonLink href="/auditoria-gratis">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
-              <ButtonLink href="/proyectos" variant="secondary">Ver sistemas creados</ButtonLink>
+              <ButtonLink href="/auditoria-gratis">Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/proyectos" variant="secondary">Ver sistemas digitales</ButtonLink>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-1 gap-3 text-sm text-slate-300 sm:mt-10 sm:grid-cols-3">
               {["Barcelona, España", "IA aplicada a ventas", "SEO + CRM + leads"].map((item) => (
@@ -148,12 +148,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section eyebrow="Nichos" title="Sistemas comerciales para mercados donde cada lead puede convertirse en caja.">
+      <Section eyebrow="Sectores" title="Sistemas comerciales para mercados donde cada lead puede convertirse en caja.">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {niches.map((niche) => (
-            <Link key={niche.slug} href={`/nichos/${niche.slug}`} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.04] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur">
-              <p className="text-sm font-medium text-cyan-200">{niche.eyebrow}</p>
-              <h3 className="mt-2 font-semibold text-white">{niche.h1}</h3>
+          {sectors.map((sector) => (
+            <Link key={sector.slug} href={`/sectores/${sector.slug}`} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.04] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur">
+              <p className="text-sm font-medium text-cyan-200">{sector.eyebrow}</p>
+              <h3 className="mt-2 font-semibold text-white">{sector.h1}</h3>
             </Link>
           ))}
         </div>
@@ -186,7 +186,7 @@ export default function HomePage() {
             <p className="mt-4 text-slate-300">Estrategia, diseño, desarrollo, SEO, automatización, CRM, dashboard, captación, analítica y optimización continua con criterio de negocio.</p>
           </PremiumCard>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["Auditoría digital gratis", "Web premium + SEO", "Sistema digital completo", "Automatización avanzada", "SaaS o sistema privado", "Dashboard CRM comercial"].map((item) => (
+          {["Auditoría gratis", "Web premium + SEO", "Sistema digital completo", "Automatización avanzada", "BarberíaOS", "Dashboard CRM comercial"].map((item) => (
               <div key={item} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.04] p-5 text-slate-200 backdrop-blur">{item}</div>
             ))}
           </div>
@@ -203,7 +203,7 @@ export default function HomePage() {
             Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
           </p>
           <div className="mt-8 flex justify-center">
-            <ButtonLink href="/auditoria-gratis">Quiero mi auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+            <ButtonLink href="/auditoria-gratis">Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
           </div>
         </div>
       </section>

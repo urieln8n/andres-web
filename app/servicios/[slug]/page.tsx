@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
-import { services } from "@/lib/site-data";
+import { breadcrumbJsonLd, createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
+import { allSeoPages, services } from "@/lib/site-data";
 import { ButtonLink } from "@/components/button-link";
 import { Section } from "@/components/section";
 import { PremiumCard } from "@/components/premium-card";
@@ -31,6 +32,12 @@ export default function SeoDynamicPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd(page.title, page.description, `/servicios/${page.slug}`)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: "Inicio", path: "/" }, { name: "Servicios", path: "/servicios" }, { name: page.eyebrow, path: `/servicios/${page.slug}` }])),
+        }}
+      />
       <section className="px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_.9fr]">
           <div>
@@ -38,8 +45,8 @@ export default function SeoDynamicPage({ params }: Props) {
             <h1 className="mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl">{page.h1}</h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{page.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/auditoria-gratis">{page.cta}</ButtonLink>
-              <ButtonLink href="/proyectos" variant="secondary">Ver proyectos <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/auditoria-gratis">Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/proyectos" variant="secondary">Ver sistemas digitales</ButtonLink>
             </div>
           </div>
           <PremiumCard>
@@ -73,6 +80,16 @@ export default function SeoDynamicPage({ params }: Props) {
       <Section eyebrow="FAQs" title="Preguntas frecuentes">
         <div className="grid gap-5 md:grid-cols-3">
           {faqs.map((faq) => <PremiumCard key={faq.question}><h3 className="font-semibold text-white">{faq.question}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{faq.answer}</p></PremiumCard>)}
+        </div>
+      </Section>
+      <Section eyebrow="Enlaces internos" title="Rutas relacionadas para construir un sistema completo">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {allSeoPages.filter((item) => item.href !== `/servicios/${page.slug}`).slice(0, 4).map((item) => (
+            <Link key={item.href} href={item.href} className="rounded-3xl border border-white/10 bg-white/[.04] p-5 text-slate-200 transition hover:-translate-y-1 hover:bg-white/[.08]">
+              <span className="text-xs font-semibold uppercase tracking-[.18em] text-cyan-200">{item.group}</span>
+              <span className="mt-3 block font-semibold text-white">{item.h1}</span>
+            </Link>
+          ))}
         </div>
       </Section>
       <section className="px-4 py-16 sm:px-6 lg:px-8">

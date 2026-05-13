@@ -2,6 +2,7 @@ const marketingAuditCtaExactRoutes = new Set([
   "/",
   "/servicios",
   "/nichos",
+  "/sectores",
   "/barcelona",
   "/proyectos",
   "/sobre-mi",
@@ -11,6 +12,7 @@ const marketingAuditCtaExactRoutes = new Set([
 const marketingAuditCtaDynamicPrefixes = [
   "/servicios/",
   "/nichos/",
+  "/sectores/",
   "/barcelona/",
   "/blog/",
 ];

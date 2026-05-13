@@ -9,7 +9,7 @@ import { shouldShowMarketingAuditCta } from "@/lib/marketing-routes";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/nichos", label: "Nichos" },
+  { href: "/sectores", label: "Sectores" },
   { href: "/proyectos", label: "Proyectos" },
   { href: "/blog", label: "Blog" },
   { href: "/sobre-mi", label: "Sobre mí" },

@@ -286,6 +286,57 @@ export const localPages: SeoPage[] = [
   },
 ];
 
+export const sectors: SeoPage[] = [
+  {
+    slug: "barberias",
+    title: "Sistemas digitales para barberías | BarberíaOS, reservas y SEO",
+    description: "Web premium, reservas, QR, WhatsApp, SEO local y BarberíaOS para barberías que quieren llenar agenda y controlar clientes.",
+    h1: "Sistemas digitales para barberías que quieren llenar agenda y vender mejor",
+    eyebrow: "Sector barberías",
+    pain: "Muchas barberías dependen de Instagram, mensajes manuales y agendas dispersas, así que pierden reservas, datos de clientes y oportunidades de volver a vender.",
+    solution: "Diseño un sistema con web premium, reservas, QR, WhatsApp, SEO local, CRM y una ruta hacia BarberíaOS para controlar agenda, clientes, caja y marketing.",
+    benefits: ["Reservas online", "QR en el local", "SEO local", "WhatsApp ordenado", "CRM de clientes", "Base para BarberíaOS"],
+    deliverables: ["Landing premium", "Flujo de reservas", "Página de servicios", "Captación WhatsApp", "SEO local", "Plan BarberíaOS"],
+    cta: "Auditoría gratis",
+  },
+  {
+    slug: "restaurantes",
+    title: "Sistemas digitales para restaurantes | Carta, reservas, pedidos y SEO",
+    description: "Web premium para restaurantes con carta digital, reservas, pedidos por WhatsApp, reseñas, SEO local y automatización comercial.",
+    h1: "Sistemas digitales para restaurantes que convierten búsquedas en reservas y pedidos",
+    eyebrow: "Sector restaurantes",
+    pain: "Si la carta, horarios, ubicación y reservas no se entienden rápido desde el móvil, el cliente compara y elige otro restaurante.",
+    solution: "Creo una presencia digital con carta clara, reservas, pedidos, WhatsApp, Google Maps, SEO local y seguimiento de oportunidades para aumentar conversión.",
+    benefits: ["Carta digital", "Reservas", "Pedidos por WhatsApp", "SEO local", "Google Maps", "Analítica de contactos"],
+    deliverables: ["Home premium", "Carta optimizada", "CTA de reservas", "CTA de pedido", "SEO local", "Medición básica"],
+    cta: "Auditoría gratis",
+  },
+  {
+    slug: "limpieza",
+    title: "Sistemas digitales para empresas de limpieza | Leads y presupuestos",
+    description: "Web, SEO local, formularios y automatización para empresas de limpieza que quieren captar presupuestos cualificados.",
+    h1: "Sistemas digitales para empresas de limpieza que necesitan más presupuestos",
+    eyebrow: "Sector limpieza",
+    pain: "El cliente quiere ver servicios, confianza, zonas de trabajo y una forma rápida de pedir presupuesto antes de llamar.",
+    solution: "Construyo una web orientada a presupuestos con servicios claros, prueba visual, SEO local, formulario cualificado y seguimiento de leads.",
+    benefits: ["Presupuestos cualificados", "SEO por servicio", "Zonas de trabajo", "Antes y después", "WhatsApp", "Seguimiento de leads"],
+    deliverables: ["Landing premium", "Páginas de servicio", "Formulario", "Galería", "SEO local", "Pipeline de presupuestos"],
+    cta: "Auditoría gratis",
+  },
+  {
+    slug: "clinicas",
+    title: "Sistemas digitales para clínicas | Captación, confianza y reservas",
+    description: "Web premium, SEO local, reservas, WhatsApp y automatización para clínicas y centros de salud que necesitan captar pacientes con confianza.",
+    h1: "Sistemas digitales para clínicas que necesitan captar pacientes con más confianza",
+    eyebrow: "Sector clínicas",
+    pain: "Una clínica necesita transmitir confianza en segundos, explicar servicios con claridad y facilitar reservas sin fricción desde móvil.",
+    solution: "Diseño webs premium con estructura de servicios, SEO local, CTA de cita, WhatsApp, formularios seguros y seguimiento comercial no clínico.",
+    benefits: ["Confianza inmediata", "Servicios claros", "Reservas", "SEO local", "WhatsApp", "Seguimiento de consultas"],
+    deliverables: ["Web premium", "Páginas de servicios", "CTA de cita", "Formulario", "SEO local", "Medición de captación"],
+    cta: "Auditoría gratis",
+  },
+];
+
 export const blogPosts = [
   {
     slug: "como-una-web-premium-puede-captar-mas-clientes",
@@ -313,5 +364,6 @@ export const blogPosts = [
 export const allSeoPages = [
   ...services.map((p) => ({ ...p, group: "servicios", href: `/servicios/${p.slug}` })),
   ...niches.map((p) => ({ ...p, group: "nichos", href: `/nichos/${p.slug}` })),
+  ...sectors.map((p) => ({ ...p, group: "sectores", href: `/sectores/${p.slug}` })),
   ...localPages.map((p) => ({ ...p, group: "barcelona", href: `/barcelona/${p.slug}` })),
 ];
