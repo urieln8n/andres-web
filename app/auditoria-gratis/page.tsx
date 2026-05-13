@@ -1,5 +1,5 @@
-import { CheckCircle2, Search, ShieldCheck, Sparkles } from "lucide-react";
-import { createMetadata, faqJsonLd } from "@/lib/seo";
+import { CheckCircle2, Search, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
 import { LeadForm } from "@/components/lead-form";
 import { PremiumCard } from "@/components/premium-card";
 import { Section } from "@/components/section";
@@ -10,9 +10,39 @@ const faqs = [
   { question: "¿Qué revisas exactamente?", answer: "Web, SEO, Instagram, WhatsApp, velocidad, experiencia móvil, propuesta de valor, competencia y oportunidades de automatización." },
 ];
 
+const audience = [
+  "Barberías que quieren llenar agenda y ordenar reservas.",
+  "Restaurantes que necesitan más reservas, pedidos y visibilidad local.",
+  "Empresas de limpieza que quieren captar presupuestos cualificados.",
+  "Clínicas y comercios que necesitan transmitir confianza en móvil.",
+  "Negocios locales que reciben mensajes pero no tienen seguimiento claro.",
+  "Autónomos que quieren convertir su presencia digital en captación.",
+];
+
+const analysisPoints = [
+  "Claridad de oferta",
+  "Diseño y confianza",
+  "Velocidad y mobile",
+  "SEO local",
+  "Estructura de servicios",
+  "WhatsApp y respuesta comercial",
+  "Instagram y contenido",
+  "Automatización y CRM",
+  "Oportunidades rápidas",
+];
+
+const takeaways = [
+  "Diagnóstico claro",
+  "Prioridades por impacto",
+  "Errores críticos",
+  "Oportunidades rápidas",
+  "Plan de mejora",
+  "Recomendación del siguiente paso",
+];
+
 export const metadata = createMetadata({
-  title: "Auditoría digital gratis | Web, SEO, WhatsApp e IA",
-  description: "Solicita una auditoría gratis de tu web, Instagram, WhatsApp, SEO, experiencia móvil y oportunidades de automatización con IA.",
+  title: "Auditoría gratis | Web, SEO, WhatsApp, IA y captación",
+  description: "Solicita una auditoría gratis con Andrés Fabián Rendón Ramírez para revisar web, SEO, WhatsApp, captación y automatización con IA.",
   path: "/auditoria-gratis",
 });
 
@@ -20,15 +50,16 @@ export default function AuditPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd("Auditoría gratis de captación digital", "Revisión de web, SEO, WhatsApp, captación, experiencia móvil y oportunidades de automatización con IA.", "/auditoria-gratis")) }} />
       <section className="px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.88fr_1.12fr]">
           <div>
             <p className="premium-kicker text-sm">Auditoría digital gratis</p>
             <h1 className="text-balance mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl">
-              Descubre qué está frenando tu captación digital.
+              Auditoría gratis para descubrir qué frena tu captación digital.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-300">
-              Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
+              Soy Andrés Fabián Rendón Ramírez. Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
             </p>
             <div className="mt-8 grid gap-3 text-sm text-slate-300">
               {["Diagnóstico profesional", "Errores principales", "Oportunidades rápidas", "Propuesta de mejora", "Plan de acción"].map((item) => (
@@ -37,6 +68,9 @@ export default function AuditPage() {
                 </div>
               ))}
             </div>
+            <p className="mt-5 rounded-3xl border border-gold/20 bg-gold/10 p-4 text-sm leading-6 text-gold">
+              Oferta profesional sin compromiso: reviso tu caso, detecto bloqueos y te digo qué priorizar antes de invertir en diseño, SEO, IA o CRM.
+            </p>
           </div>
           <LeadForm />
         </div>
@@ -46,6 +80,17 @@ export default function AuditPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {["Web", "SEO", "Instagram", "WhatsApp", "Automatizaciones", "Competencia", "Experiencia móvil", "Velocidad"].map((item) => (
             <PremiumCard key={item}><Search className="mb-4 h-6 w-6 text-cyan-300" /><h3 className="font-semibold text-white">{item}</h3></PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Qué analizaré en tu caso" title="Revisión completa de captación, confianza, SEO y operación comercial.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {analysisPoints.map((item) => (
+            <div key={item} className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/[.045] p-5 text-slate-200">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-cyan-300" />
+              <span>{item}</span>
+            </div>
           ))}
         </div>
       </Section>
@@ -61,6 +106,28 @@ export default function AuditPage() {
               <Sparkles className="mb-5 h-7 w-7 text-gold" />
               <h3 className="text-xl font-semibold text-white">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Qué te llevarás" title="Una ruta clara para decidir el siguiente paso con menos dudas.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {takeaways.map((item) => (
+            <PremiumCard key={item}>
+              <CheckCircle2 className="mb-4 h-6 w-6 text-emerald-300" />
+              <h3 className="font-semibold text-white">{item}</h3>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Para quién es" title="Negocios locales que quieren convertir su presencia digital en clientes reales.">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {audience.map((item) => (
+            <PremiumCard key={item}>
+              <UsersRound className="mb-4 h-6 w-6 text-cyan-300" />
+              <p className="text-sm leading-6 text-slate-200">{item}</p>
             </PremiumCard>
           ))}
         </div>
@@ -88,6 +155,14 @@ export default function AuditPage() {
           ))}
         </div>
       </Section>
+
+      <section className="px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="premium-border spotlight-panel mx-auto max-w-5xl rounded-[2rem] bg-white/[.06] p-8 text-center shadow-premium md:p-12">
+          <p className="premium-kicker text-sm">Siguiente paso</p>
+          <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">Envíame tu negocio y te diré qué mejoraría primero.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-300">La auditoría está pensada para encontrar mejoras rápidas y decidir si conviene web premium, SEO, automatización, CRM, chatbot o sistema completo.</p>
+        </div>
+      </section>
     </>
   );
 }

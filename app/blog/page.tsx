@@ -12,8 +12,11 @@ export const metadata = createMetadata({
 
 export default function BlogPage() {
   return (
-    <Section eyebrow="Blog" title="Contenido para atraer tráfico y educar clientes antes de vender.">
-      <div className="grid gap-5 md:grid-cols-3">
+    <Section eyebrow="Blog" title="Guías prácticas sobre captación, IA, SEO local y sistemas digitales.">
+      <p className="mb-8 max-w-3xl text-lg leading-8 text-slate-300">
+        Contenido pensado para responder dudas comerciales reales antes de vender: webs premium, WhatsApp, CRM, SEO local, IA y automatización para negocios.
+      </p>
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`}>
             <PremiumCard className="h-full transition hover:-translate-y-1">

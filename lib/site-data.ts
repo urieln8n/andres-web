@@ -10,6 +10,37 @@ export type SeoPage = {
   deliverables: string[];
   cta: string;
   priceAnchor?: string;
+  pains?: string[];
+  process?: { title: string; text: string }[];
+  faqs?: { question: string; answer: string }[];
+  related?: string[];
+  localFocus?: string;
+};
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  reading: string;
+  intro: string;
+  sections: { title: string; body: string[] }[];
+  related: { label: string; href: string }[];
+};
+
+export type ProjectStudy = {
+  slug: string;
+  title: string;
+  description: string;
+  h1: string;
+  eyebrow: string;
+  problem: string;
+  solution: string;
+  stack: string[];
+  modules: string[];
+  expectedResult: string;
+  note: string;
+  relatedServices: string[];
 };
 
 export const services: SeoPage[] = [
@@ -23,8 +54,21 @@ export const services: SeoPage[] = [
     solution: "Creo webs con estética premium, copywriting comercial, SEO local, CTA claros y estructura preparada para convertir visitas en leads.",
     benefits: ["Diseño visual de alto impacto", "SEO técnico desde la base", "Formulario de captación", "WhatsApp y llamadas integradas", "Mobile-first", "Preparada para escalar a CRM"],
     deliverables: ["Home premium", "Páginas de servicios", "Formulario de leads", "Optimización SEO", "Diseño responsive", "Documentación de entrega"],
-    cta: "Solicitar auditoría web gratuita",
+    cta: "Auditoría gratis",
     priceAnchor: "Proyectos desde 1.500 € hasta sistemas completos de 15.000 €",
+    pains: ["La web actual no explica por qué elegirte.", "El móvil no guía hacia llamada, WhatsApp o formulario.", "Los servicios aparecen mezclados y Google no entiende bien la oferta.", "No existe seguimiento cuando alguien pide información."],
+    process: [
+      { title: "Oferta y estructura", text: "Defino la propuesta, las páginas necesarias, los CTA y las rutas internas antes de diseñar." },
+      { title: "Diseño premium", text: "Construyo una interfaz rápida, elegante y mobile-first con copy orientado a conversión." },
+      { title: "SEO técnico", text: "Configuro metadata, canonical, sitemap, schema, headings y páginas por intención comercial." },
+      { title: "Captación", text: "Integro formulario, WhatsApp, medición y una base preparada para CRM o automatización." },
+    ],
+    faqs: [
+      { question: "¿Una web premium incluye SEO?", answer: "Sí. La base incluye estructura, metadata, rendimiento, sitemap, schema y copy preparado para búsquedas comerciales." },
+      { question: "¿Puedo empezar solo con una landing?", answer: "Sí, si el objetivo es validar una oferta. Si quieres posicionar, conviene sumar páginas de servicios y nicho." },
+      { question: "¿La web queda preparada para automatizar leads?", answer: "Sí. El formulario y los CTA pueden conectarse a CRM, Supabase, n8n o WhatsApp." },
+    ],
+    related: ["/nichos/web-para-barberias", "/nichos/web-para-restaurantes", "/barcelona/diseno-web-premium-barcelona", "/proyectos/web-premium-negocio-local"],
   },
   {
     slug: "automatizacion-con-inteligencia-artificial",
@@ -36,7 +80,20 @@ export const services: SeoPage[] = [
     solution: "Diseño flujos de automatización con IA para captar, responder, clasificar y dar seguimiento a clientes desde web, WhatsApp y CRM.",
     benefits: ["Respuestas automáticas", "Clasificación de leads", "Seguimientos", "Menos trabajo manual", "Más velocidad comercial", "Integración con herramientas existentes"],
     deliverables: ["Mapa de procesos", "Automatización inicial", "Webhook", "Notificaciones", "Integración CRM", "Manual de uso"],
-    cta: "Auditar mi proceso comercial",
+    cta: "Auditoría gratis",
+    pains: ["Respondes tarde porque cada canal funciona por separado.", "El equipo repite las mismas respuestas todos los días.", "No sabes qué leads son urgentes o tienen más valor.", "No hay recordatorios claros para hacer seguimiento."],
+    process: [
+      { title: "Mapa del proceso", text: "Identifico entradas, preguntas repetidas, decisiones y puntos donde se pierde tiempo o dinero." },
+      { title: "Flujo IA", text: "Diseño respuestas, clasificación, reglas de derivación y datos mínimos para cada lead." },
+      { title: "Integración", text: "Conecto formulario, webhook, CRM, notificaciones y herramientas existentes sin exponer claves privadas." },
+      { title: "Pruebas", text: "Valido escenarios reales, errores, mensajes de fallback y traspaso a humano." },
+    ],
+    faqs: [
+      { question: "¿La IA sustituye al equipo?", answer: "No. La uso para acelerar respuestas, ordenar datos y avisar al equipo cuando una oportunidad requiere trato humano." },
+      { question: "¿Se puede conectar con WhatsApp?", answer: "Sí, siempre respetando el proveedor y las reglas de WhatsApp Business que use el negocio." },
+      { question: "¿Qué se automatiza primero?", answer: "Normalmente captación, clasificación, aviso interno, respuesta inicial y recordatorio de seguimiento." },
+    ],
+    related: ["/servicios/chatbot-whatsapp-para-empresas", "/servicios/crm-para-negocios-locales", "/nichos/automatizacion-para-negocios-locales", "/proyectos/automatizacion-whatsapp"],
   },
   {
     slug: "chatbot-whatsapp-para-empresas",
@@ -48,7 +105,20 @@ export const services: SeoPage[] = [
     solution: "Creo asistentes WhatsApp para responder FAQ, enviar enlaces, captar datos y escalar a humano cuando sea necesario.",
     benefits: ["Atención 24/7", "Menos mensajes repetidos", "Más reservas", "Captación de datos", "Escalado a humano", "Seguimiento automático"],
     deliverables: ["Flujo conversacional", "Mensajes base", "Integración webhook", "Formulario de fallback", "Dashboard de leads", "Pruebas de seguridad"],
-    cta: "Quiero un chatbot para mi negocio",
+    cta: "Auditoría gratis",
+    pains: ["WhatsApp recibe preguntas repetidas de horario, precio y disponibilidad.", "La conversación no recoge datos útiles para vender.", "El cliente se enfría cuando nadie responde rápido.", "No queda registro claro para seguimiento."],
+    process: [
+      { title: "FAQ comercial", text: "Recojo preguntas frecuentes, objeciones, servicios, precios orientativos y reglas de derivación." },
+      { title: "Guion conversacional", text: "Diseño flujos cortos para informar, cualificar, reservar o enviar al equipo." },
+      { title: "Conexión CRM", text: "Registro nombre, teléfono, necesidad, servicio y estado para que nada quede perdido." },
+      { title: "Control humano", text: "Defino cuándo el bot debe parar y pasar la conversación a una persona." },
+    ],
+    faqs: [
+      { question: "¿El chatbot puede sonar humano?", answer: "Puede ser cercano y claro, pero debe ser transparente y útil. La prioridad es resolver rápido y derivar bien." },
+      { question: "¿Sirve para reservas?", answer: "Sí. Puede recoger datos, mostrar disponibilidad o enviar al sistema de reservas si ya existe." },
+      { question: "¿Necesito cambiar mi WhatsApp?", answer: "Depende de la configuración actual. En la auditoría reviso el camino más práctico." },
+    ],
+    related: ["/nichos/chatbot-whatsapp-para-restaurantes", "/barcelona/chatbot-whatsapp-empresas-barcelona", "/servicios/automatizacion-con-inteligencia-artificial", "/proyectos/automatizacion-whatsapp"],
   },
   {
     slug: "seo-local-para-negocios",
@@ -60,7 +130,20 @@ export const services: SeoPage[] = [
     solution: "Creo arquitectura SEO, páginas por servicio, páginas locales, contenido útil y optimización técnica para captar tráfico cualificado.",
     benefits: ["Páginas por servicio", "Páginas por ciudad", "Estructura semántica", "Schema", "Sitemap", "Contenido con intención comercial"],
     deliverables: ["Keyword map", "Arquitectura SEO", "Metadata", "Sitemap", "Contenido base", "Plan de publicaciones"],
-    cta: "Solicitar diagnóstico SEO",
+    cta: "Auditoría gratis",
+    pains: ["Google no sabe qué servicios vendes ni en qué zona trabajas.", "Tu web compite con páginas genéricas sin intención comercial.", "No existen páginas para cada servicio o nicho rentable.", "Las visitas llegan, pero no encuentran CTA claros."],
+    process: [
+      { title: "Mapa de intención", text: "Separo búsquedas por servicio, ciudad, nicho y etapa de compra." },
+      { title: "Arquitectura", text: "Creo una estructura de URLs, enlaces internos y contenido que evita duplicidad." },
+      { title: "Optimización", text: "Trabajo titles, descriptions, H1, schema, sitemap, robots y velocidad." },
+      { title: "Contenido", text: "Planifico artículos y páginas comerciales con CTA hacia auditoría o contacto." },
+    ],
+    faqs: [
+      { question: "¿Cuánto tarda el SEO local?", answer: "Depende de competencia y autoridad. Lo importante al inicio es crear una base técnica y comercial correcta." },
+      { question: "¿Incluye Google Business Profile?", answer: "Puedo revisar la ficha y alinear la web con servicios, zonas, reseñas y llamadas a la acción." },
+      { question: "¿Hay que publicar blog?", answer: "Conviene si responde dudas reales y enlaza a servicios. No sirve publicar contenido vacío." },
+    ],
+    related: ["/barcelona/seo-local-para-negocios-barcelona", "/nichos/web-para-empresas-de-limpieza", "/blog/seo-local-para-negocios-en-barcelona-guia-practica", "/servicios/webs-premium-para-negocios"],
   },
   {
     slug: "software-saas-para-empresas",
@@ -72,7 +155,20 @@ export const services: SeoPage[] = [
     solution: "Construyo sistemas web privados con dashboard, roles, base de datos, clientes, métricas y automatizaciones.",
     benefits: ["Dashboard propio", "Base de datos", "Roles", "Métricas", "Automatizaciones", "Escalable a producto SaaS"],
     deliverables: ["Arquitectura", "MVP", "Dashboard", "Auth", "Base de datos", "Deploy"],
-    cta: "Diseñar mi sistema SaaS",
+    cta: "Auditoría gratis",
+    pains: ["El negocio depende de hojas sueltas y procesos manuales.", "No hay panel único para clientes, reservas, estados o métricas.", "El equipo pierde tiempo copiando información entre herramientas.", "La dirección no ve datos útiles para decidir."],
+    process: [
+      { title: "Modelo operativo", text: "Defino usuarios, entidades, permisos, estados y métricas del sistema." },
+      { title: "MVP", text: "Construyo el primer producto con los módulos críticos y una experiencia simple." },
+      { title: "Base segura", text: "Preparo base de datos, autenticación, roles y despliegue sin claves en cliente." },
+      { title: "Iteración", text: "Mido uso real y priorizo mejoras según valor comercial." },
+    ],
+    faqs: [
+      { question: "¿Construyes SaaS completo o MVP?", answer: "Normalmente empiezo por MVP funcional para validar operación, usuarios y propuesta antes de escalar." },
+      { question: "¿Puede ser interno?", answer: "Sí. Muchos proyectos empiezan como sistema privado para controlar procesos y luego evolucionan." },
+      { question: "¿Qué stack usas?", answer: "Next.js, Supabase, TypeScript, automatizaciones y servicios externos según necesidad." },
+    ],
+    related: ["/proyectos/barberiaos", "/servicios/crm-para-negocios-locales", "/dashboard", "/nichos/software-para-barberias"],
   },
   {
     slug: "auditoria-digital-para-negocios",
@@ -84,7 +180,20 @@ export const services: SeoPage[] = [
     solution: "Reviso tu presencia digital y te entrego un plan claro para mejorar conversión, SEO, automatización y experiencia del cliente.",
     benefits: ["Diagnóstico web", "Revisión SEO", "Análisis WhatsApp", "Ideas de automatización", "Prioridades claras", "Plan de acción"],
     deliverables: ["Informe resumen", "Lista de mejoras", "Mapa de oportunidades", "Prioridad por impacto", "Propuesta de implementación"],
-    cta: "Pedir auditoría gratis",
+    cta: "Auditoría gratis",
+    pains: ["No sabes si falla el diseño, el tráfico, la oferta o el seguimiento.", "Tienes ideas sueltas pero no prioridades claras.", "La web, Instagram y WhatsApp no trabajan juntos.", "Cada mejora parece urgente y eso bloquea decisiones."],
+    process: [
+      { title: "Revisión comercial", text: "Analizo oferta, claridad, confianza, CTA, formularios y recorrido móvil." },
+      { title: "Revisión SEO", text: "Compruebo metadata, indexación, estructura, páginas necesarias y oportunidades locales." },
+      { title: "Revisión operativa", text: "Miro WhatsApp, respuesta comercial, CRM, automatización y seguimiento." },
+      { title: "Plan de mejora", text: "Ordeno acciones por impacto, urgencia y dificultad para decidir el siguiente paso." },
+    ],
+    faqs: [
+      { question: "¿La auditoría es realmente gratis?", answer: "Sí. Sirve para detectar si hay oportunidad real y qué tendría sentido construir." },
+      { question: "¿Recibo un informe largo?", answer: "Recibes un diagnóstico claro con prioridades. El objetivo no es volumen, es decisión." },
+      { question: "¿Puedo pedirla sin web?", answer: "Sí. También puedo revisar Instagram, WhatsApp, Google Business Profile y proceso comercial." },
+    ],
+    related: ["/auditoria-gratis", "/servicios/webs-premium-para-negocios", "/servicios/seo-local-para-negocios", "/servicios/automatizacion-con-inteligencia-artificial"],
   },
   {
     slug: "crm-para-negocios-locales",
@@ -96,7 +205,20 @@ export const services: SeoPage[] = [
     solution: "Diseño un CRM visual para centralizar oportunidades, estados, servicios solicitados, valor estimado, próximos pasos y automatizaciones.",
     benefits: ["Pipeline claro", "Estados comerciales", "Seguimientos", "Métricas de conversión", "Valor estimado", "Integración con formularios"],
     deliverables: ["Dashboard CRM", "Tabla de leads", "Estados personalizados", "Métricas", "Notificaciones", "Base Supabase preparada"],
-    cta: "Quiero ordenar mis leads",
+    cta: "Auditoría gratis",
+    pains: ["No sabes qué leads están nuevos, contactados o esperando propuesta.", "El valor potencial del pipeline no está visible.", "Los próximos pasos dependen de memoria.", "Los servicios solicitados no se agrupan para decidir qué vender mejor."],
+    process: [
+      { title: "Estados", text: "Defino pipeline, etiquetas, prioridades, valor estimado y responsables." },
+      { title: "Entrada de leads", text: "Conecto formularios, WhatsApp o fuentes manuales a una base ordenada." },
+      { title: "Dashboard", text: "Construyo métricas, tabla responsive, filtros y próximas acciones." },
+      { title: "Automatización", text: "Añado avisos, recordatorios y reglas para no perder seguimiento." },
+    ],
+    faqs: [
+      { question: "¿Necesito un CRM grande?", answer: "No siempre. Un CRM ligero y adaptado suele funcionar mejor para negocios pequeños." },
+      { question: "¿Se conecta con la web?", answer: "Sí. Los formularios pueden crear oportunidades con servicio, fuente y estado inicial." },
+      { question: "¿El dashboard debe tener autenticación?", answer: "Sí si muestra datos reales. Sin auth debe quedar como demo." },
+    ],
+    related: ["/dashboard", "/proyectos/crm-leads-ia", "/servicios/automatizacion-con-inteligencia-artificial", "/auditoria-gratis"],
   },
   {
     slug: "sistemas-de-reservas-para-negocios",
@@ -108,7 +230,20 @@ export const services: SeoPage[] = [
     solution: "Construyo sistemas de reservas con agenda, servicios, disponibilidad, confirmaciones, WhatsApp y dashboard de seguimiento.",
     benefits: ["Agenda online", "Menos errores", "Confirmaciones", "QR para el local", "Datos de clientes", "Preparado para automatizar"],
     deliverables: ["Flujo de reserva", "Página de servicios", "Panel visual", "Mensajes", "Integración CRM", "Documentación"],
-    cta: "Diseñar mi sistema de reservas",
+    cta: "Auditoría gratis",
+    pains: ["Las reservas llegan por mensajes desordenados.", "Hay huecos perdidos por falta de confirmación.", "El cliente no ve servicios, duración o disponibilidad con claridad.", "No se aprovechan datos para fidelizar."],
+    process: [
+      { title: "Servicios y reglas", text: "Defino servicios, duración, horarios, recursos, disponibilidad y confirmaciones." },
+      { title: "Flujo de reserva", text: "Diseño una experiencia móvil para elegir servicio, dejar datos y confirmar." },
+      { title: "Panel", text: "Preparo visualización de reservas, clientes, estados y próximas citas." },
+      { title: "Recordatorios", text: "Activo mensajes o automatizaciones para reducir olvidos y respuestas repetidas." },
+    ],
+    faqs: [
+      { question: "¿Sirve para barberías y restaurantes?", answer: "Sí, adaptando reglas: agenda por barbero, mesas, turnos, servicios o disponibilidad." },
+      { question: "¿Puede conectarse con WhatsApp?", answer: "Sí. WhatsApp puede confirmar, recordar o derivar consultas especiales." },
+      { question: "¿Incluye QR?", answer: "Puede incluir QR para local, carta, reservas o captación de reseñas." },
+    ],
+    related: ["/nichos/web-para-barberias", "/nichos/software-para-barberias", "/barcelona/web-para-restaurantes-barcelona", "/proyectos/barberiaos"],
   },
 ];
 
@@ -123,7 +258,7 @@ export const niches: SeoPage[] = [
     solution: "Creo una web con reservas, QR, servicios, barberos, WhatsApp, reseñas y SEO local para llenar mejor la agenda.",
     benefits: ["Reservas online", "QR para el local", "SEO local", "WhatsApp", "Servicios claros", "Diseño premium"],
     deliverables: ["Landing", "Página de reservas", "Servicios", "CTA WhatsApp", "SEO básico", "QR"],
-    cta: "Quiero captar más reservas",
+    cta: "Auditoría gratis",
   },
   {
     slug: "software-para-barberias",
@@ -135,7 +270,7 @@ export const niches: SeoPage[] = [
     solution: "Implemento sistemas tipo BarberíaOS para controlar reservas, barberos, servicios, clientes, caja y acciones de marketing.",
     benefits: ["Agenda", "Caja", "Clientes", "Barberos", "Promociones", "Reseñas"],
     deliverables: ["Dashboard", "Agenda", "CRM", "Caja", "Reportes", "Onboarding"],
-    cta: "Ver sistema para barberías",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-restaurantes",
@@ -147,7 +282,7 @@ export const niches: SeoPage[] = [
     solution: "Creo webs para restaurantes con carta digital, CTA de pedido, reservas, WhatsApp, Google Maps y SEO local.",
     benefits: ["Carta digital", "Pedidos", "Reservas", "WhatsApp", "Google Maps", "SEO local"],
     deliverables: ["Home", "Carta", "Reservas", "CTA pedido", "SEO", "Diseño mobile"],
-    cta: "Mejorar mi restaurante online",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-pizzerias",
@@ -159,7 +294,7 @@ export const niches: SeoPage[] = [
     solution: "Creo una web mobile-first con carta, combos, CTA de pedido, reseñas, ubicación, SEO local y seguimiento de contactos.",
     benefits: ["Carta clara", "Pedidos por WhatsApp", "Promos", "SEO local", "Google Maps", "Más confianza"],
     deliverables: ["Home", "Carta digital", "CTA pedido", "SEO local", "Reseñas", "Analítica"],
-    cta: "Mejorar mi pizzería online",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-empresas-de-limpieza",
@@ -171,7 +306,7 @@ export const niches: SeoPage[] = [
     solution: "Creo una web con servicios claros, antes/después, zonas de trabajo, formulario de presupuesto y seguimiento de leads.",
     benefits: ["Presupuestos", "Galería antes/después", "SEO local", "WhatsApp", "Confianza", "Formulario avanzado"],
     deliverables: ["Landing", "Servicios", "Formulario", "Galería", "SEO local", "CTA WhatsApp"],
-    cta: "Captar presupuestos de limpieza",
+    cta: "Auditoría gratis",
   },
   {
     slug: "automatizacion-para-negocios-locales",
@@ -183,7 +318,7 @@ export const niches: SeoPage[] = [
     solution: "Conecto web, WhatsApp, formularios y CRM para que cada oportunidad llegue ordenada y tenga seguimiento.",
     benefits: ["Respuesta rápida", "CRM", "WhatsApp", "Recordatorios", "Menos tareas", "Más cierres"],
     deliverables: ["Flujos", "Webhook", "CRM", "Mensajes", "Notificaciones", "Panel"],
-    cta: "Automatizar mi negocio",
+    cta: "Auditoría gratis",
   },
   {
     slug: "chatbot-whatsapp-para-restaurantes",
@@ -195,7 +330,7 @@ export const niches: SeoPage[] = [
     solution: "Implemento un chatbot WhatsApp con flujos claros para carta, reservas, pedidos, horarios, ubicación y derivación a humano.",
     benefits: ["Atención 24/7", "Carta automática", "Reservas", "Pedidos", "Menos interrupciones", "Datos ordenados"],
     deliverables: ["Flujo conversacional", "FAQ", "Webhook", "Mensajes", "Pruebas", "Panel de leads"],
-    cta: "Automatizar WhatsApp de mi restaurante",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-autonomos",
@@ -207,7 +342,7 @@ export const niches: SeoPage[] = [
     solution: "Construyo una web personal/profesional con oferta clara, servicios, prueba social, SEO y formulario de captación.",
     benefits: ["Marca personal", "Servicios claros", "Formulario", "SEO", "Confianza", "WhatsApp"],
     deliverables: ["Home", "Sobre mí", "Servicios", "Contacto", "SEO", "CTA"],
-    cta: "Crear mi web profesional",
+    cta: "Auditoría gratis",
   },
 ];
 
@@ -222,7 +357,7 @@ export const localPages: SeoPage[] = [
     solution: "Creo webs premium enfocadas en conversión, SEO local y automatización para que tu negocio compita con más fuerza.",
     benefits: ["SEO Barcelona", "Diseño premium", "Mobile-first", "Captación", "WhatsApp", "Automatización"],
     deliverables: ["Estrategia", "Web", "SEO", "Formulario", "Analytics", "Deploy"],
-    cta: "Solicitar auditoría en Barcelona",
+    cta: "Auditoría gratis",
   },
   {
     slug: "automatizacion-ia-barcelona",
@@ -234,7 +369,7 @@ export const localPages: SeoPage[] = [
     solution: "Implemento automatizaciones con IA, WhatsApp, webhooks y CRM para ordenar tu captación comercial.",
     benefits: ["IA", "WhatsApp", "CRM", "Leads", "Seguimiento", "Ahorro de tiempo"],
     deliverables: ["Mapa de procesos", "Automatización", "Webhook", "Mensajes", "Dashboard", "Pruebas"],
-    cta: "Automatizar mi negocio en Barcelona",
+    cta: "Auditoría gratis",
   },
   {
     slug: "seo-local-para-negocios-barcelona",
@@ -246,7 +381,7 @@ export const localPages: SeoPage[] = [
     solution: "Creo arquitectura SEO local con páginas por servicio, ciudad, contenido, schema y medición de resultados.",
     benefits: ["Google", "Páginas locales", "Schema", "Sitemap", "Contenido", "Conversión"],
     deliverables: ["Keyword map", "Páginas SEO", "Metadata", "Schema", "Sitemap", "Plan de contenido"],
-    cta: "Revisar mi SEO local",
+    cta: "Auditoría gratis",
   },
   {
     slug: "chatbot-whatsapp-empresas-barcelona",
@@ -258,7 +393,7 @@ export const localPages: SeoPage[] = [
     solution: "Diseño flujos WhatsApp con IA, formularios, derivación a humano y registro de leads en CRM para empresas locales.",
     benefits: ["Respuesta rápida", "Captación", "FAQ", "Derivación", "CRM", "Seguimiento"],
     deliverables: ["Mapa de conversación", "Mensajes", "Webhook", "Integración CRM", "Pruebas", "Manual"],
-    cta: "Crear mi chatbot WhatsApp",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-restaurantes-barcelona",
@@ -270,7 +405,7 @@ export const localPages: SeoPage[] = [
     solution: "Creo webs premium para restaurantes con carta digital, reservas, WhatsApp, ubicación, reseñas y SEO local por intención comercial.",
     benefits: ["Carta digital", "Reservas", "Pedidos", "SEO Barcelona", "Mobile-first", "Analítica"],
     deliverables: ["Home", "Carta", "Reservas", "SEO", "CTA WhatsApp", "Deploy"],
-    cta: "Auditar mi restaurante",
+    cta: "Auditoría gratis",
   },
   {
     slug: "web-para-barberias-barcelona",
@@ -282,36 +417,276 @@ export const localPages: SeoPage[] = [
     solution: "Construyo webs para barberías con reservas, servicios, QR, WhatsApp, reseñas, Google Maps y páginas SEO locales.",
     benefits: ["Reservas", "QR", "SEO local", "Servicios", "WhatsApp", "Confianza"],
     deliverables: ["Landing", "Agenda", "Servicios", "SEO", "QR", "Analítica"],
-    cta: "Crear sistema para mi barbería",
+    cta: "Auditoría gratis",
   },
 ];
 
-export const blogPosts = [
+export const sectors: SeoPage[] = [
   {
-    slug: "como-una-web-premium-puede-captar-mas-clientes",
-    title: "Cómo una web premium puede captar más clientes para un negocio local",
-    description: "Guía práctica para convertir una web en una máquina de confianza, SEO y leads.",
-    date: "2026-05-13",
-    reading: "6 min",
+    slug: "barberias",
+    title: "Sistemas digitales para barberías | BarberíaOS, reservas y SEO",
+    description: "Web premium, reservas, QR, WhatsApp, SEO local y BarberíaOS para barberías que quieren llenar agenda y controlar clientes.",
+    h1: "Sistemas digitales para barberías que quieren llenar agenda y vender mejor",
+    eyebrow: "Sector barberías",
+    pain: "Muchas barberías dependen de Instagram, mensajes manuales y agendas dispersas, así que pierden reservas, datos de clientes y oportunidades de volver a vender.",
+    solution: "Diseño un sistema con web premium, reservas, QR, WhatsApp, SEO local, CRM y una ruta hacia BarberíaOS para controlar agenda, clientes, caja y marketing.",
+    benefits: ["Reservas online", "QR en el local", "SEO local", "WhatsApp ordenado", "CRM de clientes", "Base para BarberíaOS"],
+    deliverables: ["Landing premium", "Flujo de reservas", "Página de servicios", "Captación WhatsApp", "SEO local", "Plan BarberíaOS"],
+    cta: "Auditoría gratis",
   },
   {
-    slug: "automatizar-whatsapp-en-negocios-locales",
-    title: "Cómo automatizar WhatsApp en negocios locales sin perder trato humano",
-    description: "Ideas para responder rápido, filtrar leads y agendar clientes usando IA y automatizaciones.",
-    date: "2026-05-13",
-    reading: "7 min",
+    slug: "restaurantes",
+    title: "Sistemas digitales para restaurantes | Carta, reservas, pedidos y SEO",
+    description: "Web premium para restaurantes con carta digital, reservas, pedidos por WhatsApp, reseñas, SEO local y automatización comercial.",
+    h1: "Sistemas digitales para restaurantes que convierten búsquedas en reservas y pedidos",
+    eyebrow: "Sector restaurantes",
+    pain: "Si la carta, horarios, ubicación y reservas no se entienden rápido desde el móvil, el cliente compara y elige otro restaurante.",
+    solution: "Creo una presencia digital con carta clara, reservas, pedidos, WhatsApp, Google Maps, SEO local y seguimiento de oportunidades para aumentar conversión.",
+    benefits: ["Carta digital", "Reservas", "Pedidos por WhatsApp", "SEO local", "Google Maps", "Analítica de contactos"],
+    deliverables: ["Home premium", "Carta optimizada", "CTA de reservas", "CTA de pedido", "SEO local", "Medición básica"],
+    cta: "Auditoría gratis",
   },
   {
-    slug: "seo-local-para-barberias-restaurantes-y-autonomos",
-    title: "SEO local para barberías, restaurantes y autónomos: qué páginas crear primero",
-    description: "Mapa inicial de páginas SEO para negocios locales que quieren captar demanda desde Google.",
+    slug: "limpieza",
+    title: "Sistemas digitales para empresas de limpieza | Leads y presupuestos",
+    description: "Web, SEO local, formularios y automatización para empresas de limpieza que quieren captar presupuestos cualificados.",
+    h1: "Sistemas digitales para empresas de limpieza que necesitan más presupuestos",
+    eyebrow: "Sector limpieza",
+    pain: "El cliente quiere ver servicios, confianza, zonas de trabajo y una forma rápida de pedir presupuesto antes de llamar.",
+    solution: "Construyo una web orientada a presupuestos con servicios claros, prueba visual, SEO local, formulario cualificado y seguimiento de leads.",
+    benefits: ["Presupuestos cualificados", "SEO por servicio", "Zonas de trabajo", "Antes y después", "WhatsApp", "Seguimiento de leads"],
+    deliverables: ["Landing premium", "Páginas de servicio", "Formulario", "Galería", "SEO local", "Pipeline de presupuestos"],
+    cta: "Auditoría gratis",
+  },
+  {
+    slug: "clinicas",
+    title: "Sistemas digitales para clínicas | Captación, confianza y reservas",
+    description: "Web premium, SEO local, reservas, WhatsApp y automatización para clínicas y centros de salud que necesitan captar pacientes con confianza.",
+    h1: "Sistemas digitales para clínicas que necesitan captar pacientes con más confianza",
+    eyebrow: "Sector clínicas",
+    pain: "Una clínica necesita transmitir confianza en segundos, explicar servicios con claridad y facilitar reservas sin fricción desde móvil.",
+    solution: "Diseño webs premium con estructura de servicios, SEO local, CTA de cita, WhatsApp, formularios seguros y seguimiento comercial no clínico.",
+    benefits: ["Confianza inmediata", "Servicios claros", "Reservas", "SEO local", "WhatsApp", "Seguimiento de consultas"],
+    deliverables: ["Web premium", "Páginas de servicios", "CTA de cita", "Formulario", "SEO local", "Medición de captación"],
+    cta: "Auditoría gratis",
+  },
+];
+
+export const projectStudies: ProjectStudy[] = [
+  {
+    slug: "barberiaos",
+    title: "BarberíaOS | SaaS para barberías",
+    description: "Caso demostrativo de SaaS vertical para barberías con reservas, clientes, caja, dashboard, QR, marketing y automatizaciones.",
+    h1: "BarberíaOS: SaaS vertical para controlar reservas, caja, clientes y marketing",
+    eyebrow: "Caso demostrativo",
+    problem: "Una barbería puede llenar agenda desde Instagram, pero si las reservas, caja, clientes y reseñas quedan dispersas, el dueño pierde control operativo y capacidad de volver a vender.",
+    solution: "Prototipo comercial de sistema vertical con agenda, clientes, servicios, caja, dashboard, QR, recordatorios y base preparada para automatizaciones.",
+    stack: ["Next.js App Router", "TypeScript", "Supabase", "Tailwind CSS", "Automatizaciones webhook", "Dashboard CRM"],
+    modules: ["Agenda por barbero", "Ficha de cliente", "Caja diaria", "QR de reservas", "Panel de métricas", "Recordatorios y reseñas"],
+    expectedResult: "Resultado esperado: reducir errores de agenda, ordenar datos de clientes y crear una base para marketing y fidelización.",
+    note: "Caso demostrativo. No se presentan métricas reales de clientes.",
+    relatedServices: ["/servicios/software-saas-para-empresas", "/servicios/sistemas-de-reservas-para-negocios", "/nichos/software-para-barberias"],
+  },
+  {
+    slug: "web-premium-negocio-local",
+    title: "Web premium para negocio local | Caso de estudio",
+    description: "Caso demostrativo de web premium para negocio local con SEO, CTA, WhatsApp, formulario y arquitectura de captación.",
+    h1: "Web premium para negocio local: de escaparate digital a sistema de captación",
+    eyebrow: "Web + SEO + conversión",
+    problem: "Muchos negocios tienen una web que muestra información, pero no transmite una oferta clara, no posiciona por servicios y no recoge oportunidades con contexto.",
+    solution: "Diseño de una web mobile-first con propuesta fuerte, páginas de servicio, prueba de confianza, WhatsApp, formulario, SEO técnico y ruta hacia CRM.",
+    stack: ["Next.js", "Metadata dinámica", "JSON-LD", "Tailwind CSS", "Formulario API", "Sitemap dinámico"],
+    modules: ["Hero comercial", "Servicios claros", "CTA auditoría", "Formulario cualificado", "Páginas SEO", "Enlaces internos"],
+    expectedResult: "Resultado esperado: más claridad comercial, mayor confianza y más solicitudes cualificadas desde búsquedas y visitas directas.",
+    note: "Caso demostrativo sin métricas reales atribuidas.",
+    relatedServices: ["/servicios/webs-premium-para-negocios", "/servicios/seo-local-para-negocios", "/barcelona/diseno-web-premium-barcelona"],
+  },
+  {
+    slug: "crm-leads-ia",
+    title: "CRM de leads con IA | Caso de estudio",
+    description: "Caso demostrativo de CRM visual para clasificar leads, controlar oportunidades, valor estimado y próximos seguimientos.",
+    h1: "CRM de leads con IA para no perder oportunidades comerciales",
+    eyebrow: "CRM visual",
+    problem: "Los leads llegan por web, WhatsApp e Instagram, pero sin estados, valor estimado ni próxima acción, las oportunidades se enfrían.",
+    solution: "Pipeline visual con estados, servicios solicitados, valor estimado, próximos seguimientos, métricas y preparación para clasificación automática.",
+    stack: ["Next.js", "Supabase", "Zod", "API Routes", "Dashboard responsive", "Automatización IA"],
+    modules: ["Pipeline", "Tabla responsive", "Lead scoring", "Próximas acciones", "Métricas", "Notificaciones"],
+    expectedResult: "Resultado esperado: priorizar leads, acelerar seguimiento y ver qué servicios generan más oportunidades.",
+    note: "Prototipo comercial. El dashboard público usa datos demostrativos hasta conectar auth y Supabase.",
+    relatedServices: ["/servicios/crm-para-negocios-locales", "/servicios/automatizacion-con-inteligencia-artificial", "/dashboard"],
+  },
+  {
+    slug: "automatizacion-whatsapp",
+    title: "Automatización WhatsApp | Caso de estudio",
+    description: "Caso demostrativo de automatización WhatsApp para responder, cualificar, derivar y registrar leads en CRM.",
+    h1: "Automatización WhatsApp para responder leads sin perder trato humano",
+    eyebrow: "WhatsApp + IA",
+    problem: "Cuando un negocio responde tarde o repite manualmente horarios, precios y disponibilidad, pierde reservas y presupuestos frente a alternativas más rápidas.",
+    solution: "Flujo de WhatsApp con preguntas clave, respuestas base, derivación a humano, registro de lead y avisos internos para seguimiento.",
+    stack: ["WhatsApp Business", "Webhook", "n8n", "Supabase", "Next.js API", "CRM visual"],
+    modules: ["FAQ automática", "Captura de datos", "Clasificación", "Derivación humana", "Registro CRM", "Recordatorio"],
+    expectedResult: "Resultado esperado: responder antes, filtrar mejor y evitar que conversaciones valiosas queden sin seguimiento.",
+    note: "Caso demostrativo. La implementación final depende del proveedor WhatsApp y permisos del negocio.",
+    relatedServices: ["/servicios/chatbot-whatsapp-para-empresas", "/nichos/chatbot-whatsapp-para-restaurantes", "/barcelona/chatbot-whatsapp-empresas-barcelona"],
+  },
+];
+
+export const blogPosts: BlogPost[] = [
+  {
+    slug: "como-conseguir-mas-clientes-con-web-premium-negocios-locales",
+    title: "Cómo conseguir más clientes con una web premium para negocios locales",
+    description: "Guía práctica para transformar una web en un sistema de confianza, SEO, CTA y seguimiento comercial.",
+    date: "2026-05-13",
+    reading: "9 min",
+    intro: "Una web premium no es una web con efectos caros. Para un negocio local, premium significa claridad, velocidad, confianza y una ruta comercial evidente. El objetivo no es impresionar durante tres segundos, sino conseguir que una persona entienda qué vendes, por qué debería elegirte y cuál es el siguiente paso.",
+    sections: [
+      { title: "La oferta debe entenderse en la primera pantalla", body: ["El hero tiene que explicar servicio, cliente ideal y resultado esperado. Si el usuario necesita navegar para entender la oferta, la página ya está perdiendo intención.", "Un buen primer bloque combina titular directo, subtítulo concreto, CTA principal, CTA secundario y señales de confianza. Para negocios locales, también conviene mostrar zona, especialidad y canal rápido de contacto."] },
+      { title: "El diseño debe generar confianza antes de vender", body: ["La estética premium ayuda cuando hace que el negocio parezca más serio, ordenado y fiable. No se trata de llenar la web de animaciones, sino de usar jerarquía, contraste, espaciado y componentes que faciliten escanear.", "Las tarjetas, bloques de servicios, formularios y llamadas a WhatsApp deben parecer parte de un sistema, no piezas pegadas sin criterio."] },
+      { title: "El SEO convierte la web en activo de captación", body: ["Una home sola rara vez cubre todas las búsquedas importantes. La arquitectura debe incluir páginas por servicio, nicho y ciudad cuando tenga sentido.", "Cada URL necesita intención propia, H1 único, descripción clara, enlaces internos y CTA. Así Google entiende la oferta y el usuario encuentra una respuesta más específica."] },
+      { title: "El formulario y WhatsApp deben alimentar seguimiento", body: ["Captar un lead no termina cuando alguien envía un formulario. El negocio necesita saber qué pidió, cuánto puede valer, de dónde vino y cuál es la próxima acción.", "Por eso una web premium debería prepararse para CRM, dashboard o automatización aunque la primera versión sea simple."] },
+    ],
+    related: [{ label: "Webs premium para negocios", href: "/servicios/webs-premium-para-negocios" }, { label: "Auditoría gratis", href: "/auditoria-gratis" }],
+  },
+  {
+    slug: "que-debe-tener-web-profesional-barberia",
+    title: "Qué debe tener una web profesional para una barbería",
+    description: "Elementos clave para que una barbería capte reservas, transmita confianza y ordene clientes desde móvil.",
     date: "2026-05-13",
     reading: "8 min",
+    intro: "Una barbería no necesita una web corporativa fría. Necesita una página rápida, visual y preparada para convertir visitas en reservas. La mayoría de clientes mira desde móvil, compara estilo, precio, ubicación y facilidad para reservar.",
+    sections: [
+      { title: "Reservas visibles y sin fricción", body: ["El botón de reservar debe aparecer desde el primer bloque y repetirse en momentos clave. También conviene usar QR dentro del local para llevar a clientes recurrentes al sistema.", "La reserva debe pedir solo los datos necesarios y explicar servicio, duración y disponibilidad."] },
+      { title: "Servicios, barberos y confianza", body: ["La web debe mostrar cortes, servicios, precios orientativos si aplica, equipo y reseñas. Esto reduce dudas antes de escribir por WhatsApp.", "Un diseño premium permite que la barbería no compita solo por precio, sino por experiencia y marca."] },
+      { title: "SEO local para captar demanda cercana", body: ["Páginas como web para barberías, barbería en Barcelona o reservas para barbería ayudan a cubrir intención comercial.", "La ficha de Google, reseñas, ubicación y enlaces internos refuerzan esa visibilidad local."] },
+      { title: "Camino hacia BarberíaOS", body: ["Cuando la barbería crece, la web puede evolucionar hacia agenda, clientes, caja, recordatorios y marketing.", "Ese camino evita saltar de herramienta en herramienta y convierte la captación en operación medible."] },
+    ],
+    related: [{ label: "Web para barberías", href: "/nichos/web-para-barberias" }, { label: "BarberíaOS", href: "/proyectos/barberiaos" }],
+  },
+  {
+    slug: "automatizar-whatsapp-restaurantes-sin-perder-trato-humano",
+    title: "Cómo automatizar WhatsApp en restaurantes sin perder trato humano",
+    description: "Cómo responder rápido sobre carta, horarios, reservas y pedidos manteniendo una experiencia cercana.",
+    date: "2026-05-13",
+    reading: "8 min",
+    intro: "WhatsApp es uno de los canales más importantes para restaurantes, pero también puede convertirse en una interrupción constante. Automatizar no significa tratar peor al cliente. Significa responder lo repetido rápido y dejar al equipo libre para conversaciones importantes.",
+    sections: [
+      { title: "Empieza por las preguntas repetidas", body: ["Horario, carta, ubicación, menú, reservas, alérgenos y pedidos suelen aparecer cada día. Esas respuestas pueden estructurarse en un flujo claro.", "La automatización debe ser breve, útil y permitir hablar con una persona cuando haga falta."] },
+      { title: "La carta y la reserva deben estar a un toque", body: ["El bot puede enviar carta digital, enlace de reserva, ubicación o condiciones de pedido sin esperar intervención manual.", "Esto reduce abandono, especialmente cuando el cliente compara varios restaurantes a la vez."] },
+      { title: "Registra oportunidades en CRM", body: ["No todas las conversaciones valen lo mismo. Una reserva de grupo, un evento o un pedido recurrente deben quedar registrados.", "Con un CRM simple, el restaurante puede hacer seguimiento y medir qué canal genera más negocio."] },
+      { title: "Mantén una salida humana clara", body: ["La automatización debe saber cuándo parar: quejas, dudas sensibles, eventos especiales o clientes molestos requieren atención directa.", "Ese equilibrio mantiene velocidad sin perder trato."] },
+    ],
+    related: [{ label: "Chatbot WhatsApp para restaurantes", href: "/nichos/chatbot-whatsapp-para-restaurantes" }, { label: "Automatización WhatsApp", href: "/proyectos/automatizacion-whatsapp" }],
+  },
+  {
+    slug: "seo-local-para-negocios-en-barcelona-guia-practica",
+    title: "SEO local para negocios en Barcelona: guía práctica",
+    description: "Cómo ordenar servicios, barrios, contenido y conversión para captar búsquedas locales en Barcelona.",
+    date: "2026-05-13",
+    reading: "10 min",
+    intro: "Barcelona tiene competencia alta en casi cualquier sector local. Por eso el SEO local no puede limitarse a repetir la palabra Barcelona. Debe conectar servicios reales, zonas, confianza, ficha de Google y una web preparada para convertir.",
+    sections: [
+      { title: "Define servicios antes que keywords", body: ["Primero hay que aclarar qué vende el negocio: servicio principal, servicios secundarios, zonas y cliente ideal.", "Después se convierten esas decisiones en páginas útiles, no en textos llenos de palabras clave."] },
+      { title: "Usa zonas con naturalidad", body: ["Eixample, Gràcia, Sants, Poblenou, Sarrià, Badalona u Hospitalet pueden aparecer cuando encajan con el área real del negocio.", "Forzar barrios sin contenido útil genera páginas débiles y mala experiencia."] },
+      { title: "Conecta Google Business Profile y web", body: ["La ficha necesita coherencia con servicios, categorías, reseñas, fotos y enlaces. La web debe reforzar esa información.", "Las páginas locales deben incluir CTA claros, ubicación, prueba social y respuestas a dudas frecuentes."] },
+      { title: "Mide llamadas, formularios y WhatsApp", body: ["El SEO local debe medirse por oportunidades, no solo posiciones. Cada página necesita una acción principal.", "Un CRM ayuda a ver qué búsquedas y servicios terminan en conversaciones reales."] },
+    ],
+    related: [{ label: "SEO local en Barcelona", href: "/barcelona/seo-local-para-negocios-barcelona" }, { label: "SEO local para negocios", href: "/servicios/seo-local-para-negocios" }],
+  },
+  {
+    slug: "cuanto-cuesta-web-premium-negocio-local",
+    title: "Cuánto cuesta una web premium para un negocio local",
+    description: "Factores que cambian el precio de una web premium: estrategia, diseño, SEO, formularios, CRM y automatizaciones.",
+    date: "2026-05-13",
+    reading: "8 min",
+    intro: "El precio de una web premium depende menos del número de secciones y más de lo que debe resolver. Una web simple de presencia no cuesta lo mismo que un sistema con SEO, captación, CRM y automatización.",
+    sections: [
+      { title: "Qué incluye una web seria", body: ["Debe incluir estrategia, copy, diseño responsive, desarrollo, metadata, rendimiento, formulario, analítica básica y despliegue.", "Si además hay páginas por servicio, blog, integraciones o dashboard, el alcance cambia."] },
+      { title: "La diferencia entre gasto y activo", body: ["Una web barata puede salir cara si no genera confianza ni leads. Una web premium debe justificar inversión ayudando a captar y ordenar oportunidades.", "La pregunta correcta no es solo cuánto cuesta, sino qué parte del proceso comercial mejora."] },
+      { title: "Rangos orientativos", body: ["Una landing puede servir para validar una oferta. Una web con SEO y varias páginas requiere más estrategia. Un sistema completo suma CRM, automatización y dashboard.", "El presupuesto final debe salir de una auditoría y de prioridades reales."] },
+      { title: "Cómo decidir el alcance", body: ["Empieza por el cuello de botella: confianza, tráfico, conversión o seguimiento. Luego construye la pieza que desbloquea más valor.", "Esto evita pagar por funcionalidades que no resuelven el problema principal."] },
+    ],
+    related: [{ label: "Webs premium", href: "/servicios/webs-premium-para-negocios" }, { label: "Auditoría gratis", href: "/auditoria-gratis" }],
+  },
+  {
+    slug: "web-normal-vs-sistema-digital",
+    title: "Web normal vs sistema digital: cuál necesita tu empresa",
+    description: "Diferencias entre una web informativa y un sistema digital con captación, CRM, automatización y métricas.",
+    date: "2026-05-13",
+    reading: "9 min",
+    intro: "Una web normal informa. Un sistema digital capta, ordena y ayuda a vender. La diferencia está en qué ocurre después de la visita: si el usuario entiende, contacta y el negocio hace seguimiento, la web trabaja.",
+    sections: [
+      { title: "La web normal se queda en escaparate", body: ["Puede tener buen diseño, pero si no tiene CTA, SEO ni seguimiento, depende de que el usuario tome iniciativa.", "Muchas webs fallan porque cuentan la empresa, pero no guían al cliente hacia una decisión."] },
+      { title: "El sistema digital conecta piezas", body: ["Incluye páginas de captación, formularios, WhatsApp, CRM, automatización y métricas.", "Cada visita importante debería dejar una señal o una oportunidad accionable."] },
+      { title: "Cuándo necesitas cada opción", body: ["Si solo necesitas presencia mínima, una web compacta puede bastar. Si vendes servicios, recibes leads o dependes de búsquedas locales, necesitas sistema.", "La decisión debe basarse en proceso comercial, no en moda tecnológica."] },
+      { title: "Cómo evolucionar sin rehacer todo", body: ["Empieza con una base bien construida: Next.js, SEO técnico, componentes reutilizables y formularios seguros.", "Luego puedes sumar CRM, blog, automatizaciones y dashboard por fases."] },
+    ],
+    related: [{ label: "Sistema completo SaaS", href: "/servicios/software-saas-para-empresas" }, { label: "CRM de leads", href: "/proyectos/crm-leads-ia" }],
+  },
+  {
+    slug: "usar-ia-para-responder-leads-y-no-perder-ventas",
+    title: "Cómo usar IA para responder leads y no perder ventas",
+    description: "Uso práctico de IA para respuesta inicial, clasificación, seguimiento y derivación humana de oportunidades.",
+    date: "2026-05-13",
+    reading: "8 min",
+    intro: "La IA tiene valor comercial cuando reduce tiempo de respuesta y mejora seguimiento. No hace falta construir algo enorme: muchas empresas ganan orden empezando por clasificar leads y avisar al equipo.",
+    sections: [
+      { title: "Respuesta inicial rápida", body: ["Un lead caliente espera claridad. La IA puede confirmar recepción, pedir datos faltantes y enviar información base.", "Esto evita silencios y mejora percepción profesional."] },
+      { title: "Clasificación por intención", body: ["No todos los leads son iguales. Servicio solicitado, urgencia, presupuesto y canal ayudan a priorizar.", "La IA puede etiquetar oportunidades para que el equipo se enfoque en las más importantes."] },
+      { title: "Seguimiento sin depender de memoria", body: ["Recordatorios y próximas acciones evitan que un contacto se pierda tras el primer mensaje.", "El CRM debe mostrar qué hacer hoy, no solo una lista de nombres."] },
+      { title: "Control y revisión humana", body: ["La IA debe trabajar con límites. Presupuestos, conflictos o dudas sensibles requieren revisión humana.", "El sistema correcto mezcla velocidad automática con decisión profesional."] },
+    ],
+    related: [{ label: "Automatización IA", href: "/servicios/automatizacion-con-inteligencia-artificial" }, { label: "CRM con IA", href: "/proyectos/crm-leads-ia" }],
+  },
+  {
+    slug: "que-es-crm-leads-negocio-pequeno",
+    title: "Qué es un CRM de leads y por qué lo necesita un negocio pequeño",
+    description: "Explicación práctica de CRM para negocios locales: estados, oportunidades, valor, seguimiento y métricas.",
+    date: "2026-05-13",
+    reading: "8 min",
+    intro: "Un CRM de leads no tiene que ser una herramienta enorme. Para un negocio pequeño, puede ser un panel simple que responde tres preguntas: quién pidió información, qué necesita y cuál es el siguiente paso.",
+    sections: [
+      { title: "El problema no es captar, es ordenar", body: ["Muchos negocios reciben mensajes, pero no tienen sistema para priorizar y hacer seguimiento.", "Cuando los datos quedan en WhatsApp, notas o memoria, las oportunidades se pierden."] },
+      { title: "Estados y valor estimado", body: ["Nuevo, contactado, auditoría enviada, propuesta, negociación y cierre son estados básicos.", "Añadir valor estimado ayuda a ver el pipeline y decidir dónde poner energía."] },
+      { title: "Servicios solicitados", body: ["Saber si piden web, SEO, chatbot o CRM permite ajustar oferta y contenido.", "También ayuda a detectar qué servicios generan más demanda real."] },
+      { title: "Cuándo proteger con auth", body: ["Si hay datos reales, el dashboard debe estar protegido con autenticación y permisos.", "Una demo pública debe mostrar datos ficticios y avisarlo claramente."] },
+    ],
+    related: [{ label: "CRM para negocios locales", href: "/servicios/crm-para-negocios-locales" }, { label: "Dashboard demo", href: "/dashboard" }],
+  },
+  {
+    slug: "empresa-limpieza-captar-presupuestos-online",
+    title: "Cómo una empresa de limpieza puede captar más presupuestos online",
+    description: "Estrategia web y SEO para captar solicitudes de limpieza final de obra, cristales, comunidades y servicios profesionales.",
+    date: "2026-05-13",
+    reading: "9 min",
+    intro: "Una empresa de limpieza vende confianza, rapidez y claridad. El cliente quiere saber si trabajas en su zona, qué servicios haces, ver ejemplos y pedir presupuesto sin complicarse.",
+    sections: [
+      { title: "Servicios concretos, no texto genérico", body: ["Limpieza final de obra, cristales, oficinas, comunidades o viviendas deben aparecer con explicaciones propias.", "Cada servicio puede tener una página o bloque específico con CTA de presupuesto."] },
+      { title: "Antes y después generan confianza", body: ["Las fotos reales ayudan mucho si están bien presentadas. Cuando no hay imágenes, se puede preparar una estructura para añadirlas sin romper diseño.", "Reseñas, zonas de trabajo y garantías refuerzan la decisión."] },
+      { title: "SEO local por ciudad y zona", body: ["El cliente suele buscar cerca. La web debe trabajar servicio más ubicación de forma natural.", "También conviene optimizar Google Business Profile y enlazar desde la web."] },
+      { title: "Formulario cualificado", body: ["Un buen formulario pide tipo de limpieza, ubicación, urgencia, metros aproximados y fotos si aplica.", "Así la empresa puede responder con más contexto y priorizar presupuestos buenos."] },
+    ],
+    related: [{ label: "Web para empresas de limpieza", href: "/nichos/web-para-empresas-de-limpieza" }, { label: "SEO local", href: "/servicios/seo-local-para-negocios" }],
+  },
+  {
+    slug: "convertir-instagram-whatsapp-en-sistema-ventas",
+    title: "Cómo convertir Instagram y WhatsApp en un sistema de ventas",
+    description: "Cómo unir contenido, mensajes, formulario, CRM y automatización para vender mejor desde canales sociales.",
+    date: "2026-05-13",
+    reading: "9 min",
+    intro: "Instagram y WhatsApp generan atención, pero no siempre generan ventas ordenadas. El salto ocurre cuando cada conversación tiene contexto, seguimiento y una oferta clara.",
+    sections: [
+      { title: "Instagram debe llevar a una ruta clara", body: ["El perfil, enlaces, destacados y contenido deben dirigir hacia servicios, reservas, WhatsApp o auditoría.", "Sin una ruta clara, el interés se queda en visualizaciones y mensajes sueltos."] },
+      { title: "WhatsApp necesita estructura", body: ["Mensajes rápidos, preguntas frecuentes y derivación ayudan a responder sin improvisar.", "La automatización puede pedir datos mínimos antes de pasar al equipo."] },
+      { title: "La web centraliza confianza", body: ["La web explica oferta, casos, servicios y preguntas frecuentes mejor que una conversación repetida.", "También permite captar búsquedas de Google y no depender solo de redes."] },
+      { title: "El CRM cierra el circuito", body: ["Cada lead debería entrar con fuente, servicio, estado y próxima acción.", "Eso convierte canales sociales en pipeline comercial medible."] },
+    ],
+    related: [{ label: "Automatización para negocios", href: "/nichos/automatizacion-para-negocios-locales" }, { label: "Auditoría gratis", href: "/auditoria-gratis" }],
   },
 ];
 
 export const allSeoPages = [
   ...services.map((p) => ({ ...p, group: "servicios", href: `/servicios/${p.slug}` })),
   ...niches.map((p) => ({ ...p, group: "nichos", href: `/nichos/${p.slug}` })),
+  ...sectors.map((p) => ({ ...p, group: "sectores", href: `/sectores/${p.slug}` })),
   ...localPages.map((p) => ({ ...p, group: "barcelona", href: `/barcelona/${p.slug}` })),
 ];

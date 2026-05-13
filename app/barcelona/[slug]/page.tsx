@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
-import { localPages } from "@/lib/site-data";
+import { breadcrumbJsonLd, createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
+import { allSeoPages, localPages } from "@/lib/site-data";
 import { ButtonLink } from "@/components/button-link";
 import { Section } from "@/components/section";
 import { PremiumCard } from "@/components/premium-card";
@@ -21,16 +22,37 @@ export function generateMetadata({ params }: Props) {
 export default function SeoDynamicPage({ params }: Props) {
   const page = localPages.find((item) => item.slug === params.slug);
   if (!page) notFound();
-  const faqs = [
-    { question: "¿Trabajas con negocios de Barcelona?", answer: "Sí. El enfoque está preparado para negocios locales de Barcelona que necesitan captar por Google, WhatsApp y una web más profesional." },
-    { question: "¿Incluye SEO local?", answer: "Sí. Las páginas locales, metadata, estructura semántica, sitemap y contenido comercial forman parte de la base SEO." },
+  const faqs = page.faqs || [
+    { question: "¿Trabajas con negocios de Barcelona?", answer: "Sí. El enfoque está preparado para negocios de Eixample, Gràcia, Sants, Poblenou, Sarrià, Badalona, Hospitalet y otras zonas cuando encaja con su área real." },
+    { question: `¿Qué incluye ${page.eyebrow}?`, answer: `Incluye ${page.deliverables.slice(0, 4).join(", ").toLowerCase()} y una estructura pensada para captar búsquedas locales sin keyword stuffing.` },
     { question: "¿Cómo empiezo?", answer: "Solicita una auditoría gratis para revisar tu presencia digital, competencia local y oportunidades de automatización." },
   ];
+  const pains = page.pains || [
+    page.pain,
+    "En Barcelona el usuario compara rápido diseño, reseñas, ubicación, precio y facilidad de contacto.",
+    "Las búsquedas locales requieren páginas útiles, no repetir barrios sin aportar información real.",
+    "Sin medición de llamadas, formularios y WhatsApp es difícil saber qué zona o servicio convierte.",
+  ];
+  const process = page.process || [
+    { title: "Mapa local", text: "Identifico servicios, zonas reales, competencia y oportunidades en Barcelona." },
+    { title: "Página comercial", text: `Construyo una URL con ${page.benefits.slice(0, 3).join(", ").toLowerCase()} y CTA hacia auditoría.` },
+    { title: "SEO técnico", text: "Configuro metadata, canonical, schema, enlaces internos y contenido local natural." },
+    { title: "Conversión", text: "Conecto WhatsApp, formulario y seguimiento para medir oportunidades, no solo visitas." },
+  ];
+  const related = page.related
+    ? page.related.map((href) => allSeoPages.find((item) => item.href === href)).filter(Boolean)
+    : allSeoPages.filter((item) => item.href !== `/barcelona/${page.slug}`).slice(0, 4);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd(page.title, page.description, `/barcelona/${page.slug}`)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: "Inicio", path: "/" }, { name: "Barcelona", path: "/barcelona" }, { name: page.eyebrow, path: `/barcelona/${page.slug}` }])),
+        }}
+      />
       <section className="px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_.9fr]">
           <div>
@@ -38,8 +60,8 @@ export default function SeoDynamicPage({ params }: Props) {
             <h1 className="mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl">{page.h1}</h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{page.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/auditoria-gratis">{page.cta}</ButtonLink>
-              <ButtonLink href="/proyectos" variant="secondary">Ver proyectos <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/auditoria-gratis">Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/proyectos" variant="secondary">Ver sistemas digitales</ButtonLink>
             </div>
           </div>
           <PremiumCard>
@@ -50,6 +72,16 @@ export default function SeoDynamicPage({ params }: Props) {
           </PremiumCard>
         </div>
       </section>
+      <Section eyebrow="Barcelona" title="Problemas locales que conviene resolver sin sonar artificial">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {pains.map((item, index) => (
+            <PremiumCard key={item}>
+              <p className="text-sm font-semibold text-cyan-200">0{index + 1}</p>
+              <p className="mt-4 text-sm leading-6 text-slate-200">{item}</p>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
       <Section eyebrow="Beneficios" title="Qué gana el negocio con esta solución">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {page.benefits.map((item) => (
@@ -67,7 +99,7 @@ export default function SeoDynamicPage({ params }: Props) {
       </Section>
       <Section eyebrow="Proceso" title="De visibilidad local a captación medible">
         <div className="grid gap-5 md:grid-cols-4">
-          {["Mapa SEO", "Web premium", "Automatización", "Medición"].map((item) => <PremiumCard key={item}><h3 className="text-xl font-semibold text-white">{item}</h3><p className="mt-3 text-sm text-slate-300">Trabajo enfocado en captar búsquedas locales y convertirlas en oportunidades.</p></PremiumCard>)}
+          {process.map((item) => <PremiumCard key={item.title}><h3 className="text-xl font-semibold text-white">{item.title}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{item.text}</p></PremiumCard>)}
         </div>
       </Section>
       <Section eyebrow="FAQs" title="Preguntas frecuentes">
@@ -75,11 +107,21 @@ export default function SeoDynamicPage({ params }: Props) {
           {faqs.map((faq) => <PremiumCard key={faq.question}><h3 className="font-semibold text-white">{faq.question}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{faq.answer}</p></PremiumCard>)}
         </div>
       </Section>
+      <Section eyebrow="Enlaces internos" title="Rutas relacionadas para captar más demanda local">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {related.map((item) => item && (
+            <Link key={item.href} href={item.href} className="rounded-3xl border border-white/10 bg-white/[.04] p-5 text-slate-200 transition hover:-translate-y-1 hover:bg-white/[.08]">
+              <span className="text-xs font-semibold uppercase tracking-[.18em] text-cyan-200">{item.group}</span>
+              <span className="mt-3 block font-semibold text-white">{item.h1}</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[.06] p-8 text-center shadow-premium md:p-12">
           <h2 className="text-3xl font-semibold text-white">¿Quieres ver cómo se aplicaría a tu negocio?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-slate-300">Pide una auditoría gratis y recibirás una ruta clara para mejorar presencia digital, captación y automatización.</p>
-          <div className="mt-7 flex justify-center"><ButtonLink href="/auditoria-gratis">Solicitar auditoría gratis</ButtonLink></div>
+          <div className="mt-7 flex justify-center"><ButtonLink href="/auditoria-gratis">Auditoría gratis</ButtonLink></div>
         </div>
       </section>
     </>

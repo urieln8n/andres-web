@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { createMetadata } from "@/lib/seo";
 import { Section } from "@/components/section";
 import { PremiumCard } from "@/components/premium-card";
+import { projectStudies } from "@/lib/site-data";
 
 export const metadata = createMetadata({
   title: "Proyectos y sistemas digitales | Andrés Rendón",
@@ -8,22 +10,21 @@ export const metadata = createMetadata({
   path: "/proyectos",
 });
 
-const projects = [
-  { title: "BarberíaOS", tag: "SaaS vertical", text: "Sistema para barberías con reservas, clientes, barberos, caja, QR, marketing y dashboard." },
-  { title: "Demos premium para negocios", tag: "Ventas B2B", text: "Webs HTML/Next.js para presentar propuestas de alto valor a restaurantes, pizzerías y servicios locales." },
-  { title: "Automatizaciones IA", tag: "Operaciones", text: "Flujos con WhatsApp, CRM, formularios, webhooks y seguimiento comercial." },
-];
-
 export default function ProjectsPage() {
   return (
-    <Section eyebrow="Proyectos" title="Sistemas y demos pensados para vender soluciones reales.">
-      <div className="grid gap-5 md:grid-cols-3">
-        {projects.map((project) => (
-          <PremiumCard key={project.title}>
-            <p className="text-sm text-gold">{project.tag}</p>
+    <Section eyebrow="Proyectos" title="Casos de estudio y prototipos comerciales de sistemas digitales.">
+      <p className="mb-8 max-w-3xl text-lg leading-8 text-slate-300">
+        Proyectos pensados para demostrar cómo una web, un CRM, una automatización o un SaaS pueden convertirse en infraestructura comercial. Cuando no hay métricas reales, se indica como caso demostrativo o resultado esperado.
+      </p>
+      <div className="grid gap-5 md:grid-cols-2">
+        {projectStudies.map((project) => (
+          <Link key={project.slug} href={`/proyectos/${project.slug}`}>
+            <PremiumCard className="h-full transition hover:-translate-y-1 hover:bg-white/[.08]">
+            <p className="text-sm text-gold">{project.eyebrow}</p>
             <h2 className="mt-3 text-2xl font-semibold text-white">{project.title}</h2>
-            <p className="mt-4 text-slate-300">{project.text}</p>
+            <p className="mt-4 text-slate-300">{project.description}</p>
           </PremiumCard>
+          </Link>
         ))}
       </div>
     </Section>

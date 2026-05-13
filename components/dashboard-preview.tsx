@@ -46,8 +46,9 @@ export function DashboardPreview() {
         <div>
           <p className="text-sm text-slate-400">Dashboard CRM de Andrés Rendón</p>
           <h3 className="mt-1 text-2xl font-semibold text-white">Pipeline comercial, leads y acciones</h3>
+          <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-400">Datos demostrativos para visualizar el sistema CRM. Los leads reales requieren Supabase conectado y autenticación.</p>
         </div>
-        <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-sm text-emerald-200">Sistema activo</div>
+        <div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-200">Demo visual</div>
       </div>
 
       <div className="grid gap-4 p-6 lg:grid-cols-4">

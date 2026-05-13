@@ -12,6 +12,7 @@ const marketingAuditCtaDynamicPrefixes = [
   "/servicios/",
   "/nichos/",
   "/barcelona/",
+  "/proyectos/",
   "/blog/",
 ];
 
