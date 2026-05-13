@@ -1,5 +1,6 @@
-import { CheckCircle2, Search, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, CheckCircle2, Search, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { createMetadata, faqJsonLd, serviceJsonLd } from "@/lib/seo";
+import { ButtonLink } from "@/components/button-link";
 import { LeadForm } from "@/components/lead-form";
 import { PremiumCard } from "@/components/premium-card";
 import { Section } from "@/components/section";
@@ -40,6 +41,23 @@ const takeaways = [
   "Recomendación del siguiente paso",
 ];
 
+const losingNow = [
+  "Búsquedas en Google que terminan en competidores porque tu SEO no tiene estructura.",
+  "Visitas que entran en móvil y no encuentran una razón clara para pedir presupuesto.",
+  "Mensajes de WhatsApp que se responden tarde o quedan sin próxima acción.",
+  "Seguidores de Instagram que miran contenido pero nunca llegan a una oferta concreta.",
+  "Leads que podrían convertirse en ventas pero no entran en un CRM ni tienen seguimiento.",
+];
+
+const lossChecklist = [
+  "SEO invisible",
+  "Web que no convierte",
+  "WhatsApp sin seguimiento",
+  "Instagram sin embudo",
+  "Leads sin CRM",
+  "Sin automatización",
+];
+
 export const metadata = createMetadata({
   title: "Auditoría gratis | Web, SEO, WhatsApp, IA y captación",
   description: "Solicita una auditoría gratis con Andrés Fabián Rendón Ramírez para revisar web, SEO, WhatsApp, captación y automatización con IA.",
@@ -56,10 +74,10 @@ export default function AuditPage() {
           <div>
             <p className="premium-kicker text-sm">Auditoría digital gratis</p>
             <h1 className="text-balance mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl">
-              Auditoría gratis para descubrir qué frena tu captación digital.
+              Estás perdiendo clientes si tu web, WhatsApp e Instagram no trabajan como un sistema.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-300">
-              Soy Andrés Fabián Rendón Ramírez. Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
+              Soy Andrés Fabián Rendón Ramírez. Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte qué mejorar primero para captar más clientes sin gastar a ciegas.
             </p>
             <div className="mt-8 grid gap-3 text-sm text-slate-300">
               {["Diagnóstico profesional", "Errores principales", "Oportunidades rápidas", "Propuesta de mejora", "Plan de acción"].map((item) => (
@@ -69,12 +87,39 @@ export default function AuditPage() {
               ))}
             </div>
             <p className="mt-5 rounded-3xl border border-gold/20 bg-gold/10 p-4 text-sm leading-6 text-gold">
-              Oferta profesional sin compromiso: reviso tu caso, detecto bloqueos y te digo qué priorizar antes de invertir en diseño, SEO, IA o CRM.
+              Promesa clara: te digo qué mejorar primero para captar más clientes sin gastar a ciegas.
             </p>
           </div>
-          <LeadForm />
+          <div id="lead-form-auditoria">
+            <LeadForm />
+          </div>
         </div>
       </section>
+
+      <Section eyebrow="Qué puedes estar perdiendo ahora" title="Cada punto débil de tu sistema digital se convierte en oportunidades que no ves.">
+        <div className="grid gap-5 md:grid-cols-5">
+          {losingNow.map((item, index) => (
+            <PremiumCard key={item}>
+              <p className="text-sm font-semibold text-cyan-200">0{index + 1}</p>
+              <p className="mt-4 text-sm leading-6 text-slate-200">{item}</p>
+            </PremiumCard>
+          ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <ButtonLink href="#lead-form-auditoria">Quiero detectar mis fugas <ArrowRight className="h-4 w-4" /></ButtonLink>
+        </div>
+      </Section>
+
+      <Section eyebrow="Checklist visual" title="Si marcas dos o más, hay dinero quedándose fuera del sistema.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {lossChecklist.map((item) => (
+            <div key={item} className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/[.045] p-5 text-slate-200">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-gold" />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
 
       <Section eyebrow="Qué reviso" title="La auditoría mira el sistema completo, no solo si la web se ve bonita.">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -110,6 +155,13 @@ export default function AuditPage() {
           ))}
         </div>
       </Section>
+
+      <section className="px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-[2rem] border border-white/10 bg-white/[.05] p-6 text-center shadow-premium md:flex-row md:text-left">
+          <p className="max-w-2xl text-slate-200">No necesitas hacer todo. Necesitas saber qué mover primero para desbloquear más captación.</p>
+          <ButtonLink href="#lead-form-auditoria" variant="secondary">Pedir diagnóstico <ArrowRight className="h-4 w-4" /></ButtonLink>
+        </div>
+      </section>
 
       <Section eyebrow="Qué te llevarás" title="Una ruta clara para decidir el siguiente paso con menos dudas.">
         <div className="grid gap-4 md:grid-cols-3">

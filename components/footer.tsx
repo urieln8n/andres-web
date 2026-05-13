@@ -6,9 +6,12 @@ export function Footer() {
     <footer className="border-t border-white/10 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1.1fr_.7fr_.7fr_.8fr]">
         <div>
-          <p className="text-xl font-semibold text-white">Andrés Fabián Rendón</p>
+          <p className="text-xl font-semibold text-white">Andrés Fabián Rendón Ramírez</p>
           <p className="mt-3 max-w-md text-sm leading-6 text-slate-400">
             Webs premium, IA, automatización, SEO local y sistemas digitales para negocios que quieren captar más clientes.
+          </p>
+          <p className="mt-4 max-w-md text-xs leading-5 text-slate-500">
+            Andrés Fabián Rendón Ramírez — consultor de IA, automatización, SEO local, webs premium y sistemas digitales para negocios locales en Barcelona.
           </p>
         </div>
         <div>

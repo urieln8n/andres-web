@@ -4,9 +4,9 @@ import { SITE_URL, siteUrl } from "./utils";
 export const PERSON_NAME = "Andrés Fabián Rendón Ramírez";
 export const BRAND_NAME = "Andrés Rendón";
 
-export const defaultTitle = "Andrés Rendón | Sistemas digitales con IA, SEO y automatización";
+export const defaultTitle = "Andrés Fabián Rendón Ramírez | Sistemas digitales con IA, SEO y automatización";
 export const defaultDescription =
-  "Construyo sistemas digitales con IA para negocios locales, autónomos y empresas que quieren captar más clientes, automatizar procesos y vender más.";
+  "Andrés Fabián Rendón Ramírez construye sistemas digitales con IA para negocios locales, autónomos y empresas que quieren captar más clientes.";
 
 export function createMetadata({
   title = defaultTitle,
@@ -24,13 +24,26 @@ export function createMetadata({
   return {
     title: {
       default: title,
-      template: "%s | Andrés Rendón",
+      template: "%s | Andrés Fabián Rendón Ramírez",
     },
     description,
     applicationName: BRAND_NAME,
     authors: [{ name: PERSON_NAME, url: SITE_URL }],
     creator: PERSON_NAME,
     publisher: PERSON_NAME,
+    category: "Consultoría IA, automatización, SEO local, webs premium y sistemas digitales",
+    keywords: [
+      "Andrés Fabián Rendón Ramírez",
+      "Andrés Rendón IA",
+      "Andrés Rendón automatización",
+      "Andrés Rendón Barcelona",
+      "consultor IA negocios locales",
+      "webs premium para negocios locales",
+      "automatización IA Barcelona",
+      "SEO local Barcelona",
+      "CRM para negocios locales",
+      "BarberíaOS",
+    ],
     metadataBase: new URL(SITE_URL),
     alternates: { canonical: url },
     openGraph: {
@@ -82,6 +95,10 @@ export function personJsonLd() {
       "SEO local",
       "SaaS",
       "Chatbots WhatsApp",
+      "CRM para negocios locales",
+      "Sistemas de reservas",
+      "Captación para negocios locales",
+      "BarberíaOS",
     ],
   };
 }

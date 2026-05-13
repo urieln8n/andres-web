@@ -46,6 +46,56 @@ const authorityMetrics = [
   { label: "CRM conectado", text: "Cada lead entra con contexto, estado y próxima acción." },
 ];
 
+const trustReasons = [
+  { title: "Construyo producto real", text: "No vendo solo diseño: trabajo con flujos, datos, formularios, CRM, automatización y páginas que pueden medirse." },
+  { title: "Pienso como operador", text: "Cada sección responde a una pregunta comercial: qué vendes, por qué confiar, qué hacer ahora y cómo no perder el lead." },
+  { title: "SEO desde arquitectura", text: "Organizo servicios, nichos, Barcelona, casos y blog para capturar intención real sin depender solo de redes sociales." },
+  { title: "IA con control humano", text: "Uso IA para acelerar respuesta y seguimiento, manteniendo derivación humana cuando el negocio necesita criterio." },
+];
+
+const proofMockups = [
+  ["Landing premium", "Oferta clara, CTA visible, confianza y mobile-first."],
+  ["CRM de leads", "Estados, valor estimado, servicio solicitado y próxima acción."],
+  ["WhatsApp + IA", "Respuesta inicial, clasificación y seguimiento sin improvisar."],
+  ["SEO local", "Páginas por servicio, nicho y zona con enlaces internos."],
+];
+
+const beforeAfter = [
+  ["Antes", "Web bonita sin captación", "Visitas sin contexto, WhatsApp desordenado, SEO invisible y leads que se enfrían."],
+  ["Después", "Sistema digital con SEO, CRM, WhatsApp e IA", "Cada búsqueda, visita y mensaje entra en una ruta de conversión y seguimiento."],
+];
+
+const workProcess = [
+  "Auditoría de oferta, web, SEO, WhatsApp e Instagram",
+  "Mapa de captación por servicio, nicho y ciudad",
+  "Diseño premium orientado a confianza y conversión",
+  "Implementación con formulario, CRM, dashboard o automatización",
+  "Medición y priorización de mejoras",
+];
+
+const deliverables = [
+  "Arquitectura SEO",
+  "Copy de conversión",
+  "Web premium",
+  "Formulario de auditoría",
+  "CRM visual",
+  "Automatización IA",
+  "Dashboard comercial",
+  "Plan de mejora",
+];
+
+const notFor = [
+  "Negocios que solo quieren una web decorativa sin medir captación.",
+  "Proyectos que no quieren aclarar oferta, precios, proceso o seguimiento.",
+  "Equipos que prefieren seguir perdiendo leads en mensajes sueltos.",
+];
+
+const homeFaqs = [
+  ["¿Trabajas solo con Barcelona?", "La base local está en Barcelona, pero puedo construir sistemas digitales para negocios de cualquier ciudad si el proyecto tiene sentido."],
+  ["¿La auditoría gratis vende algo desde el primer minuto?", "No. Primero detecto qué falla y qué mejorar. Si hay oportunidad clara, propongo el siguiente paso."],
+  ["¿BarberíaOS ya es un producto real?", "Es un SaaS vertical y caso demostrativo en construcción para mostrar cómo una barbería puede controlar reservas, clientes, caja, QR, marketing y automatización."],
+];
+
 export default function HomePage() {
   return (
     <>
@@ -121,6 +171,30 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <Section eyebrow="Por qué confiar en mí" title="No trabajo la web como escaparate. La trabajo como infraestructura comercial.">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {trustReasons.map((item) => (
+            <PremiumCard key={item.title}>
+              <CheckCircle2 className="mb-5 h-7 w-7 text-cyan-300" />
+              <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Antes y después" title="La diferencia entre una web bonita y un sistema que captura oportunidades.">
+        <div className="grid gap-5 lg:grid-cols-2">
+          {beforeAfter.map(([label, title, text]) => (
+            <PremiumCard key={label} className={label === "Después" ? "bg-cyan-300/[.08]" : ""}>
+              <p className="text-sm font-semibold text-gold">{label}</p>
+              <h3 className="mt-4 text-3xl font-semibold text-white">{title}</h3>
+              <p className="mt-4 leading-7 text-slate-300">{text}</p>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Método Sistema Digital 360" title="Una infraestructura comercial completa, diseñada para parecer premium y vender mejor.">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
           {method.map((item) => (
@@ -178,6 +252,68 @@ export default function HomePage() {
                 <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200">Ver proyecto <ArrowRight className="h-4 w-4" /></span>
               </PremiumCard>
             </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Sistemas reales que estoy construyendo" title="BarberíaOS es la prueba de una idea: los negocios locales necesitan software, no solo presencia.">
+        <div className="grid gap-5 lg:grid-cols-[1.05fr_.95fr]">
+          <PremiumCard className="bg-cyan-300/[.08]">
+            <p className="premium-kicker text-sm">BarberíaOS</p>
+            <h3 className="mt-4 text-4xl font-semibold tracking-tight text-white">Reservas, clientes, caja, QR, dashboard, marketing y automatización para barberías.</h3>
+            <p className="mt-5 leading-7 text-slate-300">
+              Un SaaS vertical para demostrar cómo un negocio local puede pasar de mensajes sueltos a un sistema operativo comercial con agenda, datos y seguimiento.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/casos/barberiaos">Ver caso BarberíaOS <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/nichos/software-para-barberias" variant="secondary">Software para barberías</ButtonLink>
+            </div>
+          </PremiumCard>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {proofMockups.map(([title, text]) => (
+              <div key={title} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)]">
+                <p className="text-sm font-semibold text-cyan-200">{title}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Proceso de trabajo" title="De diagnóstico a sistema digital medible.">
+        <div className="grid gap-4 md:grid-cols-5">
+          {workProcess.map((item, index) => (
+            <PremiumCard key={item}>
+              <p className="text-sm font-semibold text-cyan-200">0{index + 1}</p>
+              <h3 className="mt-4 text-lg font-semibold text-white">{item}</h3>
+            </PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Entregables" title="Lo que puede formar parte de un sistema serio de captación.">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {deliverables.map((item) => (
+            <div key={item} className="rounded-3xl border border-white/10 bg-white/[.045] p-5 font-semibold text-white">{item}</div>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Para quién NO es" title="Prefiero proyectos con intención real de mejorar captación, no solo apariencia.">
+        <div className="grid gap-5 md:grid-cols-3">
+          {notFor.map((item) => (
+            <PremiumCard key={item}><p className="leading-7 text-slate-200">{item}</p></PremiumCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Preguntas frecuentes" title="Dudas antes de pedir una auditoría gratis.">
+        <div className="grid gap-5 md:grid-cols-3">
+          {homeFaqs.map(([question, answer]) => (
+            <PremiumCard key={question}>
+              <h3 className="font-semibold text-white">{question}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{answer}</p>
+            </PremiumCard>
           ))}
         </div>
       </Section>
