@@ -1,0 +1,12 @@
+{
+  "name": "Cliente Demo",
+  "email": "cliente@empresa.com",
+  "phone": "+34 600 000 000",
+  "businessName": "Barbería Demo",
+  "website": "https://instagram.com/barberia-demo",
+  "service": "Web premium + reservas",
+  "budget": "3000",
+  "message": "Quiero captar más reservas.",
+  "source": "auditoria-gratis",
+  "createdAt": "2026-05-13T17:40:00.000Z"
+}
