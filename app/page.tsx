@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Bot, BrainCircuit, CalendarCheck, CheckCircle2, Database, Globe2, LineChart, MessageSquare, Rocket, Search, Sparkles, Workflow } from "lucide-react";
+import { ArrowRight, Bot, BrainCircuit, CalendarCheck, CheckCircle2, Database, Globe2, LineChart, MessageSquare, Rocket, Search, Sparkles, Workflow, Zap } from "lucide-react";
 import { createMetadata, serviceJsonLd } from "@/lib/seo";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button-link";
@@ -90,6 +90,59 @@ const notFor = [
   "Equipos que prefieren seguir perdiendo leads en mensajes sueltos.",
 ];
 
+const packages = [
+  {
+    name: "Auditoría IA Express",
+    price: "Gratis",
+    label: "Punto de entrada",
+    description: "Revisión de web, SEO, WhatsApp e Instagram con diagnóstico claro y prioridades accionables.",
+    features: ["Diagnóstico web completo", "Revisión SEO", "Análisis WhatsApp", "Oportunidades rápidas", "Plan de mejora"],
+    cta: "Solicitar ahora",
+    href: "/auditoria-gratis",
+    featured: false,
+  },
+  {
+    name: "Demo Growth",
+    price: "desde 149€",
+    label: "Validación rápida",
+    description: "Demo visual de tu sistema digital: web, automatización o CRM para validar antes de invertir.",
+    features: ["Demo interactiva", "Copy comercial", "Estructura SEO básica", "CTA optimizados", "Revisión mobile"],
+    cta: "Solicitar auditoría",
+    href: "/auditoria-gratis",
+    featured: false,
+  },
+  {
+    name: "Web Premium Local",
+    price: "desde 790€",
+    label: "Presencia fuerte",
+    description: "Web premium mobile-first con SEO local, formulario de captación y WhatsApp integrado.",
+    features: ["Diseño premium", "SEO técnico completo", "Formulario de leads", "WhatsApp integrado", "Mobile-first"],
+    cta: "Solicitar auditoría",
+    href: "/auditoria-gratis",
+    featured: false,
+  },
+  {
+    name: "Sistema Digital 360 IA",
+    price: "desde 1.500€",
+    label: "Más completo",
+    description: "Sistema completo: web, WhatsApp IA, automatizaciones, CRM, SEO local y dashboard comercial.",
+    features: ["Web + SEO local", "WhatsApp con IA", "CRM y pipeline", "Automatizaciones", "Dashboard comercial", "Seguimiento de oportunidades"],
+    cta: "Solicitar auditoría",
+    href: "/auditoria-gratis",
+    featured: true,
+  },
+  {
+    name: "Mantenimiento IA",
+    price: "desde 97€/mes",
+    label: "Continuidad",
+    description: "Seguimiento mensual, mejoras continuas, soporte técnico y automatizaciones activas.",
+    features: ["Soporte técnico", "Mejoras continuas", "Monitorización", "Automatizaciones activas", "Informe mensual"],
+    cta: "Solicitar auditoría",
+    href: "/auditoria-gratis",
+    featured: false,
+  },
+];
+
 const homeFaqs = [
   ["¿Trabajas solo con Barcelona?", "La base local está en Barcelona, pero puedo construir sistemas digitales para negocios de cualquier ciudad si el proyecto tiene sentido."],
   ["¿La auditoría gratis vende algo desde el primer minuto?", "No. Primero detecto qué falla y qué mejorar. Si hay oportunidad clara, propongo el siguiente paso."],
@@ -110,19 +163,19 @@ export default function HomePage() {
         <div className="absolute right-[8%] top-32 hidden h-72 w-72 rounded-full bg-gold/10 blur-3xl lg:block" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.04fr_.96fr] lg:gap-14">
           <div className="relative z-10">
-            <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/[.06] px-3.5 py-2 text-xs font-medium text-cyan-100 shadow-glow backdrop-blur sm:px-4 sm:text-sm">
-              <Sparkles className="h-4 w-4 text-gold" />
-              <span className="truncate">Andrés Fabián Rendón Ramírez · IA aplicada a negocios locales</span>
+            <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-gold/25 bg-gold/[.08] px-3.5 py-2 text-xs font-semibold text-gold shadow-glow backdrop-blur sm:px-4 sm:text-sm">
+              <Zap className="h-4 w-4 text-gold" />
+              <span className="truncate">Andrés Rendón Growth Engine</span>
             </div>
             <h1 className="text-balance max-w-4xl text-[2.7rem] font-semibold leading-[.96] tracking-tight text-white sm:text-6xl lg:text-7xl">
               <span className="block">Construyo sistemas digitales con IA</span>
-              <span className="premium-gradient-text block">para negocios que quieren captar más clientes.</span>
+              <span className="premium-gradient-text block">para negocios locales que quieren vender más.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:mt-7 sm:text-xl sm:leading-8">
-              Webs premium, SEO, automatizaciones, CRM, dashboards y chatbots para convertir visitas en clientes reales.
+              Más clientes desde WhatsApp, Google e Instagram. Webs premium, automatizaciones, SEO local y sistemas que trabajan mientras tú atiendes tu negocio.
             </p>
             <p className="mt-5 max-w-2xl border-l border-cyan-200/30 pl-4 text-sm leading-7 text-slate-200 sm:pl-5 sm:text-base">
-              No creo páginas web decorativas. Diseño sistemas digitales que captan, ordenan y convierten oportunidades comerciales.
+              No creo páginas decorativas. Diseño sistemas digitales que captan, ordenan y convierten oportunidades comerciales.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
               <ButtonLink href="/auditoria-gratis?source=home-hero">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
@@ -335,6 +388,60 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </Section>
+
+      <Section eyebrow="Paquetes y precios" title="Elige el sistema que encaja con tu momento.">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {packages.slice(0, 3).map((pkg) => (
+            <PremiumCard key={pkg.name} className={pkg.featured ? "bg-cyan-300/[.08] ring-1 ring-cyan-300/30" : ""}>
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-gold">{pkg.label}</p>
+                {pkg.featured && <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-200">Recomendado</span>}
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold text-white">{pkg.name}</h3>
+              <p className="mt-1 text-3xl font-bold text-white">{pkg.price}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{pkg.description}</p>
+              <ul className="mt-5 grid gap-2">
+                {pkg.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />{f}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <ButtonLink href={`${pkg.href}?paquete=${encodeURIComponent(pkg.name)}`} variant={pkg.featured ? "primary" : "secondary"} className="w-full justify-center">
+                  {pkg.cta} <ArrowRight className="h-4 w-4" />
+                </ButtonLink>
+              </div>
+            </PremiumCard>
+          ))}
+        </div>
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          {packages.slice(3).map((pkg) => (
+            <PremiumCard key={pkg.name} className={pkg.featured ? "bg-cyan-300/[.08] ring-1 ring-cyan-300/30" : ""}>
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-gold">{pkg.label}</p>
+                {pkg.featured && <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-200">Recomendado</span>}
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold text-white">{pkg.name}</h3>
+              <p className="mt-1 text-3xl font-bold text-white">{pkg.price}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{pkg.description}</p>
+              <ul className="mt-5 grid gap-2 md:grid-cols-2">
+                {pkg.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />{f}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <ButtonLink href={`${pkg.href}?paquete=${encodeURIComponent(pkg.name)}`} variant="secondary" className="w-full justify-center">
+                  {pkg.cta} <ArrowRight className="h-4 w-4" />
+                </ButtonLink>
+              </div>
+            </PremiumCard>
+          ))}
+        </div>
+        <p className="mt-6 text-center text-sm text-slate-500">Precios orientativos. El presupuesto final se define tras la auditoría gratuita.</p>
       </Section>
 
       <section className="px-4 py-20 sm:px-6 lg:px-8">

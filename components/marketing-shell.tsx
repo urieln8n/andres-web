@@ -10,6 +10,10 @@ import { shouldShowMarketingAuditCta } from "@/lib/marketing-routes";
 
 export function MarketingShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+
+  // El dashboard tiene su propio layout — no necesita navbar/footer de marketing
+  if (pathname.startsWith("/dashboard")) return <>{children}</>;
+
   const showAuditCta = shouldShowMarketingAuditCta(pathname);
 
   return (

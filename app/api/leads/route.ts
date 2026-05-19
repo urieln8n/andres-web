@@ -18,10 +18,14 @@ export async function POST(request: Request) {
       name: lead.name,
       email: lead.email || null,
       phone: lead.phone,
+      whatsapp: lead.whatsapp || lead.phone || null,
       business_name: lead.businessName,
       website: lead.website || null,
+      instagram_url: lead.instagramUrl || null,
       sector: lead.sector,
+      city: lead.city || null,
       goal: lead.goal,
+      main_problem: lead.mainProblem || lead.goal || null,
       service: lead.service,
       budget: lead.budget || null,
       message: lead.message || null,
@@ -30,31 +34,30 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      const fallbackLead = {
-        ...lead,
-        notes: `Sector: ${lead.sector}. Objetivo: ${lead.goal}. Mensaje: ${lead.message || ""}`,
-      };
-      const fallback = await supabase.from("leads").insert({
-        name: fallbackLead.name,
-        email: fallbackLead.email || null,
-        phone: fallbackLead.phone,
-        business_name: fallbackLead.businessName,
-        website: fallbackLead.website || null,
-        service: fallbackLead.service,
-        budget: fallbackLead.budget || null,
-        message: fallbackLead.notes,
-        source: fallbackLead.source || "web",
-        status: "nuevo",
-      });
-      if (fallback.error) return NextResponse.json({ error: fallback.error.message }, { status: 500 });
+      console.error("[leads] Supabase insert error:", error.message);
+      return NextResponse.json({ error: "Error al guardar el lead. Inténtalo de nuevo." }, { status: 500 });
     }
   }
 
-  if (process.env.LEAD_WEBHOOK_URL) {
-    await fetch(process.env.LEAD_WEBHOOK_URL, {
+  // Webhook n8n opcional — no rompe si la variable no existe
+  const webhookUrl = process.env.N8N_NEW_LEAD_WEBHOOK_URL || process.env.LEAD_WEBHOOK_URL;
+  if (webhookUrl) {
+    await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...lead, createdAt: new Date().toISOString() }),
+      body: JSON.stringify({
+        name: lead.name,
+        email: lead.email,
+        whatsapp: lead.whatsapp || lead.phone,
+        business_name: lead.businessName,
+        website_url: lead.website,
+        instagram_url: lead.instagramUrl,
+        sector: lead.sector,
+        city: lead.city,
+        main_problem: lead.mainProblem || lead.goal,
+        source: lead.source || "andresrendon.com",
+        created_at: new Date().toISOString(),
+      }),
     }).catch(() => null);
   }
 
