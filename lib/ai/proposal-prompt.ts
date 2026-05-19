@@ -1,4 +1,5 @@
-import type { AuditResult } from "./generate-audit";
+import { normalizeList } from "./audit-formatters";
+import type { AuditContext } from "./generate-proposal";
 import type { Lead } from "@/lib/dashboard/types";
 
 export const PACKAGES = [
@@ -6,20 +7,20 @@ export const PACKAGES = [
   { name: "Demo Growth", price: "desde 149€", description: "Demo visual del sistema antes de invertir" },
   { name: "Web Premium Local", price: "desde 790€", description: "Web premium mobile-first con SEO y captación" },
   { name: "Sistema Digital 360 IA", price: "desde 1.500€", description: "Sistema completo: web, WhatsApp IA, CRM, SEO" },
-  { name: "Mantenimiento IA", price: "desde 97€/mes", description: "Seguimiento mensual y automatizaciones activas" },
+  { name: "Mantenimiento y Automatización", price: "desde 97€/mes", description: "Seguimiento mensual, SEO, mejoras y automatizaciones activas" },
   { name: "Recepcionista IA WhatsApp", price: "desde 79€/mes", description: "Asistente WhatsApp con IA 24/7" },
   { name: "BarberíaOS", price: "a medida", description: "Sistema completo para barberías" },
 ];
 
-export function buildProposalPrompt(lead: Lead, audit?: AuditResult | null): string {
+export function buildProposalPrompt(lead: Lead, audit?: AuditContext | null): string {
   const auditContext = audit
     ? `
 AUDITORÍA DISPONIBLE:
 - Score digital: ${audit.score}/100
 - Diagnóstico: ${audit.diagnosis}
 - Oferta recomendada por IA: ${audit.recommendedOffer}
-- Debilidades: ${audit.weaknesses?.join(", ")}
-- Oportunidades: ${audit.opportunities?.join(", ")}
+- Debilidades: ${normalizeList(audit.weaknesses).join(", ")}
+- Oportunidades: ${normalizeList(audit.opportunities).join(", ")}
 `
     : "No hay auditoría previa disponible.";
 

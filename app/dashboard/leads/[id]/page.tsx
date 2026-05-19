@@ -159,9 +159,14 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
         {/* Right column: audit, proposals, followups */}
         <div className="space-y-6 lg:col-span-2">
           {/* Audit section */}
-          <div className="rounded-2xl border border-white/8 bg-white/[.03] p-5 space-y-4">
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-sm font-semibold text-white">Auditoría IA</p>
+          <div className="space-y-5 rounded-2xl border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.16),transparent_32%),rgba(255,255,255,0.03)] p-5">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-white">Auditoría IA</p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Estado: {audit ? "generada" : "sin auditoría"}
+                </p>
+              </div>
               <GenerateAuditButton leadId={lead.id} hasAudit={!!audit} />
             </div>
             {audit ? (

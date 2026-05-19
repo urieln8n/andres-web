@@ -56,13 +56,17 @@ export interface Audit {
   lead_id: string;
   score: number | null;
   diagnosis: string | null;
-  weaknesses: string[] | null;
-  opportunities: string[] | null;
+  weaknesses: unknown[] | null;
+  opportunities: unknown[] | null;
   recommended_offer: string | null;
   ai_summary: string | null;
   whatsapp_message: string | null;
-  seven_day_plan: string[] | null;
+  seven_day_plan: unknown[] | null;
+  next_steps: unknown[] | null;
+  generated_by: "ai" | "fallback" | string | null;
+  model_used: string | null;
   created_at: string;
+  updated_at: string | null;
 }
 
 export interface Proposal {

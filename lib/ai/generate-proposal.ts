@@ -1,6 +1,18 @@
 import { buildProposalPrompt } from "./proposal-prompt";
-import type { AuditResult } from "./generate-audit";
+import { offerNameFromText } from "./audit-formatters";
 import type { Lead } from "@/lib/dashboard/types";
+
+export interface AuditContext {
+  score: number;
+  diagnosis: string;
+  weaknesses: unknown[];
+  opportunities: unknown[];
+  recommendedOffer: string;
+  aiSummary: string;
+  whatsappMessage: string;
+  sevenDayPlan: unknown[];
+  nextSteps?: unknown[];
+}
 
 export interface ProposalResult {
   title: string;
@@ -15,8 +27,8 @@ export interface ProposalResult {
   isDemo?: boolean;
 }
 
-function buildDemoProposal(lead: Lead, audit?: AuditResult | null): ProposalResult {
-  const pkg = audit?.recommendedOffer ?? "Sistema Digital 360 IA";
+function buildDemoProposal(lead: Lead, audit?: AuditContext | null): ProposalResult {
+  const pkg = offerNameFromText(audit?.recommendedOffer);
   const price =
     pkg === "Web Premium Local"
       ? "desde 790€"
@@ -24,7 +36,7 @@ function buildDemoProposal(lead: Lead, audit?: AuditResult | null): ProposalResu
         ? "desde 149€"
         : pkg === "Recepcionista IA WhatsApp"
           ? "desde 79€/mes"
-          : pkg === "Mantenimiento IA"
+          : pkg === "Mantenimiento y Automatización"
             ? "desde 97€/mes"
             : "desde 1.500€";
 
@@ -54,7 +66,7 @@ function buildDemoProposal(lead: Lead, audit?: AuditResult | null): ProposalResu
 
 export async function generateProposal(
   lead: Lead,
-  audit?: AuditResult | null
+  audit?: AuditContext | null
 ): Promise<ProposalResult> {
   const apiKey = process.env.OPENAI_API_KEY;
 

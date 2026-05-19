@@ -58,6 +58,21 @@ export async function getLeadAudit(leadId: string): Promise<Audit | null> {
   return (data as Audit) ?? null;
 }
 
+export async function getAuditsByLeadId(leadId: string): Promise<Audit[]> {
+  const supabase = db();
+  if (!supabase) return [];
+  const { data } = await supabase
+    .from("audits")
+    .select("*")
+    .eq("lead_id", leadId)
+    .order("created_at", { ascending: false });
+  return (data ?? []) as Audit[];
+}
+
+export async function getLatestAuditForLead(leadId: string): Promise<Audit | null> {
+  return getLeadAudit(leadId);
+}
+
 export async function getLeadProposals(leadId: string): Promise<Proposal[]> {
   const supabase = db();
   if (!supabase) return [];

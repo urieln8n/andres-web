@@ -7,7 +7,9 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { getLeadById, getLeadAudit } from "@/lib/dashboard/queries";
 import { generateAudit } from "@/lib/ai/generate-audit";
 import { generateProposal } from "@/lib/ai/generate-proposal";
+import { formatRecommendedOffer } from "@/lib/ai/audit-formatters";
 import type { LeadStatus } from "@/lib/dashboard/types";
+import type { Audit } from "@/lib/dashboard/types";
 
 // ─── Auth ────────────────────────────────────────────────────────────────────
 
@@ -57,29 +59,52 @@ export async function generateAuditForLead(leadId: string) {
   const lead = await getLeadById(leadId);
   if (!lead) return { error: "Lead no encontrado" };
 
-  const result = await generateAudit({
-    name: lead.name,
-    businessName: lead.business_name,
-    sector: lead.sector ?? "No especificado",
-    city: lead.city ?? undefined,
-    website: lead.website ?? undefined,
-    instagramUrl: lead.instagram_url ?? undefined,
-    mainProblem: lead.main_problem ?? lead.goal ?? undefined,
-    service: lead.service ?? undefined,
-    budget: lead.budget ?? undefined,
-  });
+  let result;
+  try {
+    result = await generateAudit({
+      name: lead.name,
+      email: lead.email,
+      whatsapp: lead.whatsapp ?? lead.phone,
+      businessName: lead.business_name,
+      sector: lead.sector,
+      city: lead.city,
+      website: lead.website,
+      instagramUrl: lead.instagram_url,
+      mainProblem: lead.main_problem ?? lead.goal,
+      service: lead.service,
+      budget: lead.budget,
+      message: lead.message,
+      source: lead.source,
+      createdAt: lead.created_at,
+    });
+  } catch (error) {
+    console.error("[generateAuditForLead]", error instanceof Error ? error.message : "unknown");
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "No se pudo generar la auditoría IA. Intenta de nuevo.",
+    };
+  }
 
-  const { error: insertError } = await supabase.from("audits").insert({
-    lead_id: leadId,
-    score: result.score,
-    diagnosis: result.diagnosis,
-    weaknesses: result.weaknesses,
-    opportunities: result.opportunities,
-    recommended_offer: result.recommendedOffer,
-    ai_summary: result.aiSummary,
-    whatsapp_message: result.whatsappMessage,
-    seven_day_plan: result.sevenDayPlan,
-  });
+  const { data: insertedAudit, error: insertError } = await supabase
+    .from("audits")
+    .insert({
+      lead_id: leadId,
+      score: result.score,
+      diagnosis: result.diagnosis,
+      weaknesses: result.weaknesses,
+      opportunities: result.opportunities,
+      recommended_offer: formatRecommendedOffer(result.recommendedOffer),
+      ai_summary: result.aiSummary,
+      whatsapp_message: result.whatsappMessage,
+      seven_day_plan: result.sevenDayPlan,
+      next_steps: result.nextSteps,
+      generated_by: result.generatedBy,
+      model_used: result.modelUsed,
+    })
+    .select("id, created_at")
+    .single();
 
   if (insertError) return { error: insertError.message };
 
@@ -96,7 +121,17 @@ export async function generateAuditForLead(leadId: string) {
       await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ leadId, lead, audit: result }),
+        body: JSON.stringify({
+          audit_id: insertedAudit?.id,
+          lead_id: leadId,
+          business_name: lead.business_name,
+          sector: lead.sector,
+          city: lead.city,
+          score: result.score,
+          recommended_offer: formatRecommendedOffer(result.recommendedOffer),
+          whatsapp_message: result.whatsappMessage,
+          created_at: insertedAudit?.created_at,
+        }),
       });
     } catch {
       // Non-fatal
@@ -106,7 +141,15 @@ export async function generateAuditForLead(leadId: string) {
   revalidatePath(`/dashboard/leads/${leadId}`);
   revalidatePath("/dashboard/auditorias");
   revalidatePath("/dashboard");
-  return { success: true, isDemo: result.isDemo };
+  return {
+    success: true,
+    isFallback: result.isFallback,
+    message: result.isFallback ? "Configura OPENAI_API_KEY para activar auditorías IA" : undefined,
+  };
+}
+
+export async function regenerateAuditForLead(leadId: string) {
+  return generateAuditForLead(leadId);
 }
 
 // ─── Proposal generation ─────────────────────────────────────────────────────
@@ -128,6 +171,7 @@ export async function generateProposalForLead(leadId: string) {
         aiSummary: audit.ai_summary ?? "",
         whatsappMessage: audit.whatsapp_message ?? "",
         sevenDayPlan: audit.seven_day_plan ?? [],
+        nextSteps: audit.next_steps ?? [],
       }
     : null;
 
@@ -165,6 +209,56 @@ export async function generateProposalForLead(leadId: string) {
   }
 
   revalidatePath(`/dashboard/leads/${leadId}`);
+  revalidatePath("/dashboard/propuestas");
+  revalidatePath("/dashboard");
+  return { success: true, isDemo: result.isDemo, whatsappMessage: result.whatsappMessage };
+}
+
+export async function createProposalFromAudit(auditId: string) {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return { error: "Supabase no configurado" };
+
+  const { data: audit, error: auditError } = await supabase
+    .from("audits")
+    .select("*")
+    .eq("id", auditId)
+    .single();
+
+  if (auditError || !audit) return { error: "Auditoría no encontrada" };
+
+  const typedAudit = audit as Audit;
+  const lead = await getLeadById(typedAudit.lead_id);
+  if (!lead) return { error: "Lead no encontrado" };
+
+  const result = await generateProposal(lead, {
+    score: typedAudit.score ?? 0,
+    diagnosis: typedAudit.diagnosis ?? "",
+    weaknesses: typedAudit.weaknesses ?? [],
+    opportunities: typedAudit.opportunities ?? [],
+    recommendedOffer: typedAudit.recommended_offer ?? "",
+    aiSummary: typedAudit.ai_summary ?? "",
+    whatsappMessage: typedAudit.whatsapp_message ?? "",
+    sevenDayPlan: typedAudit.seven_day_plan ?? [],
+    nextSteps: typedAudit.next_steps ?? [],
+  });
+
+  const { error: insertError } = await supabase.from("proposals").insert({
+    lead_id: lead.id,
+    title: result.title,
+    price: result.price,
+    package_type: result.packageType,
+    proposal_text: result.proposalText,
+    status: "draft",
+  });
+
+  if (insertError) return { error: insertError.message };
+
+  await supabase
+    .from("leads")
+    .update({ status: "proposal_sent", updated_at: new Date().toISOString() })
+    .eq("id", lead.id);
+
+  revalidatePath(`/dashboard/leads/${lead.id}`);
   revalidatePath("/dashboard/propuestas");
   revalidatePath("/dashboard");
   return { success: true, isDemo: result.isDemo, whatsappMessage: result.whatsappMessage };
