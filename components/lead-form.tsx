@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 
 const serviceOptions = [
@@ -30,9 +30,12 @@ export function LeadForm({ source = "auditoria-gratis" }: { source?: string }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [submittedName, setSubmittedName] = useState("");
+  const submittingRef = useRef(false);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setStatus("loading");
     setError("");
     const form = event.currentTarget;
@@ -43,35 +46,41 @@ export function LeadForm({ source = "auditoria-gratis" }: { source?: string }) {
       email: raw.email,
       phone: raw.whatsapp,
       whatsapp: raw.whatsapp,
-      businessName: raw.businessName,
-      website: raw.website || "",
-      instagramUrl: raw.instagramUrl || "",
+      business_name: raw.business_name,
+      website_url: raw.website_url || "",
+      instagram_url: raw.instagram_url || "",
       sector: raw.sector,
       city: raw.city || "",
-      goal: raw.mainProblem,
-      mainProblem: raw.mainProblem,
-      service: raw.service,
+      main_problem: raw.main_problem,
+      service_interest: raw.service_interest,
       budget: raw.budget || "",
       message: raw.message || "",
       source,
     };
 
-    const res = await fetch("/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      setError(body.error || "No se pudo enviar. Revisa los datos e inténtalo de nuevo.");
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        setError(body.error || "No se pudo enviar. Revisa los datos e inténtalo de nuevo.");
+        setStatus("error");
+        return;
+      }
+
+      setSubmittedName(String(raw.name).split(" ")[0]);
+      setStatus("success");
+      form.reset();
+    } catch {
+      setError("No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.");
       setStatus("error");
-      return;
+    } finally {
+      submittingRef.current = false;
     }
-
-    setSubmittedName(String(raw.name).split(" ")[0]);
-    setStatus("success");
-    form.reset();
   }
 
   if (status === "success") {
@@ -128,15 +137,15 @@ export function LeadForm({ source = "auditoria-gratis" }: { source?: string }) {
         </label>
         <label className="grid gap-2 text-sm text-slate-300">
           Nombre del negocio *
-          <input name="businessName" required placeholder="Nombre de tu empresa o negocio" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
+          <input name="business_name" required placeholder="Nombre de tu empresa o negocio" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
         </label>
         <label className="grid gap-2 text-sm text-slate-300">
           Web actual
-          <input name="website" type="url" placeholder="https://tunegocio.com" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
+          <input name="website_url" type="url" placeholder="https://tunegocio.com" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
         </label>
         <label className="grid gap-2 text-sm text-slate-300">
           Instagram
-          <input name="instagramUrl" placeholder="@tunegocio o URL completa" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
+          <input name="instagram_url" placeholder="@tunegocio o URL completa" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
         </label>
         <label className="grid gap-2 text-sm text-slate-300">
           Sector *
@@ -148,11 +157,11 @@ export function LeadForm({ source = "auditoria-gratis" }: { source?: string }) {
         </label>
         <label className="grid gap-2 text-sm text-slate-300 md:col-span-2">
           Problema principal *
-          <input name="mainProblem" required placeholder="¿Qué es lo que más te cuesta en tu captación digital ahora mismo?" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
+          <input name="main_problem" required placeholder="¿Qué es lo que más te cuesta en tu captación digital ahora mismo?" className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder-slate-600 outline-none focus:border-cyan-300" />
         </label>
         <label className="grid gap-2 text-sm text-slate-300">
           ¿Qué te interesa? *
-          <select name="service" required className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white outline-none focus:border-cyan-300">
+          <select name="service_interest" required className="focus-premium rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 text-white outline-none focus:border-cyan-300">
             <option value="">Selecciona una opción</option>
             {serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}
           </select>

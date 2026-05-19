@@ -35,12 +35,14 @@ export interface Lead {
   whatsapp: string | null;
   business_name: string;
   website: string | null;
+  website_url: string | null;
   instagram_url: string | null;
   sector: string | null;
   city: string | null;
   main_problem: string | null;
   goal: string | null;
   service: string | null;
+  service_interest: string | null;
   budget: string | null;
   message: string | null;
   internal_notes: string | null;

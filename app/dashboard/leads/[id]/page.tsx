@@ -46,6 +46,8 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
   if (!lead) notFound();
 
   const contactPhone = lead.whatsapp ?? lead.phone;
+  const website = lead.website_url ?? lead.website;
+  const service = lead.service_interest ?? lead.service;
 
   return (
     <div className="space-y-8">
@@ -82,7 +84,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
               <InfoRow icon={Phone} label="Teléfono" value={lead.phone} />
               <InfoRow icon={MessageCircle} label="WhatsApp" value={lead.whatsapp} />
               <InfoRow icon={MapPin} label="Ciudad" value={lead.city} />
-              <InfoRow icon={Globe} label="Web" value={lead.website} />
+              <InfoRow icon={Globe} label="Web" value={website} />
               <InfoRow icon={Instagram} label="Instagram" value={lead.instagram_url} />
             </div>
             {contactPhone && (
@@ -105,10 +107,10 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
                 <p className="mt-0.5 text-sm text-slate-300">{lead.sector}</p>
               </div>
             )}
-            {lead.service && (
+            {service && (
               <div>
                 <p className="text-xs text-slate-500">Servicio de interés</p>
-                <p className="mt-0.5 text-sm text-slate-300">{lead.service}</p>
+                <p className="mt-0.5 text-sm text-slate-300">{service}</p>
               </div>
             )}
             {lead.budget && (

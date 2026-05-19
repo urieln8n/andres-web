@@ -59,6 +59,9 @@ export async function generateAuditForLead(leadId: string) {
   const lead = await getLeadById(leadId);
   if (!lead) return { error: "Lead no encontrado" };
 
+  const website = lead.website_url ?? lead.website;
+  const service = lead.service_interest ?? lead.service;
+
   let result;
   try {
     result = await generateAudit({
@@ -68,10 +71,10 @@ export async function generateAuditForLead(leadId: string) {
       businessName: lead.business_name,
       sector: lead.sector,
       city: lead.city,
-      website: lead.website,
+      website,
       instagramUrl: lead.instagram_url,
       mainProblem: lead.main_problem ?? lead.goal,
-      service: lead.service,
+      service,
       budget: lead.budget,
       message: lead.message,
       source: lead.source,

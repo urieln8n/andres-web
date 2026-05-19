@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { leadSchema } from "@/lib/lead-schema";
+import { leadSchema, normalizeLeadInsertInput, type LeadInsertInput } from "@/lib/lead-schema";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function POST(request: Request) {
@@ -10,33 +10,58 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message || "Datos no válidos" }, { status: 400 });
   }
 
-  const lead = parsed.data;
+  let lead: LeadInsertInput;
+  try {
+    lead = normalizeLeadInsertInput(parsed.data);
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Datos no válidos" },
+      { status: 400 }
+    );
+  }
+
   const supabase = getSupabaseAdmin();
 
-  if (supabase) {
-    const { error } = await supabase.from("leads").insert({
-      name: lead.name,
-      email: lead.email || null,
-      phone: lead.phone,
-      whatsapp: lead.whatsapp || lead.phone || null,
-      business_name: lead.businessName,
-      website: lead.website || null,
-      instagram_url: lead.instagramUrl || null,
-      sector: lead.sector,
-      city: lead.city || null,
-      goal: lead.goal,
-      main_problem: lead.mainProblem || lead.goal || null,
-      service: lead.service,
-      budget: lead.budget || null,
-      message: lead.message || null,
-      source: lead.source || "web",
-      status: "nuevo",
+  if (!supabase) {
+    console.error("[leads] Supabase admin client not configured", {
+      hasUrl: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL),
+      hasServiceRole: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
     });
+    return NextResponse.json(
+      { error: "No se pudo guardar el lead. Configuración temporalmente no disponible." },
+      { status: 500 }
+    );
+  }
 
-    if (error) {
-      console.error("[leads] Supabase insert error:", error.message);
-      return NextResponse.json({ error: "Error al guardar el lead. Inténtalo de nuevo." }, { status: 500 });
-    }
+  const { error } = await supabase.from("leads").insert({
+    name: lead.name,
+    email: lead.email,
+    phone: lead.phone,
+    whatsapp: lead.whatsapp,
+    business_name: lead.business_name,
+    website: lead.website,
+    website_url: lead.website_url,
+    instagram_url: lead.instagram_url,
+    sector: lead.sector,
+    city: lead.city,
+    goal: lead.goal,
+    main_problem: lead.main_problem,
+    service: lead.service,
+    service_interest: lead.service_interest,
+    budget: lead.budget,
+    message: lead.message,
+    source: lead.source,
+    status: lead.status,
+  });
+
+  if (error) {
+    console.error("[leads] Supabase insert error", {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+    return NextResponse.json({ error: "Error al guardar el lead. Inténtalo de nuevo." }, { status: 500 });
   }
 
   // Webhook n8n opcional — no rompe si la variable no existe
@@ -48,14 +73,17 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         name: lead.name,
         email: lead.email,
-        whatsapp: lead.whatsapp || lead.phone,
-        business_name: lead.businessName,
-        website_url: lead.website,
-        instagram_url: lead.instagramUrl,
+        whatsapp: lead.whatsapp,
+        business_name: lead.business_name,
+        website_url: lead.website_url,
+        instagram_url: lead.instagram_url,
         sector: lead.sector,
         city: lead.city,
-        main_problem: lead.mainProblem || lead.goal,
-        source: lead.source || "andresrendon.com",
+        main_problem: lead.main_problem,
+        service_interest: lead.service_interest,
+        budget: lead.budget,
+        message: lead.message,
+        source: lead.source,
         created_at: new Date().toISOString(),
       }),
     }).catch(() => null);

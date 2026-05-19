@@ -13,6 +13,8 @@ export const PACKAGES = [
 ];
 
 export function buildProposalPrompt(lead: Lead, audit?: AuditContext | null): string {
+  const website = lead.website_url ?? lead.website;
+  const service = lead.service_interest ?? lead.service;
   const auditContext = audit
     ? `
 AUDITORÍA DISPONIBLE:
@@ -31,10 +33,10 @@ DATOS DEL CLIENTE:
 - Negocio: ${lead.business_name}
 - Sector: ${lead.sector || "No especificado"}
 - Ciudad: ${lead.city || "No especificada"}
-- Web: ${lead.website || "Sin web"}
+- Web: ${website || "Sin web"}
 - Instagram: ${lead.instagram_url || "Sin Instagram"}
 - Problema principal: ${lead.main_problem || lead.goal || "No especificado"}
-- Servicio solicitado: ${lead.service || "No especificado"}
+- Servicio solicitado: ${service || "No especificado"}
 - Presupuesto: ${lead.budget || "No especificado"}
 
 ${auditContext}
