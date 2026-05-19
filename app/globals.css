@@ -4,14 +4,14 @@
 
 :root {
   color-scheme: dark;
-  --bg: #030712;
+  --bg: #050816;
   --panel: rgba(15, 23, 42, .72);
-  --panel-soft: rgba(255, 255, 255, .055);
-  --line: rgba(255, 255, 255, .11);
-  --cyan: #67e8f9;
-  --blue: #60a5fa;
-  --violet: #a78bfa;
-  --gold: #f5c776;
+  --panel-soft: rgba(255, 255, 255, .045);
+  --line: rgba(255, 255, 255, .10);
+  --cyan: #22d3ee;
+  --blue: #0e7490;
+  --violet: #64748b;
+  --gold: #d6b25e;
   --mint: #6ee7b7;
 }
 
@@ -21,10 +21,10 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 18% -12%, rgba(103, 232, 249, .2), transparent 30rem),
-    radial-gradient(circle at 78% 4%, rgba(245, 199, 118, .13), transparent 28rem),
-    radial-gradient(circle at 52% 42%, rgba(96, 165, 250, .08), transparent 34rem),
-    linear-gradient(180deg, #030712 0%, #07111f 42%, #030712 100%);
+    radial-gradient(circle at 18% -12%, rgba(34, 211, 238, .12), transparent 30rem),
+    radial-gradient(circle at 78% 4%, rgba(214, 178, 94, .10), transparent 28rem),
+    radial-gradient(circle at 52% 42%, rgba(14, 116, 144, .055), transparent 34rem),
+    linear-gradient(180deg, #050816 0%, #070A12 46%, #050816 100%);
   color: #f8fafc;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -41,10 +41,10 @@ body::before {
   z-index: -15;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,.62), transparent 72%);
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.46), transparent 68%);
 }
 
 body::after {
@@ -59,7 +59,7 @@ body::after {
 }
 
 ::selection {
-  background: rgba(103, 232, 249, .35);
+  background: rgba(34, 211, 238, .28);
 }
 
 .noise {
@@ -86,9 +86,9 @@ body::after {
 .glass-panel {
   border: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.035)),
-    radial-gradient(circle at 18% 0%, rgba(103,232,249,.09), transparent 18rem);
-  box-shadow: 0 24px 80px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.09);
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.028)),
+    radial-gradient(circle at 18% 0%, rgba(34,211,238,.055), transparent 18rem);
+  box-shadow: 0 24px 80px rgba(0,0,0,.44), inset 0 1px 0 rgba(255,255,255,.08);
   backdrop-filter: blur(20px);
 }
 
@@ -104,16 +104,16 @@ body::after {
 }
 
 .focus-premium:focus-visible {
-  outline: 2px solid rgba(103,232,249,.75);
+  outline: 2px solid rgba(34,211,238,.72);
   outline-offset: 3px;
 }
 
 .premium-gradient-text {
-  background: linear-gradient(92deg, #ffffff 0%, #67e8f9 28%, #f5c776 62%, #ffffff 100%);
+  background: linear-gradient(92deg, #ffffff 0%, #22d3ee 34%, #d6b25e 72%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 42px rgba(103,232,249,.18);
+  text-shadow: 0 0 30px rgba(34,211,238,.10);
 }
 
 .spotlight-panel {
@@ -126,8 +126,8 @@ body::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.11), transparent 23rem);
-  opacity: .8;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.08), transparent 23rem);
+  opacity: .72;
 }
 
 .premium-lift {
@@ -136,8 +136,8 @@ body::after {
 
 .premium-lift:hover {
   transform: translateY(-4px);
-  border-color: rgba(103,232,249,.28);
-  box-shadow: 0 28px 90px rgba(0,0,0,.44), 0 0 44px rgba(103,232,249,.08);
+  border-color: rgba(34,211,238,.22);
+  box-shadow: 0 28px 90px rgba(0,0,0,.48), 0 0 34px rgba(34,211,238,.055);
 }
 
 .legal-content h2 {

@@ -10,15 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         ink: "#050816",
-        gold: "#f5c776",
-        electric: "#67e8f9",
+        night: "#070A12",
+        steel: "#0B1220",
+        petrol: "#0E7490",
+        gold: "#D6B25E",
+        electric: "#22D3EE",
       },
       boxShadow: {
-        premium: "0 24px 80px rgba(0,0,0,.35)",
-        glow: "0 0 80px rgba(103,232,249,.18)",
+        premium: "0 24px 80px rgba(0,0,0,.42)",
+        glow: "0 0 56px rgba(34,211,238,.12)",
       },
       backgroundImage: {
-        "radial-premium": "radial-gradient(circle at top left, rgba(103,232,249,.22), transparent 32%), radial-gradient(circle at 80% 20%, rgba(245,199,118,.16), transparent 30%), linear-gradient(180deg, #050816 0%, #0b1020 50%, #050816 100%)",
+        "radial-premium": "radial-gradient(circle at top left, rgba(34,211,238,.12), transparent 32%), radial-gradient(circle at 80% 20%, rgba(214,178,94,.10), transparent 30%), linear-gradient(180deg, #050816 0%, #070A12 50%, #050816 100%)",
       },
     },
   },
