@@ -33,26 +33,30 @@ export async function POST(request: Request) {
     );
   }
 
-  const { error } = await supabase.from("leads").insert({
-    name: lead.name,
-    email: lead.email,
-    phone: lead.phone,
-    whatsapp: lead.whatsapp,
-    business_name: lead.business_name,
-    website: lead.website,
-    website_url: lead.website_url,
-    instagram_url: lead.instagram_url,
-    sector: lead.sector,
-    city: lead.city,
-    goal: lead.goal,
-    main_problem: lead.main_problem,
-    service: lead.service,
-    service_interest: lead.service_interest,
-    budget: lead.budget,
-    message: lead.message,
-    source: lead.source,
-    status: lead.status,
-  });
+  const { data, error } = await supabase
+    .from("leads")
+    .insert({
+      name: lead.name,
+      email: lead.email,
+      phone: lead.phone,
+      whatsapp: lead.whatsapp,
+      business_name: lead.business_name,
+      website: lead.website,
+      website_url: lead.website_url,
+      instagram_url: lead.instagram_url,
+      sector: lead.sector,
+      city: lead.city,
+      goal: lead.goal,
+      main_problem: lead.main_problem,
+      service: lead.service,
+      service_interest: lead.service_interest,
+      budget: lead.budget,
+      message: lead.message,
+      source: lead.source,
+      status: lead.status,
+    })
+    .select("id")
+    .single();
 
   if (error) {
     console.error("[leads] Supabase insert error", {
@@ -63,6 +67,13 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({ error: "Error al guardar el lead. Inténtalo de nuevo." }, { status: 500 });
   }
+
+  if (!data?.id) {
+    console.error("[leads] Supabase insert returned no id");
+    return NextResponse.json({ error: "Error al guardar el lead. Inténtalo de nuevo." }, { status: 500 });
+  }
+
+  console.info("[leads] Lead created", { id: data.id });
 
   // Webhook n8n opcional — no rompe si la variable no existe
   const webhookUrl = process.env.N8N_NEW_LEAD_WEBHOOK_URL || process.env.LEAD_WEBHOOK_URL;
@@ -84,10 +95,11 @@ export async function POST(request: Request) {
         budget: lead.budget,
         message: lead.message,
         source: lead.source,
+        lead_id: data.id,
         created_at: new Date().toISOString(),
       }),
     }).catch(() => null);
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, id: data.id });
 }

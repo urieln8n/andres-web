@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { getAllFollowups } from "@/lib/dashboard/queries";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Seguimientos · Dashboard",
   robots: { index: false, follow: false },

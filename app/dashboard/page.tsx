@@ -3,6 +3,9 @@ import { getLeadStats, getLeads } from "@/lib/dashboard/queries";
 import { KpiCard } from "@/components/dashboard/KpiCard";
 import { LeadTable } from "@/components/dashboard/LeadTable";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Resumen · Dashboard",
   robots: { index: false, follow: false },

@@ -17,6 +17,9 @@ import { GenerateProposalButton } from "@/components/dashboard/GenerateProposalB
 import { CreateFollowupForm } from "@/components/dashboard/CreateFollowupForm";
 import { CopyWhatsAppButton } from "@/components/dashboard/CopyWhatsAppButton";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Lead · Dashboard",
   robots: { index: false, follow: false },
