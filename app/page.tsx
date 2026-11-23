@@ -66,16 +66,17 @@ export default function HomePage() {
       <section id="proyectos" className="scroll-mt-24 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-10">
-            <h2 className="titulo-display text-5xl text-white sm:text-7xl">Proyectos</h2>
+            <h2 className="titulo-display text-5xl text-white sm:text-7xl">Proyectos <span className="text-slate-600">{destacados.length}</span></h2>
             <p className="max-w-md text-slate-400">Webs publicadas para negocios reales, propuestas y productos propios. Cada uno dice lo que es.</p>
           </div>
 
-          <div className="mt-16 grid gap-24 lg:gap-32">
+          <div className="mt-16 grid gap-24 lg:gap-0">
             {destacados.map((p, i) => {
               const estado = p.status ?? "real";
               const movil = p.imageKind === "movil";
               return (
-                <article key={p.slug} className={`grid items-center gap-8 lg:grid-cols-12 lg:gap-14`}>
+                <article key={p.slug} className="pila__carta">
+                  <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-14">
                   <a href={p.url} target="_blank" rel="noopener" className={`group block ${i % 2 ? "lg:order-2" : ""} ${movil ? "lg:col-span-5 justify-self-center" : "lg:col-span-8"}`} aria-label={`Abrir la web de ${p.h1.split(":")[0]}`}>
                     {movil ? (
                       <div className="marco-movil relative aspect-[9/16] w-56 transition duration-500 group-hover:-translate-y-1 sm:w-64">
@@ -100,6 +101,7 @@ export default function HomePage() {
                         {estado === "producto" ? "Abrir" : "Ver la web"} <ArrowUpRight className="h-4 w-4" />
                       </a>
                     </div>
+                  </div>
                   </div>
                 </article>
               );

@@ -14,7 +14,27 @@ export function HeroAbanico({ piezas }: { piezas: Pieza[] }) {
     if (!el) return;
     const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     requestAnimationFrame(() => el.classList.add("abierto"));
-    if (reducido || window.matchMedia("(pointer: coarse)").matches) return;
+    const temporizador = window.setTimeout(() => el.classList.add("listo"), 2200);
+    if (reducido) return () => window.clearTimeout(temporizador);
+
+    // Al bajar, el abanico se abre más y se inclina hacia atrás, como si lo dejaras sobre la mesa
+    let rafScroll = 0;
+    const alScroll = () => {
+      cancelAnimationFrame(rafScroll);
+      rafScroll = requestAnimationFrame(() => {
+        const p = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.9), 0), 1);
+        el.style.setProperty("--p", p.toFixed(3));
+      });
+    };
+    alScroll();
+    window.addEventListener("scroll", alScroll, { passive: true });
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return () => {
+        window.removeEventListener("scroll", alScroll);
+        cancelAnimationFrame(rafScroll);
+        window.clearTimeout(temporizador);
+      };
+    }
     let raf = 0;
     const mover = (e: PointerEvent) => {
       cancelAnimationFrame(raf);
@@ -29,7 +49,10 @@ export function HeroAbanico({ piezas }: { piezas: Pieza[] }) {
     window.addEventListener("pointermove", mover);
     return () => {
       window.removeEventListener("pointermove", mover);
+      window.removeEventListener("scroll", alScroll);
       cancelAnimationFrame(raf);
+      cancelAnimationFrame(rafScroll);
+      window.clearTimeout(temporizador);
     };
   }, []);
 

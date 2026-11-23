@@ -196,6 +196,7 @@ body::after {
 .abanico {
   --rx: 0deg;
   --ry: 0deg;
+  --p: 0;
   position: relative;
   height: clamp(15rem, 42vw, 34rem);
   perspective: 1800px;
@@ -204,7 +205,7 @@ body::after {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform: translateY(calc(var(--p) * -3rem)) rotateX(calc(var(--rx) + var(--p) * 16deg)) rotateY(var(--ry)) scale(calc(1 + var(--p) * .06));
   transition: transform .5s cubic-bezier(.2,.7,.2,1);
 }
 .abanico__carta {
@@ -233,11 +234,29 @@ body::after {
   opacity: 1;
   transform:
     translate(-50%, -50%)
-    translateX(calc(var(--d) * clamp(4.2rem, 15vw, 15rem)))
+    translateX(calc(var(--d) * clamp(4.2rem, 15vw, 15rem) * (1 + var(--p) * .45)))
     translateY(calc(var(--abs) * clamp(.4rem, 1.4vw, 1.3rem)))
     translateZ(calc(var(--abs) * -120px))
     rotateY(calc(var(--d) * -9deg))
-    rotateZ(calc(var(--d) * 2.5deg));
+    rotateZ(calc(var(--d) * (2.5deg + var(--p) * 2deg)));
+}
+.abanico.abierto .abanico__carta { transition-property: transform, opacity; }
+.abanico.listo .abanico__carta { transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .6s ease; }
+
+/* Proyectos apilados: en pantallas grandes cada proyecto se queda fijo y el siguiente sube por encima */
+@media (min-width: 1024px) {
+  .pila__carta {
+    position: sticky;
+    top: 6.5rem;
+    min-height: calc(100vh - 9rem);
+    display: grid;
+    align-items: center;
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-radius: 28px 28px 0 0;
+    box-shadow: 0 -30px 60px -20px rgba(0,0,0,.9);
+    padding: 3rem 0;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .abanico__carta, .abanico__escena { transition: none; }
