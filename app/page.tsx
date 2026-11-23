@@ -17,12 +17,12 @@ const etiqueta = { real: "Cliente", propuesta: "Propuesta", producto: "Producto 
 const queHago = [
   { titulo: "Webs que se recuerdan", texto: "Webs 3D o editoriales, rápidas y pensadas primero para el móvil. Tu producto, tu local o tu oficio en el centro." },
   { titulo: "Que te encuentren", texto: "SEO local y AEO: tu negocio bien explicado para Google, Maps y las respuestas de ChatGPT, Perplexity o Gemini." },
-  { titulo: "Que te escriban", texto: "Botones que abren WhatsApp con el mensaje ya escrito y cada contacto ordenado en un CRM, para no perder ninguno." },
+  { titulo: "Que te escriban", texto: "Un asistente con IA en tu web, como el de abajo a la derecha, y WhatsApp con el mensaje ya escrito. Cada contacto, ordenado en un CRM." },
 ];
 
 const precios = [
   { nombre: "Web premium", detalle: "Web a medida con SEO local, WhatsApp y formulario", precio: "desde 790 €" },
-  { nombre: "Sistema completo", detalle: "Web, WhatsApp con IA, CRM y automatizaciones", precio: "desde 1.500 €" },
+  { nombre: "Sistema completo", detalle: "Web, asistente o WhatsApp con IA, CRM y automatizaciones", precio: "desde 1.500 €" },
   { nombre: "Mantenimiento", detalle: "Cambios, mejoras y soporte cada mes", precio: "desde 97 €/mes" },
 ];
 
