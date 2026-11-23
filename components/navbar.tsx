@@ -39,7 +39,7 @@ export function Navbar() {
         </div>
         {showAuditCta && (
           <div className="hidden lg:block">
-            <ButtonLink href="/auditoria-gratis?source=header" size="sm"><Sparkles className="h-4 w-4" />Auditoría gratis</ButtonLink>
+            <ButtonLink href="/auditoria-aeo" size="sm"><Sparkles className="h-4 w-4" />¿Te ve ChatGPT?</ButtonLink>
           </div>
         )}
         <button className="focus-premium rounded-full border border-white/10 bg-white/[.04] p-2.5 text-white shadow-[inset_0_1px_0_rgba(255,255,255,.08)] lg:hidden" onClick={() => setOpen(!open)} aria-label="Abrir menú">
@@ -50,7 +50,7 @@ export function Navbar() {
         <div className="border-t border-white/10 bg-ink/96 px-4 py-5 shadow-premium backdrop-blur-xl lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-3">
             {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="focus-premium rounded-2xl border border-white/10 bg-white/[.04] px-4 py-3 text-slate-200 transition hover:bg-white/[.08]">{link.label}</Link>)}
-            {showAuditCta && <ButtonLink href="/auditoria-gratis?source=header">Auditoría gratis</ButtonLink>}
+            {showAuditCta && <ButtonLink href="/auditoria-aeo">¿Te ve ChatGPT? Auditoría gratis</ButtonLink>}
           </div>
         </div>
       )}

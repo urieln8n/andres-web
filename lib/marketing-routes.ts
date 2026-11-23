@@ -18,7 +18,7 @@ const marketingAuditCtaDynamicPrefixes = [
   "/blog/",
 ];
 
-const excludedAuditCtaPrefixes = ["/dashboard", "/auditoria-gratis"];
+const excludedAuditCtaPrefixes = ["/dashboard", "/auditoria-gratis", "/auditoria-aeo"];
 
 export function normalizePathname(pathname: string | null) {
   if (!pathname) return "/";

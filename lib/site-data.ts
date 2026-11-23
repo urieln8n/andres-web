@@ -41,6 +41,7 @@ export type ProjectStudy = {
   expectedResult: string;
   note: string;
   relatedServices: string[];
+  url?: string;
 };
 
 export const services: SeoPage[] = [
@@ -573,6 +574,21 @@ export const sectors: SeoPage[] = [
 ];
 
 export const projectStudies: ProjectStudy[] = [
+  {
+    slug: "la-casa-de-jenni",
+    title: "La Casa de Jenni | Web 3D con pedidos por WhatsApp",
+    description: "Proyecto real publicado: web premium con efecto 3D para un negocio de cocina casera (pollo payés relleno y tartas), con pedidos por WhatsApp y legible por buscadores e IA.",
+    h1: "La Casa de Jenni: web 3D para cocina casera con pedidos por WhatsApp",
+    eyebrow: "Proyecto real · lacasadejenni.com",
+    problem: "Un negocio de cocina casera vendía por boca a boca y redes, sin una web propia donde ver sus platos y hacer el pedido de forma sencilla.",
+    solution: "Web estática en lacasadejenni.com con su producto en 3D que gira al hacer scroll, la carta de platos, pedido directo por WhatsApp con el mensaje ya escrito y todo el contenido en HTML legible sin JavaScript para buscadores e IA.",
+    stack: ["HTML estático", "Three.js", "GSAP", "Cloudflare Workers", "Datos estructurados", "WhatsApp"],
+    modules: ["Producto en 3D con scroll", "Carta de platos", "Pedido por WhatsApp", "Páginas legales", "Carga sin dependencias externas", "Dominio propio"],
+    expectedResult: "Resultado: el negocio tiene su web propia publicada y un camino directo del interés al pedido por WhatsApp.",
+    note: "Proyecto real en producción. No se publican cifras de ventas del cliente.",
+    relatedServices: ["/servicios/webs-premium-para-negocios", "/auditoria-aeo", "/servicios/chatbot-whatsapp-para-empresas"],
+    url: "https://lacasadejenni.com",
+  },
   {
     slug: "barberiaos",
     title: "BarberíaOS | SaaS para barberías",

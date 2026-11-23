@@ -99,6 +99,8 @@ export function personJsonLd() {
       "Sistemas de reservas",
       "Captación para negocios locales",
       "BarberíaOS",
+      "AEO (Answer Engine Optimization)",
+      "Posicionamiento en ChatGPT y Perplexity",
     ],
   };
 }
@@ -170,6 +172,8 @@ export function localBusinessJsonLd() {
     description: defaultDescription,
     founder: { "@type": "Person", name: PERSON_NAME },
     makesOffer: [
+      { "@type": "Offer", price: "0", priceCurrency: "EUR", itemOffered: { "@type": "Service", name: "Auditoría AEO gratis: si ChatGPT y Perplexity pueden leer y citar tu web", url: siteUrl("/auditoria-aeo") } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Optimización AEO para aparecer en ChatGPT, Perplexity y Google con IA" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auditoría gratis de captación digital" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Webs premium para negocios locales" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automatización con inteligencia artificial" } },

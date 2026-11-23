@@ -38,8 +38,12 @@ export default function ProjectStudyPage({ params }: Props) {
             <h1 className="mt-5 text-balance text-5xl font-semibold tracking-tight text-white md:text-6xl">{project.h1}</h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{project.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/auditoria-gratis?source=project-study">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
-              <ButtonLink href="/servicios" variant="secondary">Ver servicios relacionados</ButtonLink>
+              {project.url ? (
+                <a href={project.url} target="_blank" rel="noopener" className="focus-premium inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink transition hover:-translate-y-0.5 sm:text-base">Ver la web publicada <ArrowRight className="h-4 w-4" /></a>
+              ) : (
+                <ButtonLink href="/auditoria-gratis?source=project-study">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+              )}
+              <ButtonLink href={project.url ? "/auditoria-aeo" : "/servicios"} variant="secondary">{project.url ? "¿Te ve ChatGPT? Auditoría gratis" : "Ver servicios relacionados"}</ButtonLink>
             </div>
           </div>
           <div className="premium-border spotlight-panel rounded-[2rem] bg-white/[.055] p-5 shadow-premium">
@@ -85,7 +89,7 @@ export default function ProjectStudyPage({ params }: Props) {
         </div>
       </Section>
 
-      <Section eyebrow="Resultado esperado" title="Qué debería mejorar si se implementa en un negocio real">
+      <Section eyebrow={project.url ? "Resultado" : "Resultado esperado"} title={project.url ? "Qué ha conseguido el negocio" : "Qué debería mejorar si se implementa en un negocio real"}>
         <PremiumCard><p className="text-lg leading-8 text-slate-200">{project.expectedResult}</p></PremiumCard>
       </Section>
 

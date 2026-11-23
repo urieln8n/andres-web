@@ -4,7 +4,7 @@ import { siteUrl } from "@/lib/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticRoutes = ["/", "/servicios", "/nichos", "/sectores", "/barcelona", "/proyectos", "/sobre-mi", "/auditoria-gratis", "/contacto", "/blog"];
+  const staticRoutes = ["/", "/servicios", "/nichos", "/sectores", "/barcelona", "/proyectos", "/sobre-mi", "/auditoria-aeo", "/auditoria-gratis", "/contacto", "/blog"];
   const caseRoutes = ["/casos/barberiaos"];
   const legalRoutes = ["/aviso-legal", "/politica-privacidad", "/politica-cookies", "/terminos-condiciones"];
   return [
