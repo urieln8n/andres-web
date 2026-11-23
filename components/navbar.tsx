@@ -8,10 +8,8 @@ import { ButtonLink } from "./button-link";
 import { shouldShowMarketingAuditCta } from "@/lib/marketing-routes";
 
 const links = [
-  { href: "/servicios", label: "Servicios" },
-  { href: "/nichos", label: "Nichos" },
   { href: "/proyectos", label: "Proyectos" },
-  { href: "/blog", label: "Blog" },
+  { href: "/servicios", label: "Servicios" },
   { href: "/sobre-mi", label: "Sobre mí" },
 ];
 
@@ -24,7 +22,7 @@ export function Navbar() {
     <header className="sticky inset-x-0 top-0 z-50 border-b border-white/[.06] bg-ink/70 backdrop-blur-2xl supports-[backdrop-filter]:bg-ink/55">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-6 lg:px-8">
         <Link href="/" className="focus-premium flex items-center gap-3 rounded-full">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-lima-300 text-xs font-bold tracking-tight text-ink shadow-[0_0_30px_rgba(198,255,61,.25)] sm:h-10 sm:w-10 sm:text-sm">AR</span>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-lima-300 text-xs font-bold tracking-tight text-ink shadow-[0_0_30px_rgba(142,166,255,.25)] sm:h-10 sm:w-10 sm:text-sm">AR</span>
           <span className="leading-tight">
             <span className="block text-sm font-semibold tracking-tight text-white">Andrés Rendón<span className="text-lima-300">.</span></span>
             <span className="block font-mono text-[10px] uppercase tracking-[.14em] text-slate-500">IA · Webs 3D · AEO</span>

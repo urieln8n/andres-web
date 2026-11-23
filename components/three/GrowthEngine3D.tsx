@@ -26,10 +26,10 @@ const CLAVES: Clave[] = [
 const MOVIL_X = 0.25; // en móvil el objeto va a la esquina superior y más discreto
 
 const MODULOS = [
-  { texto: "Web 3D", color: "#C6FF3D" },
-  { texto: "IA", color: "#C6FF3D" },
-  { texto: "AEO", color: "#C6FF3D" },
-  { texto: "SEO", color: "#C6FF3D" },
+  { texto: "Web 3D", color: "#8ea6ff" },
+  { texto: "IA", color: "#8ea6ff" },
+  { texto: "AEO", color: "#8ea6ff" },
+  { texto: "SEO", color: "#8ea6ff" },
   { texto: "WhatsApp", color: "#34D399" },
   { texto: "CRM", color: "#A78BFA" },
 ];
@@ -127,22 +127,22 @@ export default function GrowthEngine3D() {
     // Luces
     escena.add(new THREE.AmbientLight("#202020", 0.6));
     const clave = new THREE.DirectionalLight("#ffffff", 2.4); clave.position.set(4, 5, 6); escena.add(clave);
-    const contra = new THREE.DirectionalLight("#c6ff3d", 1.4); contra.position.set(-6, -2, -4); escena.add(contra);
+    const contra = new THREE.DirectionalLight("#8ea6ff", 1.4); contra.position.set(-6, -2, -4); escena.add(contra);
 
     const grupo = new THREE.Group(); escena.add(grupo);
 
     // Núcleo
     const { malla: nucleo, uniforms } = crearNucleo();
     grupo.add(nucleo);
-    const corazon = new THREE.Mesh(new THREE.SphereGeometry(0.62, 48, 32), new THREE.MeshBasicMaterial({ color: "#c6ff3d" }));
+    const corazon = new THREE.Mesh(new THREE.SphereGeometry(0.62, 48, 32), new THREE.MeshBasicMaterial({ color: "#8ea6ff" }));
     grupo.add(corazon);
-    const luzCorazon = new THREE.PointLight("#c6ff3d", 6, 8, 2); grupo.add(luzCorazon);
-    const halo = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 24), new THREE.MeshBasicMaterial({ color: "#c6ff3d", transparent: true, opacity: 0.08, depthWrite: false }));
+    const luzCorazon = new THREE.PointLight("#8ea6ff", 6, 8, 2); grupo.add(luzCorazon);
+    const halo = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 24), new THREE.MeshBasicMaterial({ color: "#8ea6ff", transparent: true, opacity: 0.08, depthWrite: false }));
     grupo.add(halo);
 
     // Anillos de energía
     const anillos: THREE.Mesh[] = [];
-    [[1.85, "#C6FF3D", 0.012], [2.25, "#C6FF3D", 0.008], [2.7, "#C6FF3D", 0.006]].forEach(([r, color, grosor], i) => {
+    [[1.85, "#8ea6ff", 0.012], [2.25, "#8ea6ff", 0.008], [2.7, "#8ea6ff", 0.006]].forEach(([r, color, grosor], i) => {
       const a = new THREE.Mesh(new THREE.TorusGeometry(r as number, grosor as number, 12, 180), new THREE.MeshStandardMaterial({ color: color as string, emissive: color as string, emissiveIntensity: 1.6, metalness: 1, roughness: 0.3 }));
       a.rotation.set(Math.PI / 2 + i * 0.5, i * 0.7, 0);
       grupo.add(a); anillos.push(a);
@@ -166,7 +166,7 @@ export default function GrowthEngine3D() {
     // Campo de partículas
     const N = movil ? 700 : 1800;
     const puntos = new Float32Array(N * 3), colores = new Float32Array(N * 3);
-    const oro = new THREE.Color("#C6FF3D"), cian = new THREE.Color("#C6FF3D");
+    const oro = new THREE.Color("#8ea6ff"), cian = new THREE.Color("#8ea6ff");
     for (let i = 0; i < N; i++) {
       const r = 4 + Math.random() * 12, th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
       puntos.set([r * Math.sin(ph) * Math.cos(th), r * Math.cos(ph) * 0.6, r * Math.sin(ph) * Math.sin(th) - 4], i * 3);

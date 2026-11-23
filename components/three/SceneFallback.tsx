@@ -1,7 +1,7 @@
 export function SceneFallback() {
   return (
     <div className="premium-border spotlight-panel relative min-h-[390px] overflow-hidden rounded-[2rem] bg-white/[.05] shadow-premium sm:min-h-[420px]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(198,255,61,.26),transparent_24rem)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(142,166,255,.26),transparent_24rem)]" />
       <div className="absolute left-1/2 top-[46%] h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/30 bg-cyan-200/10 shadow-glow" />
       <div className="absolute left-1/2 top-[46%] h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/20" />
       <div className="absolute left-1/2 top-[46%] h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />

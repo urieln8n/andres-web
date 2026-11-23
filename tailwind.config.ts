@@ -1,20 +1,21 @@
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
-// Identidad: negro profundo, blanco y un único acento lima eléctrico.
+// Identidad: negro profundo, blanco y un único acento azul trencadís (el azul de los mosaicos de Barcelona).
+// La escala se sigue llamando "lima" para no tocar cada clase de la web.
 // "cyan", "gold", "electric" y "petrol" se mantienen como alias del acento para que toda la web cambie a la vez.
 const lima = {
-  50: "#F8FFE5",
-  100: "#EFFFC4",
-  200: "#E0FF8F",
-  300: "#C6FF3D",
-  400: "#B4F01F",
-  500: "#9AD60F",
-  600: "#77A80A",
-  700: "#5A7F0E",
-  800: "#476412",
-  900: "#3B5314",
-  950: "#1E2E05",
+  50: "#EEF2FF",
+  100: "#DCE3FF",
+  200: "#B9C7FF",
+  300: "#8EA6FF",
+  400: "#6683FF",
+  500: "#3F5BFF",
+  600: "#2A3FE6",
+  700: "#2131B3",
+  800: "#1C2A8C",
+  900: "#1B276E",
+  950: "#0F1440",
 };
 
 const config: Config = {
@@ -39,13 +40,14 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-display)", "var(--font-geist-sans)", "sans-serif"],
       },
       boxShadow: {
         premium: "0 30px 80px rgba(0,0,0,.55)",
-        glow: "0 0 60px rgba(198,255,61,.16)",
+        glow: "0 0 60px rgba(142,166,255,.18)",
       },
       backgroundImage: {
-        "radial-premium": "radial-gradient(60rem 30rem at 50% -10%, rgba(198,255,61,.07), transparent 70%), linear-gradient(180deg, #080808 0%, #0A0A0A 50%, #080808 100%)",
+        "radial-premium": "radial-gradient(60rem 30rem at 50% -10%, rgba(142,166,255,.08), transparent 70%), linear-gradient(180deg, #080808 0%, #0A0A0A 50%, #080808 100%)",
       },
       keyframes: {
         marquesina: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },

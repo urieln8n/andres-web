@@ -139,7 +139,7 @@ function MobileNodeList() {
 function BackgroundLayer() {
   return (
     <>
-      <div className="ar-aurora absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(198,255,61,0.22),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.17),transparent_32%),radial-gradient(circle_at_50%_90%,rgba(251,191,36,0.10),transparent_34%)]" />
+      <div className="ar-aurora absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(142,166,255,0.22),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.17),transparent_32%),radial-gradient(circle_at_50%_90%,rgba(251,191,36,0.10),transparent_34%)]" />
 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:44px_44px] opacity-25" />
 
@@ -170,7 +170,7 @@ function CentralOrb() {
       <div className="ar-ring ar-ring-two absolute -inset-16 rounded-full border border-violet-300/12" />
       <div className="ar-ring ar-ring-three absolute -inset-24 rounded-full border border-amber-200/8" />
 
-      <div className="absolute inset-3 rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.72),rgba(198,255,61,0.26)_34%,rgba(15,23,42,0.88)_76%)]" />
+      <div className="absolute inset-3 rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.72),rgba(142,166,255,0.26)_34%,rgba(15,23,42,0.88)_76%)]" />
       <div className="absolute inset-7 rounded-full border border-white/15 bg-slate-950/45" />
 
       <div className="relative text-center">

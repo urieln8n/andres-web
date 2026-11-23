@@ -46,6 +46,9 @@ export type ProjectStudy = {
   status?: "real" | "propuesta" | "producto" | "demo";
   /** Solo citas reales y con permiso del cliente. Si no hay, no se muestra nada. */
   testimonial?: { quote: string; author: string };
+  /** Captura real de la web (en /public) y si es de escritorio o de móvil */
+  image?: string;
+  imageKind?: "web" | "movil";
 };
 
 export const services: SeoPage[] = [
@@ -593,6 +596,7 @@ export const projectStudies: ProjectStudy[] = [
     relatedServices: ["/servicios/webs-premium-para-negocios", "/auditoria-aeo", "/servicios/chatbot-whatsapp-para-empresas"],
     url: "https://lacasadejenni.com",
     status: "real",
+    image: "/proyectos-jenni.webp",
   },
   {
     slug: "avances-campus",
@@ -609,6 +613,7 @@ export const projectStudies: ProjectStudy[] = [
     relatedServices: ["/servicios/webs-premium-para-negocios", "/auditoria-aeo", "/servicios/seo-local-para-negocios"],
     url: "https://avancescampus.andresrendon.com",
     status: "real",
+    image: "/proyectos-avancescampus.webp",
   },
   {
     slug: "lumbrera",
@@ -625,6 +630,25 @@ export const projectStudies: ProjectStudy[] = [
     relatedServices: ["/servicios/software-saas-para-empresas", "/servicios/automatizacion-con-inteligencia-artificial", "/auditoria-gratis"],
     url: "https://genesis.andresrendon.com",
     status: "producto",
+    image: "/proyectos-lumbrera.webp",
+    imageKind: "movil",
+  },
+  {
+    slug: "web-rescue",
+    title: "Web Rescue | Estudio de rescate digital y seguridad web",
+    description: "Producto propio: servicio de auditoría web defensiva, recuperación de webs WordPress comprometidas, rediseño 3D y preparación para buscadores e IA.",
+    h1: "Web Rescue: rescatar webs comprometidas y dejarlas mejor que antes",
+    eyebrow: "Producto propio · seguridad web",
+    problem: "Muchas webs de negocios pequeños tienen spam escondido, plugins sin actualizar o señales de que alguien entró, y el dueño no lo ve hasta que Google lo penaliza.",
+    solution: "Servicio en tres pasos: detectar (revisión de spam SEO, configuración pública y señales de compromiso, con evidencias), rescatar (limpieza y recuperación con autorización) y evolucionar (una web nueva, accesible y legible para buscadores e IA). Sin escaneos intrusivos ni cambios sin permiso.",
+    stack: ["HTML estático", "WebGL", "Cloudflare Workers", "Auditoría AEO", "robots.txt y llms.txt"],
+    modules: ["Revisión de spam SEO", "Señales de compromiso", "Recuperación autorizada", "Rediseño 3D", "Preparación para IA", "Laboratorio de pruebas"],
+    expectedResult: "Qué ofrece: un camino claro para un negocio cuya web ha sido comprometida: saber qué pasa, limpiarla con permiso y salir con una web más segura y más fácil de encontrar.",
+    note: "Proyecto propio en desarrollo.",
+    relatedServices: ["/auditoria-aeo", "/servicios/webs-premium-para-negocios", "/auditoria-gratis"],
+    url: "https://webrescure.andresrendon.com",
+    status: "producto",
+    image: "/proyectos-webrescure.webp",
   },
   {
     slug: "stylebuddhas",
@@ -641,6 +665,7 @@ export const projectStudies: ProjectStudy[] = [
     relatedServices: ["/nichos/web-para-barberias", "/barcelona/web-para-barberias-barcelona", "/nichos/software-para-barberias"],
     url: "https://stylebuddhas.andresrendon.com",
     status: "propuesta",
+    image: "/proyectos-stylebuddhas.webp",
   },
   {
     slug: "hornos-java",
@@ -657,6 +682,7 @@ export const projectStudies: ProjectStudy[] = [
     relatedServices: ["/nichos/web-para-pizzerias", "/servicios/webs-premium-para-negocios", "/nichos/web-para-restaurantes"],
     url: "https://hornosjava.andresrendon.com",
     status: "propuesta",
+    image: "/proyectos-hornosjava.webp",
   },
   {
     slug: "barberiaos",
