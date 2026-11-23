@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { ArrowRight, Bot, BrainCircuit, CalendarCheck, CheckCircle2, Database, Globe2, LineChart, MessageSquare, Rocket, Search, Workflow, Zap } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BrainCircuit, Check, Database, Globe2, LineChart, MessageSquare, Plus, Search, Sparkles } from "lucide-react";
 import { createMetadata, serviceJsonLd } from "@/lib/seo";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button-link";
-import { PremiumCard } from "@/components/premium-card";
-import { DashboardPreview } from "@/components/dashboard-preview";
 import { GrowthEngineLoader } from "@/components/three/GrowthEngineLoader";
-import { sectors, services } from "@/lib/site-data";
+import { projectStudies, sectors, services } from "@/lib/site-data";
 
 export const metadata = createMetadata({
   path: "/",
@@ -29,35 +27,11 @@ const method = [
   { icon: LineChart, title: "Mejora continua", benefit: "Más conversión", text: "Medición, iteración y optimización para convertir la web en infraestructura comercial." },
 ];
 
-const serviceIcons = [Globe2, Workflow, MessageSquare, Search, Database, Rocket, LineChart, CalendarCheck];
-
-const projects = [
-  { title: "BarberíaOS", text: "SaaS vertical para barberías con reservas, clientes, caja, QR, dashboard, marketing y automatizaciones.", href: "/proyectos/barberiaos", main: true },
-  { title: "Sistemas para negocios locales", text: "Webs y embudos para restaurantes, barberías, pizzerías, limpieza, clínicas y autónomos.", href: "/proyectos/web-premium-negocio-local" },
-  { title: "Automatización IA", text: "Flujos para captar, responder, clasificar y hacer seguimiento de leads desde web y WhatsApp.", href: "/proyectos/automatizacion-whatsapp" },
-  { title: "CRM visual", text: "Panel para controlar oportunidades, estados, valor estimado, servicios solicitados y próximos pasos.", href: "/proyectos/crm-leads-ia" },
-];
-
-const authorityItems = ["Auditoría gratis", "Webs premium", "SEO local", "Automatizaciones IA", "Software para negocios"];
-
-const authorityMetrics = [
-  { label: "Captación 24/7", text: "Páginas, formularios y rutas de conversión siempre activos." },
-  { label: "SEO preparado", text: "Arquitectura pensada para servicios, nichos y búsquedas locales." },
-  { label: "CRM conectado", text: "Cada lead entra con contexto, estado y próxima acción." },
-];
-
 const trustReasons = [
   { title: "Construyo producto real", text: "No vendo solo diseño: trabajo con flujos, datos, formularios, CRM, automatización y páginas que pueden medirse." },
   { title: "Pienso como operador", text: "Cada sección responde a una pregunta comercial: qué vendes, por qué confiar, qué hacer ahora y cómo no perder el lead." },
   { title: "SEO desde arquitectura", text: "Organizo servicios, nichos, Barcelona, casos y blog para capturar intención real sin depender solo de redes sociales." },
   { title: "IA con control humano", text: "Uso IA para acelerar respuesta y seguimiento, manteniendo derivación humana cuando el negocio necesita criterio." },
-];
-
-const proofMockups = [
-  ["Landing premium", "Oferta clara, CTA visible, confianza y mobile-first."],
-  ["CRM de leads", "Estados, valor estimado, servicio solicitado y próxima acción."],
-  ["WhatsApp + IA", "Respuesta inicial, clasificación y seguimiento sin improvisar."],
-  ["SEO local", "Páginas por servicio, nicho y zona con enlaces internos."],
 ];
 
 const beforeAfter = [
@@ -71,23 +45,6 @@ const workProcess = [
   "Diseño premium orientado a confianza y conversión",
   "Implementación con formulario, CRM, dashboard o automatización",
   "Medición y priorización de mejoras",
-];
-
-const deliverables = [
-  "Arquitectura SEO",
-  "Copy de conversión",
-  "Web premium",
-  "Formulario de auditoría",
-  "CRM visual",
-  "Automatización IA",
-  "Dashboard comercial",
-  "Plan de mejora",
-];
-
-const notFor = [
-  "Negocios que solo quieren una web decorativa sin medir captación.",
-  "Proyectos que no quieren aclarar oferta, precios, proceso o seguimiento.",
-  "Equipos que prefieren seguir perdiendo leads en mensajes sueltos.",
 ];
 
 const packages = [
@@ -149,7 +106,21 @@ const homeFaqs = [
   ["¿BarberíaOS ya es un producto real?", "Es un SaaS vertical y caso demostrativo en construcción para mostrar cómo una barbería puede controlar reservas, clientes, caja, QR, marketing y automatización."],
 ];
 
+const bento = [
+  { slug: "webs-premium-para-negocios", icon: Globe2, titulo: "Webs premium y 3D", grande: true },
+  { slug: "chatbot-whatsapp-ia", icon: MessageSquare, titulo: "WhatsApp con IA" },
+  { slug: "seo-local-para-negocios", icon: Search, titulo: "SEO local + AEO" },
+  { slug: "automatizacion-con-inteligencia-artificial", icon: BrainCircuit, titulo: "Automatización IA" },
+  { slug: "crm-para-negocios-locales", icon: Database, titulo: "CRM y pipeline" },
+  { slug: "software-saas-para-empresas", icon: LineChart, titulo: "Software a medida" },
+];
+
+const marquesina = ["Webs 3D", "IA", "AEO", "SEO local", "WhatsApp", "CRM", "Automatización", "Software"];
+
 export default function HomePage() {
+  const servicioPorSlug = new Map(services.map((s) => [s.slug, s]));
+  const proyectos = projectStudies.slice(0, 3);
+
   return (
     <>
       <GrowthEngineLoader />
@@ -159,313 +130,256 @@ export default function HomePage() {
           __html: JSON.stringify(serviceJsonLd("Auditoría gratis de sistemas digitales", "Auditoría gratis para negocios locales que quieren mejorar captación, automatización, SEO local y software a medida.", "/auditoria-gratis")),
         }}
       />
-      <section className="relative overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
-        <div className="absolute left-1/2 top-0 h-80 w-[min(52rem,92vw)] -translate-x-1/2 rounded-full bg-cyan-300/[.075] blur-3xl" />
-        <div className="absolute right-[8%] top-32 hidden h-72 w-72 rounded-full bg-gold/[.065] blur-3xl lg:block" />
-        <div className="absolute left-[4%] top-56 hidden h-64 w-64 rounded-full bg-petrol/[.08] blur-3xl lg:block" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.04fr_.96fr] lg:gap-14">
+
+      {/* HERO */}
+      <section className="relative px-4 pb-10 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-14 lg:pt-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 lg:min-h-[calc(100svh-11rem)] lg:grid-cols-[1.1fr_.9fr]">
           <div className="relative z-10">
-            <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-gold/20 bg-gold/[.06] px-3.5 py-2 text-xs font-semibold text-gold shadow-[inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur sm:px-4 sm:text-sm">
-              <Zap className="h-4 w-4 text-gold" />
-              <span className="truncate">Andrés Rendón Growth Engine</span>
-            </div>
-            <h1 className="text-balance max-w-4xl text-[2.7rem] font-semibold leading-[.96] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              <span className="block">Sistemas digitales con IA</span>
-              <span className="premium-gradient-text block">para negocios locales que quieren vender más.</span>
+            <p className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[.03] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[.14em] text-slate-300 backdrop-blur">
+              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lima-300 opacity-60" /><span className="relative inline-flex h-2 w-2 rounded-full bg-lima-300" /></span>
+              Barcelona · IA aplicada a ventas
+            </p>
+            <h1 className="titulo-display text-balance mt-7 text-[3.1rem] text-white sm:text-7xl lg:text-[6.4rem]">
+              Sistemas digitales <span className="text-lima-300">con IA</span> que <span className="contorno">venden</span> por ti.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:mt-7 sm:text-xl sm:leading-8">
-              Webs premium, WhatsApp IA, SEO local, automatizaciones y CRM para convertir visitas en clientes reales desde Google, Instagram y WhatsApp.
+            <p className="mt-7 max-w-xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
+              Webs premium, WhatsApp con IA, SEO local, AEO y CRM para negocios locales que quieren convertir visitas de Google, Instagram y ChatGPT en clientes reales.
             </p>
-            <p className="mt-5 max-w-2xl border-l border-cyan-200/25 pl-4 text-sm leading-7 text-slate-200 sm:pl-5 sm:text-base">
-              No creo páginas decorativas. Diseño sistemas que captan, ordenan y convierten oportunidades comerciales.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/auditoria-aeo">¿Te ve ChatGPT? Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
-              <ButtonLink href="/proyectos" variant="secondary">Ver sistemas creados</ButtonLink>
-            </div>
-            <div className="mt-9 grid max-w-2xl grid-cols-1 gap-3 text-sm text-slate-300 sm:mt-10 sm:grid-cols-3">
-              {["Barcelona, España", "IA aplicada a ventas", "SEO + CRM + leads"].map((item) => (
-                <div key={item} className="flex min-h-12 items-center gap-2 rounded-2xl border border-white/10 bg-white/[.035] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur">
-                  <CheckCircle2 className="h-4 w-4 text-cyan-300" /> {item}
-                </div>
-              ))}
+              <ButtonLink href="/proyectos" variant="secondary">Ver proyectos</ButtonLink>
             </div>
           </div>
-          <div className="relative h-[300px] sm:h-[380px] lg:h-[560px]">
-            <div className="absolute bottom-6 left-0 rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 backdrop-blur-md lg:bottom-16 lg:left-2">
-              <p className="text-[11px] font-semibold uppercase tracking-[.2em] text-gold">Motor de crecimiento</p>
-              <p className="mt-1 text-sm text-slate-200">Web 3D · IA · AEO · SEO · WhatsApp · CRM</p>
-            </div>
-            <a href="/auditoria-aeo" className="absolute right-0 top-4 rounded-2xl border border-cyan-300/25 bg-ink/60 px-4 py-3 text-right backdrop-blur-md transition hover:border-cyan-200/50 lg:right-2 lg:top-10">
-              <p className="text-[11px] font-semibold uppercase tracking-[.2em] text-cyan-200">Mi web en la auditoría AEO</p>
-              <p className="mt-1 text-2xl font-semibold text-white">88<span className="text-sm text-slate-400">/100</span></p>
+
+          <div className="relative h-[280px] sm:h-[380px] lg:h-full lg:min-h-[520px]">
+            <a href="/auditoria-aeo" className="group absolute right-0 top-2 rounded-2xl border border-white/10 bg-ink/60 px-5 py-4 backdrop-blur-md transition hover:border-lima-300/50 lg:right-4 lg:top-8">
+              <p className="font-mono text-[10px] uppercase tracking-[.16em] text-slate-400">Mi web · auditoría AEO</p>
+              <p className="mt-1 flex items-baseline gap-1 text-4xl font-semibold tracking-tight text-white">88<span className="text-base text-slate-500">/100</span><ArrowUpRight className="ml-1 h-4 w-4 self-center text-lima-300 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></p>
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 pb-10 sm:px-6 lg:px-8">
-        <div className="premium-border spotlight-panel mx-auto max-w-7xl rounded-[1.75rem] bg-white/[.045] p-4 shadow-premium backdrop-blur md:p-5">
-          <div className="relative z-10 grid gap-4 lg:grid-cols-[.92fr_1.08fr] lg:items-center">
-            <div className="flex flex-wrap gap-2">
-              {authorityItems.map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/[.06] px-4 py-2 text-sm text-slate-200">
-                  {item}
-                </span>
-              ))}
-            </div>
-            <div className="grid gap-3 md:grid-cols-3">
-              {authorityMetrics.map((metric) => (
-                <div key={metric.label} className="rounded-2xl border border-white/10 bg-ink/45 p-4">
-                  <p className="text-sm font-semibold text-white">{metric.label}</p>
-                  <p className="mt-1 text-xs leading-5 text-slate-400">{metric.text}</p>
-                </div>
-              ))}
+            <div className="absolute bottom-2 left-0 rounded-2xl border border-white/10 bg-ink/60 px-5 py-4 backdrop-blur-md lg:bottom-10 lg:left-4">
+              <p className="font-mono text-[10px] uppercase tracking-[.16em] text-lima-300">Motor de crecimiento</p>
+              <p className="mt-1 text-sm text-slate-200">Web · IA · AEO · SEO · WhatsApp · CRM</p>
             </div>
           </div>
         </div>
+
+        <div className="mx-auto mt-10 grid max-w-7xl gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3">
+          {[
+            ["01", "Te encuentran", "Google, mapas y respuestas de ChatGPT."],
+            ["02", "Te escriben", "Web y WhatsApp que responden al momento."],
+            ["03", "Te compran", "Cada lead en el CRM con su siguiente paso."],
+          ].map(([n, t, d]) => (
+            <div key={n} className="bg-ink/85 p-5 backdrop-blur">
+              <p className="font-mono text-xs text-lima-300">{n}</p>
+              <p className="mt-2 font-semibold tracking-tight text-white">{t}</p>
+              <p className="mt-1 text-sm text-slate-400">{d}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <Section eyebrow="El problema" title="La mayoría de negocios no necesita más ruido. Necesita un sistema que convierta.">
-        <p className="mb-8 max-w-3xl text-lg leading-8 text-slate-300">
-          Publican, responden mensajes y esperan resultados. Yo construyo la infraestructura para que cada visita, búsqueda y conversación tenga una ruta comercial clara.
-        </p>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {pains.map((item, index) => <PremiumCard key={item}><p className="mb-5 text-sm font-semibold text-cyan-200">0{index + 1}</p><p className="text-slate-200">{item}</p></PremiumCard>)}
-        </div>
-      </Section>
-
-      <Section eyebrow="Por qué confiar en mí" title="No trabajo la web como escaparate. La trabajo como infraestructura comercial.">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {trustReasons.map((item) => (
-            <PremiumCard key={item.title}>
-              <CheckCircle2 className="mb-5 h-7 w-7 text-cyan-300" />
-              <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
-            </PremiumCard>
+      {/* MARQUESINA */}
+      <div aria-hidden="true" className="relative overflow-hidden border-y border-white/10 bg-ink/60 py-6 backdrop-blur">
+        <div className="flex w-max animate-marquesina items-center gap-10 whitespace-nowrap">
+          {[...marquesina, ...marquesina].map((m, i) => (
+            <span key={i} className="flex items-center gap-10 text-5xl font-semibold tracking-tighter sm:text-7xl">
+              <span className={i % 2 ? "contorno" : "text-white"}>{m}</span>
+              <Sparkles className="h-7 w-7 text-lima-300" />
+            </span>
           ))}
         </div>
-      </Section>
+      </div>
 
-      <Section eyebrow="Antes y después" title="La diferencia entre una web bonita y un sistema que captura oportunidades.">
-        <div className="grid gap-5 lg:grid-cols-2">
-          {beforeAfter.map(([label, title, text]) => (
-            <PremiumCard key={label} className={label === "Después" ? "bg-cyan-300/[.08]" : ""}>
-              <p className="text-sm font-semibold text-gold">{label}</p>
-              <h3 className="mt-4 text-3xl font-semibold text-white">{title}</h3>
-              <p className="mt-4 leading-7 text-slate-300">{text}</p>
-            </PremiumCard>
-          ))}
+      {/* PROBLEMA */}
+      <Section numero="01" eyebrow="El problema" title="No necesitas más ruido. Necesitas un sistema que convierta.">
+        <div className="grid gap-10 lg:grid-cols-[14rem_1fr]">
+          <div />
+          <div>
+            <p className="max-w-2xl text-lg leading-8 text-slate-400">
+              Publicas, respondes mensajes y esperas resultados. Yo construyo la infraestructura para que cada visita, búsqueda y conversación tenga una ruta comercial clara.
+            </p>
+            <ol className="mt-12 border-b border-white/10">
+              {pains.map((item, index) => (
+                <li key={item} className="group grid gap-3 border-t border-white/10 py-7 transition sm:grid-cols-[5rem_1fr]">
+                  <span className="font-mono text-sm text-slate-500 transition group-hover:text-lima-300">0{index + 1}</span>
+                  <span className="text-xl leading-snug tracking-tight text-slate-200 transition group-hover:text-white sm:text-2xl">{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </Section>
 
-      <Section eyebrow="Método Sistema Digital 360" title="Una infraestructura comercial completa, diseñada para parecer premium y vender mejor.">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {method.map((item) => (
-            <PremiumCard key={item.title}>
-              <item.icon className="mb-5 h-8 w-8 text-cyan-300" />
-              <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-2 text-sm font-semibold text-gold">{item.benefit}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
-            </PremiumCard>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Servicios" title="Piezas conectadas para que tu marca digital trabaje como un equipo comercial.">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, index) => {
-            const Icon = serviceIcons[index % serviceIcons.length];
+      {/* SERVICIOS · BENTO */}
+      <Section numero="02" eyebrow="Servicios" title="Piezas conectadas que trabajan como un equipo comercial.">
+        <div className="grid auto-rows-[minmax(15rem,auto)] gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {bento.map((b) => {
+            const s = servicioPorSlug.get(b.slug);
+            if (!s) return null;
             return (
-              <Link key={service.slug} href={`/servicios/${service.slug}`} className="group">
-                <PremiumCard className="h-full group-hover:bg-white/[.08]">
-                  <Icon className="h-7 w-7 text-cyan-300" />
-                  <p className="mt-5 text-sm font-medium text-gold">{service.eyebrow}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-white">{service.h1}</h3>
-                  <p className="mt-4 text-sm leading-6 text-slate-300">{service.pain}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200">Ver servicio <ArrowRight className="h-4 w-4" /></span>
-                </PremiumCard>
+              <Link
+                key={b.slug}
+                href={`/servicios/${b.slug}`}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border p-7 transition duration-500 hover:-translate-y-1 ${
+                  b.grande ? "border-lima-300/40 bg-lima-300 text-ink md:col-span-2 md:row-span-2" : "border-white/[.08] bg-[#0f0f0f]/90 text-white hover:border-lima-300/40"
+                }`}
+              >
+                <div className="flex items-start justify-between">
+                  <b.icon className={`h-7 w-7 ${b.grande ? "text-ink" : "text-lima-300"}`} />
+                  <ArrowUpRight className={`h-5 w-5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${b.grande ? "text-ink" : "text-slate-500 group-hover:text-lima-300"}`} />
+                </div>
+                <div>
+                  <p className={`font-mono text-[11px] uppercase tracking-[.14em] ${b.grande ? "text-ink/60" : "text-slate-500"}`}>{s.eyebrow}</p>
+                  <h3 className={`mt-3 font-semibold tracking-tight ${b.grande ? "titulo-display text-5xl sm:text-6xl" : "text-2xl"}`}>{b.titulo}</h3>
+                  <p className={`mt-4 leading-relaxed ${b.grande ? "max-w-md text-lg text-ink/75" : "text-sm text-slate-400"}`}>{s.pain}</p>
+                </div>
               </Link>
             );
           })}
         </div>
       </Section>
 
-      <Section eyebrow="Sectores" title="Sistemas comerciales para mercados donde cada lead puede convertirse en caja.">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {sectors.map((sector) => (
-            <Link key={sector.slug} href={`/sectores/${sector.slug}`} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.04] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur">
-              <p className="text-sm font-medium text-cyan-200">{sector.eyebrow}</p>
-              <h3 className="mt-2 font-semibold text-white">{sector.h1}</h3>
+      {/* PROYECTOS */}
+      <Section numero="03" eyebrow="Proyectos" title="Construyo, pruebo y publico sistemas reales.">
+        <div className="grid gap-4 lg:grid-cols-3">
+          {proyectos.map((p, i) => (
+            <Link key={p.slug} href={`/proyectos/${p.slug}`} className={`group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/[.08] bg-[#0f0f0f]/90 p-7 transition duration-500 hover:-translate-y-1 hover:border-lima-300/40 ${i === 0 ? "lg:col-span-2" : ""}`}>
+              <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-lima-300/[.06] blur-3xl transition duration-700 group-hover:bg-lima-300/[.14]" />
+              <div className="relative flex items-center justify-between">
+                <span className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[.14em] text-slate-400">{p.eyebrow}</span>
+                <ArrowUpRight className="h-5 w-5 text-slate-500 transition group-hover:text-lima-300" />
+              </div>
+              <div className="relative">
+                <h3 className={`titulo-display text-white ${i === 0 ? "text-4xl sm:text-6xl" : "text-3xl sm:text-4xl"}`}>{p.h1}</h3>
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-400">{p.solution}</p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {p.stack.slice(0, 4).map((t) => <span key={t} className="rounded-full bg-white/[.05] px-3 py-1 text-xs text-slate-300">{t}</span>)}
+                </div>
+              </div>
             </Link>
           ))}
         </div>
       </Section>
 
-      <Section eyebrow="Autoridad personal" title="Construyo, pruebo y vendo sistemas digitales reales.">
-        <p className="mb-8 max-w-3xl text-lg leading-8 text-slate-300">
-          Trabajo en BarberíaOS, webs premium para negocios locales, automatizaciones con IA, CRM de leads, dashboards comerciales, sistemas de reservas y SEO local para captación.
-        </p>
-        <div className="grid gap-5 lg:grid-cols-2">
-          {projects.map((project) => (
-            <Link key={project.title} href={project.href} className={project.main ? "lg:row-span-2" : ""}>
-              <PremiumCard className={`h-full ${project.main ? "bg-cyan-300/[.08]" : ""}`}>
-                <p className="text-sm font-semibold text-gold">{project.main ? "Proyecto destacado" : "Sistema digital"}</p>
-                <h3 className="mt-4 text-3xl font-semibold text-white">{project.title}</h3>
-                <p className="mt-4 text-slate-300">{project.text}</p>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200">Ver proyecto <ArrowRight className="h-4 w-4" /></span>
-              </PremiumCard>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Sistemas reales que estoy construyendo" title="BarberíaOS es la prueba de una idea: los negocios locales necesitan software, no solo presencia.">
-        <div className="grid gap-5 lg:grid-cols-[1.05fr_.95fr]">
-          <PremiumCard className="bg-cyan-300/[.08]">
-            <p className="premium-kicker text-sm">BarberíaOS</p>
-            <h3 className="mt-4 text-4xl font-semibold tracking-tight text-white">Reservas, clientes, caja, QR, dashboard, marketing y automatización para barberías.</h3>
-            <p className="mt-5 leading-7 text-slate-300">
-              Un SaaS vertical para demostrar cómo un negocio local puede pasar de mensajes sueltos a un sistema operativo comercial con agenda, datos y seguimiento.
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/casos/barberiaos">Ver caso BarberíaOS <ArrowRight className="h-4 w-4" /></ButtonLink>
-              <ButtonLink href="/nichos/software-para-barberias" variant="secondary">Software para barberías</ButtonLink>
+      {/* MÉTODO */}
+      <Section numero="04" eyebrow="Método 360" title="De diagnóstico a sistema digital medible.">
+        <div className="border-b border-white/10">
+          {method.map((m, i) => (
+            <div key={m.title} className="group grid items-start gap-4 border-t border-white/10 py-8 transition md:grid-cols-[14rem_1fr_1fr] md:gap-10">
+              <span className="titulo-display text-6xl text-white/10 transition duration-500 group-hover:text-lima-300 md:text-7xl">0{i + 1}</span>
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">{m.title}</h3>
+                <p className="mt-2 font-mono text-xs uppercase tracking-[.14em] text-lima-300">{m.benefit}</p>
+              </div>
+              <p className="leading-relaxed text-slate-400 md:pt-1">{m.text}</p>
             </div>
-          </PremiumCard>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {proofMockups.map(([title, text]) => (
-              <div key={title} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)]">
-                <p className="text-sm font-semibold text-cyan-200">{title}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+          ))}
+        </div>
+      </Section>
+
+      {/* ANTES / DESPUÉS */}
+      <section className="px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-2">
+          {beforeAfter.map(([label, title, text]) => {
+            const despues = label === "Después";
+            return (
+              <div key={label} className={`rounded-[1.75rem] p-8 sm:p-12 ${despues ? "bg-lima-300 text-ink" : "border border-white/[.08] bg-[#0f0f0f]/90 text-white"}`}>
+                <p className={`font-mono text-xs uppercase tracking-[.16em] ${despues ? "text-ink/60" : "text-slate-500"}`}>{label}</p>
+                <h3 className={`titulo-display mt-6 text-4xl sm:text-5xl ${despues ? "" : "text-slate-300 line-through decoration-white/20 decoration-2"}`}>{title}</h3>
+                <p className={`mt-6 max-w-lg leading-relaxed ${despues ? "text-ink/75" : "text-slate-500"}`}>{text}</p>
               </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* POR QUÉ */}
+      <Section numero="05" eyebrow="Por qué confiar" title="No trabajo la web como escaparate. La trabajo como infraestructura.">
+        <div className="grid gap-px overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
+          {trustReasons.map((t) => (
+            <div key={t.title} className="bg-ink/90 p-7 backdrop-blur">
+              <Check className="h-5 w-5 text-lima-300" />
+              <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">{t.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">{t.text}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* PRECIOS */}
+      <Section numero="06" eyebrow="Precios" title="Elige el sistema que encaja con tu momento.">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {packages.map((pkg) => (
+            <div key={pkg.name} className={`flex flex-col rounded-[1.75rem] p-7 transition duration-500 hover:-translate-y-1 ${pkg.featured ? "bg-lima-300 text-ink lg:row-span-2" : "border border-white/[.08] bg-[#0f0f0f]/90 text-white hover:border-white/20"}`}>
+              <div className="flex items-center justify-between gap-2">
+                <p className={`font-mono text-[11px] uppercase tracking-[.14em] ${pkg.featured ? "text-ink/60" : "text-slate-500"}`}>{pkg.label}</p>
+                {pkg.featured && <span className="rounded-full bg-ink px-3 py-1 text-[11px] font-medium text-lima-300">Recomendado</span>}
+              </div>
+              <h3 className="mt-5 text-2xl font-semibold tracking-tight">{pkg.name}</h3>
+              <p className="titulo-display mt-2 text-5xl">{pkg.price}</p>
+              <p className={`mt-4 text-sm leading-relaxed ${pkg.featured ? "text-ink/75" : "text-slate-400"}`}>{pkg.description}</p>
+              <ul className="mt-6 grid gap-2.5">
+                {pkg.features.map((f) => (
+                  <li key={f} className={`flex items-center gap-2.5 text-sm ${pkg.featured ? "text-ink/85" : "text-slate-300"}`}>
+                    <Check className={`h-4 w-4 shrink-0 ${pkg.featured ? "text-ink" : "text-lima-300"}`} />{f}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-auto pt-8">
+                {pkg.featured ? (
+                  <Link href={`${pkg.href}?paquete=${encodeURIComponent(pkg.name)}`} className="focus-premium inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-4 text-sm font-medium text-white transition hover:bg-black">
+                    {pkg.cta} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ) : (
+                  <ButtonLink href={`${pkg.href}?paquete=${encodeURIComponent(pkg.name)}`} variant="secondary" className="w-full">
+                    {pkg.cta} <ArrowRight className="h-4 w-4" />
+                  </ButtonLink>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center font-mono text-xs uppercase tracking-[.14em] text-slate-500">Precios orientativos · el presupuesto final se define tras la auditoría gratuita</p>
+      </Section>
+
+      {/* SECTORES + FAQ */}
+      <Section numero="07" eyebrow="Sectores y dudas" title="Para negocios donde cada lead puede convertirse en caja.">
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div className="flex flex-wrap content-start gap-2.5">
+            {sectors.map((sector) => (
+              <Link key={sector.slug} href={`/sectores/${sector.slug}`} className="rounded-full border border-white/10 bg-white/[.03] px-4 py-2.5 text-sm text-slate-300 transition hover:border-lima-300/50 hover:text-white">
+                {sector.eyebrow}
+              </Link>
+            ))}
+          </div>
+          <div className="border-b border-white/10">
+            {homeFaqs.map(([q, a]) => (
+              <details key={q} className="group border-t border-white/10 py-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-medium tracking-tight text-white [&::-webkit-details-marker]:hidden">
+                  {q}
+                  <Plus className="h-5 w-5 shrink-0 text-lima-300 transition duration-300 group-open:rotate-45" />
+                </summary>
+                <p className="mt-4 max-w-xl leading-relaxed text-slate-400">{a}</p>
+              </details>
             ))}
           </div>
         </div>
       </Section>
 
-      <Section eyebrow="Proceso de trabajo" title="De diagnóstico a sistema digital medible.">
-        <div className="grid gap-4 md:grid-cols-5">
-          {workProcess.map((item, index) => (
-            <PremiumCard key={item}>
-              <p className="text-sm font-semibold text-cyan-200">0{index + 1}</p>
-              <h3 className="mt-4 text-lg font-semibold text-white">{item}</h3>
-            </PremiumCard>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Entregables" title="Lo que puede formar parte de un sistema serio de captación.">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {deliverables.map((item) => (
-            <div key={item} className="rounded-3xl border border-white/10 bg-white/[.045] p-5 font-semibold text-white">{item}</div>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Para quién NO es" title="Prefiero proyectos con intención real de mejorar captación, no solo apariencia.">
-        <div className="grid gap-5 md:grid-cols-3">
-          {notFor.map((item) => (
-            <PremiumCard key={item}><p className="leading-7 text-slate-200">{item}</p></PremiumCard>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Preguntas frecuentes" title="Dudas antes de pedir una auditoría gratis.">
-        <div className="grid gap-5 md:grid-cols-3">
-          {homeFaqs.map(([question, answer]) => (
-            <PremiumCard key={question}>
-              <h3 className="font-semibold text-white">{question}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{answer}</p>
-            </PremiumCard>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="CRM visual" title="Un panel comercial para saber qué oportunidades existen y cómo avanzan.">
-        <DashboardPreview />
-      </Section>
-
-      <Section eyebrow="Oferta premium" title="Tu web no debe parecer un folleto. Debe comportarse como un sistema comercial.">
-        <div className="grid gap-5 lg:grid-cols-[.85fr_1.15fr]">
-          <PremiumCard>
-            <Bot className="h-9 w-9 text-cyan-300" />
-            <h3 className="mt-5 text-3xl font-semibold text-white">De auditoría gratis a sistema digital completo.</h3>
-            <p className="mt-4 text-slate-300">Estrategia, diseño, desarrollo, SEO, automatización, CRM, dashboard, captación, analítica y optimización continua con criterio de negocio.</p>
-          </PremiumCard>
-          <div className="grid gap-4 sm:grid-cols-2">
-          {["Auditoría gratis", "Web premium + SEO", "Sistema digital completo", "Automatización avanzada", "BarberíaOS", "Dashboard CRM comercial"].map((item) => (
-              <div key={item} className="premium-lift rounded-[1.35rem] border border-white/10 bg-white/[.04] p-5 text-slate-200 backdrop-blur">{item}</div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Paquetes y precios" title="Elige el sistema que encaja con tu momento.">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {packages.slice(0, 3).map((pkg) => (
-            <PremiumCard key={pkg.name} className={pkg.featured ? "bg-cyan-300/[.08] ring-1 ring-cyan-300/30" : ""}>
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold uppercase tracking-widest text-gold">{pkg.label}</p>
-                {pkg.featured && <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-200">Recomendado</span>}
-              </div>
-              <h3 className="mt-3 text-2xl font-semibold text-white">{pkg.name}</h3>
-              <p className="mt-1 text-3xl font-bold text-white">{pkg.price}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{pkg.description}</p>
-              <ul className="mt-5 grid gap-2">
-                {pkg.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />{f}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6">
-                <ButtonLink href={`${pkg.href}?paquete=${encodeURIComponent(pkg.name)}`} variant={pkg.featured ? "primary" : "secondary"} className="w-full justify-center">
-                  {pkg.cta} <ArrowRight className="h-4 w-4" />
-                </ButtonLink>
-              </div>
-            </PremiumCard>
-          ))}
-        </div>
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          {packages.slice(3).map((pkg) => (
-            <PremiumCard key={pkg.name} className={pkg.featured ? "bg-cyan-300/[.08] ring-1 ring-cyan-300/30" : ""}>
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold uppercase tracking-widest text-gold">{pkg.label}</p>
-                {pkg.featured && <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-200">Recomendado</span>}
-              </div>
-              <h3 className="mt-3 text-2xl font-semibold text-white">{pkg.name}</h3>
-              <p className="mt-1 text-3xl font-bold text-white">{pkg.price}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{pkg.description}</p>
-              <ul className="mt-5 grid gap-2 md:grid-cols-2">
-                {pkg.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />{f}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6">
-                <ButtonLink href={`${pkg.href}?paquete=${encodeURIComponent(pkg.name)}`} variant="secondary" className="w-full justify-center">
-                  {pkg.cta} <ArrowRight className="h-4 w-4" />
-                </ButtonLink>
-              </div>
-            </PremiumCard>
-          ))}
-        </div>
-        <p className="mt-6 text-center text-sm text-slate-500">Precios orientativos. El presupuesto final se define tras la auditoría gratuita.</p>
-      </Section>
-
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="premium-border spotlight-panel mx-auto max-w-6xl rounded-[2rem] bg-white/[.06] p-8 text-center shadow-premium backdrop-blur md:p-14">
-          <p className="premium-kicker text-sm">Auditoría gratis</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-            Solicita una auditoría gratis de tu negocio.
+      {/* CTA FINAL */}
+      <section className="px-4 pb-24 pt-10 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#0c0c0c]/90 px-6 py-16 text-center sm:px-12 sm:py-24">
+          <div className="pointer-events-none absolute left-1/2 top-full h-[30rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-lima-300/[.12] blur-3xl" />
+          <p className="premium-kicker relative text-xs">Auditoría gratis</p>
+          <h2 className="titulo-display relative mx-auto mt-6 max-w-4xl text-5xl text-white sm:text-7xl lg:text-8xl">
+            ¿Hablamos de tu <span className="text-lima-300">próximo cliente</span>?
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-slate-300">
-            Analizaré tu web, Instagram, WhatsApp, SEO y oportunidades de automatización para decirte cómo convertir tu presencia digital en un sistema de captación.
+          <p className="relative mx-auto mt-6 max-w-xl text-slate-400">
+            Analizo tu web, Instagram, WhatsApp, SEO y cómo te ve ChatGPT, y te digo qué cambiar para captar más.
           </p>
-          <div className="mt-8 flex justify-center">
-            <ButtonLink href="/auditoria-gratis">Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+          <div className="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+            <ButtonLink href="/auditoria-aeo">Auditoría AEO al instante <ArrowRight className="h-4 w-4" /></ButtonLink>
+            <ButtonLink href="/auditoria-gratis" variant="secondary">Auditoría completa</ButtonLink>
           </div>
         </div>
       </section>

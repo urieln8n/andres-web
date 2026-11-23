@@ -23,7 +23,7 @@ interface Respuesta {
   guardado?: { panel: boolean; brevo: boolean; email?: boolean };
 }
 
-const COLOR_NIVEL: Record<string, string> = { excelente: "#34d399", bueno: "#22d3ee", mejorable: "#D6B25E", critico: "#f87171" };
+const COLOR_NIVEL: Record<string, string> = { excelente: "#34d399", bueno: "#c6ff3d", mejorable: "#C6FF3D", critico: "#f87171" };
 const TEXTO_NIVEL: Record<string, string> = { excelente: "Excelente", bueno: "Bueno", mejorable: "Mejorable", critico: "Crítico" };
 const ETIQUETA_SEV: Record<string, string> = { critico: "Crítico", alto: "Alto", medio: "Medio", bajo: "Bajo" };
 const COLOR_SEV: Record<string, string> = { critico: "bg-red-400/15 text-red-300 border-red-400/30", alto: "bg-orange-400/15 text-orange-200 border-orange-300/30", medio: "bg-gold/15 text-gold border-gold/30", bajo: "bg-white/5 text-slate-300 border-white/10" };
@@ -94,7 +94,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
 
   if (estado === "listo" && respuesta) {
     const { resultado, revisionManual, guardado } = respuesta;
-    const color = COLOR_NIVEL[resultado.nivel] || "#D6B25E";
+    const color = COLOR_NIVEL[resultado.nivel] || "#C6FF3D";
     const mensaje = encodeURIComponent(`Hola Andrés, he hecho la auditoría AEO de ${datos.negocio} (${resultado.url}) y me ha salido ${revisionManual ? "para revisión manual" : `${resultado.nota}/100`}. ¿Me explicas cómo mejorarla?`);
     return (
       <Marco>
@@ -126,7 +126,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
             {resultado.ejes.map((e) => (
               <div key={e.id}>
                 <div className="flex justify-between text-sm text-slate-300"><span>{e.nombre}</span><span className="font-semibold text-white">{e.nota}</span></div>
-                <div className="mt-1 h-2 rounded-full bg-white/[.07]"><div className="h-2 rounded-full" style={{ width: `${e.nota}%`, background: e.nota >= 70 ? "#22d3ee" : e.nota >= 50 ? "#D6B25E" : "#f87171" }} /></div>
+                <div className="mt-1 h-2 rounded-full bg-white/[.07]"><div className="h-2 rounded-full" style={{ width: `${e.nota}%`, background: e.nota >= 70 ? "#c6ff3d" : e.nota >= 50 ? "#C6FF3D" : "#f87171" }} /></div>
               </div>
             ))}
           </div>

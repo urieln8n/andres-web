@@ -26,10 +26,10 @@ const CLAVES: Clave[] = [
 const MOVIL_X = 0.25; // en móvil el objeto va a la esquina superior y más discreto
 
 const MODULOS = [
-  { texto: "Web 3D", color: "#D6B25E" },
-  { texto: "IA", color: "#22D3EE" },
-  { texto: "AEO", color: "#D6B25E" },
-  { texto: "SEO", color: "#22D3EE" },
+  { texto: "Web 3D", color: "#C6FF3D" },
+  { texto: "IA", color: "#C6FF3D" },
+  { texto: "AEO", color: "#C6FF3D" },
+  { texto: "SEO", color: "#C6FF3D" },
   { texto: "WhatsApp", color: "#34D399" },
   { texto: "CRM", color: "#A78BFA" },
 ];
@@ -48,7 +48,7 @@ function etiqueta(texto: string, color: string) {
   const c = document.createElement("canvas");
   c.width = 512; c.height = 160;
   const g = c.getContext("2d")!;
-  g.fillStyle = "rgba(5,8,22,.72)";
+  g.fillStyle = "rgba(8,8,8,.78)";
   g.strokeStyle = color; g.lineWidth = 4;
   g.beginPath(); g.roundRect(6, 6, 500, 148, 74); g.fill(); g.stroke();
   g.fillStyle = color; g.beginPath(); g.arc(80, 80, 16, 0, Math.PI * 2); g.fill();
@@ -79,8 +79,8 @@ function crearNucleo() {
 
   const uniforms = { uExplota: { value: 0 }, uTiempo: { value: 0 } };
   const material = new THREE.MeshPhysicalMaterial({
-    color: "#d9b56a", metalness: 1, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.15,
-    iridescence: 0.6, iridescenceIOR: 1.6, flatShading: true, side: THREE.DoubleSide,
+    color: "#2a2a2a", metalness: 1, roughness: 0.14, clearcoat: 1, clearcoatRoughness: 0.1,
+    iridescence: 0.25, iridescenceIOR: 1.4, flatShading: true, side: THREE.DoubleSide,
   });
   material.onBeforeCompile = (shader) => {
     shader.uniforms.uExplota = uniforms.uExplota;
@@ -125,24 +125,24 @@ export default function GrowthEngine3D() {
     camara.position.set(0, 0, 9);
 
     // Luces
-    escena.add(new THREE.AmbientLight("#1b2a4a", 0.6));
-    const clave = new THREE.DirectionalLight("#ffe7b0", 2.2); clave.position.set(4, 5, 6); escena.add(clave);
-    const contra = new THREE.DirectionalLight("#22d3ee", 1.4); contra.position.set(-6, -2, -4); escena.add(contra);
+    escena.add(new THREE.AmbientLight("#202020", 0.6));
+    const clave = new THREE.DirectionalLight("#ffffff", 2.4); clave.position.set(4, 5, 6); escena.add(clave);
+    const contra = new THREE.DirectionalLight("#c6ff3d", 1.4); contra.position.set(-6, -2, -4); escena.add(contra);
 
     const grupo = new THREE.Group(); escena.add(grupo);
 
     // Núcleo
     const { malla: nucleo, uniforms } = crearNucleo();
     grupo.add(nucleo);
-    const corazon = new THREE.Mesh(new THREE.SphereGeometry(0.62, 48, 32), new THREE.MeshBasicMaterial({ color: "#22d3ee" }));
+    const corazon = new THREE.Mesh(new THREE.SphereGeometry(0.62, 48, 32), new THREE.MeshBasicMaterial({ color: "#c6ff3d" }));
     grupo.add(corazon);
-    const luzCorazon = new THREE.PointLight("#22d3ee", 6, 8, 2); grupo.add(luzCorazon);
-    const halo = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 24), new THREE.MeshBasicMaterial({ color: "#22d3ee", transparent: true, opacity: 0.08, depthWrite: false }));
+    const luzCorazon = new THREE.PointLight("#c6ff3d", 6, 8, 2); grupo.add(luzCorazon);
+    const halo = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 24), new THREE.MeshBasicMaterial({ color: "#c6ff3d", transparent: true, opacity: 0.08, depthWrite: false }));
     grupo.add(halo);
 
     // Anillos de energía
     const anillos: THREE.Mesh[] = [];
-    [[1.85, "#D6B25E", 0.012], [2.25, "#22D3EE", 0.008], [2.7, "#D6B25E", 0.006]].forEach(([r, color, grosor], i) => {
+    [[1.85, "#C6FF3D", 0.012], [2.25, "#C6FF3D", 0.008], [2.7, "#C6FF3D", 0.006]].forEach(([r, color, grosor], i) => {
       const a = new THREE.Mesh(new THREE.TorusGeometry(r as number, grosor as number, 12, 180), new THREE.MeshStandardMaterial({ color: color as string, emissive: color as string, emissiveIntensity: 1.6, metalness: 1, roughness: 0.3 }));
       a.rotation.set(Math.PI / 2 + i * 0.5, i * 0.7, 0);
       grupo.add(a); anillos.push(a);
@@ -153,7 +153,7 @@ export default function GrowthEngine3D() {
       const nodo = new THREE.Group();
       const cubo = new THREE.Mesh(
         new THREE.BoxGeometry(0.34, 0.34, 0.34),
-        new THREE.MeshPhysicalMaterial({ color: m.color, metalness: 0.6, roughness: 0.15, clearcoat: 1, emissive: m.color, emissiveIntensity: 0.35 })
+        new THREE.MeshPhysicalMaterial({ color: m.color, metalness: 0.5, roughness: 0.2, clearcoat: 1, emissive: m.color, emissiveIntensity: 0.25 })
       );
       const cartel = new THREE.Sprite(new THREE.SpriteMaterial({ map: etiqueta(m.texto, m.color), transparent: true, depthWrite: false }));
       cartel.scale.set(1.15, 0.36, 1);
@@ -166,7 +166,7 @@ export default function GrowthEngine3D() {
     // Campo de partículas
     const N = movil ? 700 : 1800;
     const puntos = new Float32Array(N * 3), colores = new Float32Array(N * 3);
-    const oro = new THREE.Color("#D6B25E"), cian = new THREE.Color("#22D3EE");
+    const oro = new THREE.Color("#C6FF3D"), cian = new THREE.Color("#C6FF3D");
     for (let i = 0; i < N; i++) {
       const r = 4 + Math.random() * 12, th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
       puntos.set([r * Math.sin(ph) * Math.cos(th), r * Math.cos(ph) * 0.6, r * Math.sin(ph) * Math.sin(th) - 4], i * 3);
@@ -223,9 +223,9 @@ export default function GrowthEngine3D() {
 
       raton.x += (raton.tx - raton.x) * dt * 3; raton.y += (raton.ty - raton.y) * dt * 3;
 
-      grupo.position.set(movil ? 1.7 + actual.x * MOVIL_X : actual.x, actual.y + (movil ? 3.2 : 0), actual.z);
-      grupo.scale.setScalar(actual.escala * (movil ? 0.6 : 1));
-      contenedor.style.opacity = String(actual.vis * (movil ? 0.55 : 1));
+      grupo.position.set(movil ? 1.05 + actual.x * MOVIL_X : actual.x, actual.y + (movil ? 2.35 : 0), actual.z);
+      grupo.scale.setScalar(actual.escala * (movil ? 0.52 : 1));
+      contenedor.style.opacity = String(actual.vis * (movil ? 0.7 : 1));
       grupo.rotation.y = actual.giro + (quieto ? 0 : t * 0.12) + raton.x * 0.25;
       grupo.rotation.x = 0.15 + raton.y * 0.15;
 
@@ -235,7 +235,7 @@ export default function GrowthEngine3D() {
       const pulso = 1 + Math.sin(t * 2.2) * 0.04;
       corazon.scale.setScalar((0.9 + actual.explota * 0.25) * pulso);
       halo.scale.setScalar(1.2 + actual.explota * 0.8 + Math.sin(t * 1.4) * 0.05);
-      luzCorazon.intensity = 5 * actual.brillo;
+      luzCorazon.intensity = 4 * actual.brillo;
       anillos.forEach((a, i) => { a.rotation.z = t * (0.15 + i * 0.07) * (i % 2 ? -1 : 1); a.scale.setScalar(1 + actual.explota * 0.25 + actual.abre * 0.15); });
 
       modulos.forEach((m, i) => {

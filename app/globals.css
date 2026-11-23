@@ -4,14 +4,14 @@
 
 :root {
   color-scheme: dark;
-  --bg: #050816;
-  --panel: rgba(15, 23, 42, .72);
+  --bg: #080808;
+  --panel: rgba(18, 18, 18, .8);
   --panel-soft: rgba(255, 255, 255, .045);
   --line: rgba(255, 255, 255, .10);
-  --cyan: #22d3ee;
-  --blue: #0e7490;
+  --cyan: #c6ff3d;
+  --blue: #77a80a;
   --violet: #64748b;
-  --gold: #d6b25e;
+  --gold: #c6ff3d;
   --mint: #6ee7b7;
 }
 
@@ -21,11 +21,10 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 18% -12%, rgba(34, 211, 238, .12), transparent 30rem),
-    radial-gradient(circle at 78% 4%, rgba(214, 178, 94, .10), transparent 28rem),
-    radial-gradient(circle at 52% 42%, rgba(14, 116, 144, .055), transparent 34rem),
-    linear-gradient(180deg, #050816 0%, #070A12 46%, #050816 100%);
-  color: #f8fafc;
+    radial-gradient(52rem 26rem at 50% -8rem, rgba(198, 255, 61, .075), transparent 70%),
+    linear-gradient(180deg, #080808 0%, #0a0a0a 50%, #080808 100%);
+  color: #fafafa;
+  font-feature-settings: "ss01", "cv11";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -41,10 +40,10 @@ body::before {
   z-index: -15;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
-  background-size: 88px 88px;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,.46), transparent 68%);
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: radial-gradient(ellipse at 50% 0%, rgba(0,0,0,.7), transparent 65%);
 }
 
 body::after {
@@ -59,7 +58,8 @@ body::after {
 }
 
 ::selection {
-  background: rgba(34, 211, 238, .28);
+  background: #c6ff3d;
+  color: #080808;
 }
 
 .noise {
@@ -76,7 +76,7 @@ body::after {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(103,232,249,.5), rgba(245,199,118,.26), rgba(255,255,255,.08));
+  background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.04) 40%, rgba(198,255,61,.22));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -85,18 +85,28 @@ body::after {
 
 .glass-panel {
   border: 1px solid var(--line);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.028)),
-    radial-gradient(circle at 18% 0%, rgba(34,211,238,.055), transparent 18rem);
-  box-shadow: 0 24px 80px rgba(0,0,0,.44), inset 0 1px 0 rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+  box-shadow: 0 30px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
   backdrop-filter: blur(20px);
 }
 
 .premium-kicker {
-  letter-spacing: .22em;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--gold);
-  font-weight: 700;
+  font-weight: 500;
+}
+
+.titulo-display {
+  letter-spacing: -.045em;
+  line-height: .92;
+  font-weight: 600;
+}
+
+.contorno {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,.6);
 }
 
 .text-balance {
@@ -104,16 +114,15 @@ body::after {
 }
 
 .focus-premium:focus-visible {
-  outline: 2px solid rgba(34,211,238,.72);
+  outline: 2px solid #c6ff3d;
   outline-offset: 3px;
 }
 
 .premium-gradient-text {
-  background: linear-gradient(92deg, #ffffff 0%, #22d3ee 34%, #d6b25e 72%, #ffffff 100%);
+  background: linear-gradient(95deg, #c6ff3d 0%, #e9ffb0 45%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 30px rgba(34,211,238,.10);
 }
 
 .spotlight-panel {
@@ -136,8 +145,8 @@ body::after {
 
 .premium-lift:hover {
   transform: translateY(-4px);
-  border-color: rgba(34,211,238,.22);
-  box-shadow: 0 28px 90px rgba(0,0,0,.48), 0 0 34px rgba(34,211,238,.055);
+  border-color: rgba(198,255,61,.35);
+  box-shadow: 0 30px 90px rgba(0,0,0,.55), 0 0 40px rgba(198,255,61,.06);
 }
 
 .legal-content h2 {
