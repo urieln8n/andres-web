@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { breadcrumbJsonLd, createMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createMetadata, INSTAGRAM_URL } from "@/lib/seo";
 import { projectStudies } from "@/lib/site-data";
 import { ButtonLink } from "@/components/button-link";
 import { PremiumCard } from "@/components/premium-card";
@@ -51,7 +51,11 @@ export default function ProjectStudyPage({ params }: Props) {
               ) : (
                 <ButtonLink href="/auditoria-gratis?source=project-study">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
               )}
-              <ButtonLink href={project.url ? "/auditoria-aeo" : "/servicios"} variant="secondary">{project.url ? "¿Te ve ChatGPT? Auditoría gratis" : "Ver servicios relacionados"}</ButtonLink>
+              {status === "producto" ? (
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="focus-premium inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[.03] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/[.07] sm:text-base">Sígueme en Instagram</a>
+              ) : (
+                <ButtonLink href={project.url ? "/auditoria-aeo" : "/servicios"} variant="secondary">{project.url ? "¿Te ve ChatGPT? Auditoría gratis" : "Ver servicios relacionados"}</ButtonLink>
+              )}
             </div>
           </div>
           <div className="premium-border spotlight-panel rounded-[2rem] bg-white/[.055] p-5 shadow-premium">

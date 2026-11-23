@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { createMetadata, faqJsonLd } from "@/lib/seo";
+import { createMetadata, faqJsonLd, INSTAGRAM_URL } from "@/lib/seo";
 import { ButtonLink } from "@/components/button-link";
 import { HeroAbanico } from "@/components/home/hero-abanico";
 import { projectStudies } from "@/lib/site-data";
@@ -175,6 +175,7 @@ export default function HomePage() {
             <ButtonLink href="/auditoria-gratis">Pedir la auditoría gratis</ButtonLink>
             <ButtonLink href="/contacto" variant="secondary">Escribirme</ButtonLink>
           </div>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="focus-premium mt-8 inline-block rounded text-slate-300 underline decoration-white/30 underline-offset-4 transition hover:text-white">Sígueme en Instagram: @andresrendon.ai</a>
         </div>
       </section>
     </>

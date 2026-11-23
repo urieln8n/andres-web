@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { legalLinks } from "@/components/legal-page";
+import { INSTAGRAM_URL } from "@/lib/seo";
 
 const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34600000000";
 
@@ -62,6 +63,14 @@ export function Footer() {
             className="mt-3 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/[.05] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/[.1]"
           >
             Escribir por WhatsApp
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/[.05] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/[.1]"
+          >
+            Sígueme en Instagram
           </a>
         </div>
       </div>

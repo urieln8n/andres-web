@@ -3,6 +3,7 @@ import { SITE_URL, siteUrl } from "./utils";
 
 export const PERSON_NAME = "Andrés Fabián Rendón Ramírez";
 export const BRAND_NAME = "Andrés Rendón";
+export const INSTAGRAM_URL = "https://www.instagram.com/andresrendon.ai/";
 
 export const defaultTitle = "Andrés Fabián Rendón Ramírez | Sistemas digitales con IA, SEO y automatización";
 export const defaultDescription =
@@ -83,6 +84,7 @@ export function personJsonLd() {
     alternateName: BRAND_NAME,
     jobTitle: "Consultor de IA, automatización y sistemas digitales",
     url: SITE_URL,
+    sameAs: [INSTAGRAM_URL],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Barcelona",
@@ -115,7 +117,7 @@ export function organizationJsonLd() {
     founder: { "@type": "Person", name: PERSON_NAME },
     areaServed: "Barcelona, España",
     description: defaultDescription,
-    sameAs: [SITE_URL],
+    sameAs: [SITE_URL, INSTAGRAM_URL],
   };
 }
 
