@@ -42,6 +42,10 @@ export type ProjectStudy = {
   note: string;
   relatedServices: string[];
   url?: string;
+  /** real: cliente en producción · propuesta: demo enseñada a un negocio · producto: proyecto propio · demo: caso demostrativo */
+  status?: "real" | "propuesta" | "producto" | "demo";
+  /** Solo citas reales y con permiso del cliente. Si no hay, no se muestra nada. */
+  testimonial?: { quote: string; author: string };
 };
 
 export const services: SeoPage[] = [
@@ -588,6 +592,71 @@ export const projectStudies: ProjectStudy[] = [
     note: "Proyecto real en producción. No se publican cifras de ventas del cliente.",
     relatedServices: ["/servicios/webs-premium-para-negocios", "/auditoria-aeo", "/servicios/chatbot-whatsapp-para-empresas"],
     url: "https://lacasadejenni.com",
+    status: "real",
+  },
+  {
+    slug: "avances-campus",
+    title: "Avancés Campus | Web 3D para un taller de avancés de caravana",
+    description: "Proyecto real: web nueva para un taller de Barcelona que fabrica avancés y tiendas cocina para caravana, con una caravana en 3D, presupuesto por WhatsApp y preparada para que la encuentren Google y ChatGPT.",
+    h1: "Avancés Campus: web 3D para un taller de avancés",
+    eyebrow: "Proyecto real · en curso",
+    problem: "Un taller que fabrica avancés a medida en Barcelona tenía una web antigua en WordPress, difícil de leer para buscadores e IA y sin un camino claro para pedir presupuesto.",
+    solution: "Web estática nueva con una caravana y su avancé en 3D que se monta y desmonta al hacer scroll, los modelos del taller, un formulario que abre WhatsApp con el presupuesto ya escrito (modelo, caravana, medida y camping) y preguntas frecuentes.",
+    stack: ["HTML estático", "Three.js", "GSAP", "Cloudflare Workers", "Datos estructurados", "WhatsApp"],
+    modules: ["Caravana y avancé en 3D", "Catálogo de modelos", "Presupuesto guiado por WhatsApp", "Preguntas frecuentes", "Versión en Markdown para agentes de IA", "robots.txt, sitemap y llms.txt"],
+    expectedResult: "Resultado: el escáner público de Cloudflare (isitagentready.com) la clasifica en el nivel 3 de 5, «Agent-Readable». Los agentes de IA pueden leerla entera, y cada visita tiene un camino directo al presupuesto por WhatsApp.",
+    note: "Proyecto real en curso, con permiso del negocio. No se publican cifras de ventas.",
+    relatedServices: ["/servicios/webs-premium-para-negocios", "/auditoria-aeo", "/servicios/seo-local-para-negocios"],
+    url: "https://avancescampus.andresrendon.com",
+    status: "real",
+  },
+  {
+    slug: "lumbrera",
+    title: "Lumbrera | App gratuita para aprender Génesis",
+    description: "Producto propio: app web gratuita e instalable para aprender el libro de Génesis con 150 preguntas en lecciones cortas, modo en solitario y modo en grupo con PIN.",
+    h1: "Lumbrera: una app para aprender Génesis jugando, solo o en grupo",
+    eyebrow: "Producto propio · app gratuita",
+    problem: "Aprender un libro largo como Génesis cuesta si no hay un camino corto y constante, y los grupos de estudio necesitan una forma sencilla de jugar juntos sin registrarse.",
+    solution: "App web gratuita, sin registro e instalable en el móvil: 150 preguntas de los 50 capítulos en 15 lecciones de 10, con explicación y cita bíblica en cada respuesta, racha diaria, repaso de fallos y modo en grupo con PIN, donde cada persona juega desde su móvil.",
+    stack: ["App web instalable", "Funciona sin conexión", "Cloudflare Workers", "Modo multijugador con PIN"],
+    modules: ["15 lecciones en 5 unidades", "5 tipos de pregunta", "Racha diaria y puntos", "Repaso de fallos", "Modo en grupo con PIN", "Preguntas frecuentes"],
+    expectedResult: "Resultado: app publicada y gratuita que se instala en el móvil, funciona sin conexión y permite a un grupo jugar a la vez con un PIN.",
+    note: "Proyecto propio, publicado y gratuito.",
+    relatedServices: ["/servicios/software-saas-para-empresas", "/servicios/automatizacion-con-inteligencia-artificial", "/auditoria-gratis"],
+    url: "https://genesis.andresrendon.com",
+    status: "producto",
+  },
+  {
+    slug: "stylebuddhas",
+    title: "Stylebuddhas | Propuesta de web para barbería en Gràcia",
+    description: "Propuesta de web premium para una barbería y peluquería unisex de Gràcia (Barcelona): servicios y precios claros, reserva en Booksy, WhatsApp y opiniones verificadas.",
+    h1: "Stylebuddhas: web premium para una barbería de barrio en Gràcia",
+    eyebrow: "Propuesta · barbería",
+    problem: "Una barbería con muy buenas reseñas en plataformas de reserva no tenía una web propia que contara su oficio, mostrara precios claros y llevara directamente a reservar.",
+    solution: "Web editorial con servicios y precios por categorías, botón de reserva en Booksy y de WhatsApp siempre a mano, presentación del barbero y del salón, valoración media de Treatwell y cómo llegar.",
+    stack: ["HTML estático", "CSS a medida", "Cloudflare Workers", "Booksy", "WhatsApp"],
+    modules: ["Servicios y precios", "Reserva en Booksy", "WhatsApp directo", "El barbero y el salón", "Opiniones verificadas", "Ubicación"],
+    expectedResult: "Qué gana la barbería: su propia web, que explica el oficio y los precios y convierte la visita en una reserva en un toque.",
+    note: "Propuesta presentada al negocio. Los precios y valoraciones salen de sus perfiles públicos.",
+    relatedServices: ["/nichos/web-para-barberias", "/barcelona/web-para-barberias-barcelona", "/nichos/software-para-barberias"],
+    url: "https://stylebuddhas.andresrendon.com",
+    status: "propuesta",
+  },
+  {
+    slug: "hornos-java",
+    title: "Hornos JAVA | Web 3D para hornos profesionales de pizza",
+    description: "Propuesta de web 3D para un fabricante de hornos profesionales de pizza: el horno se monta pieza a pieza al hacer scroll, seis acabados y presupuesto por WhatsApp.",
+    h1: "Hornos JAVA: el horno se levanta ladrillo a ladrillo en 3D",
+    eyebrow: "Propuesta · web 3D",
+    problem: "Un horno de pizza se elige por cómo queda en el local, y eso no se transmite con unas fotos sueltas ni con un catálogo plano.",
+    solution: "Web con un horno en 3D que se construye pieza a pieza al hacer scroll (cúpula, arco y base), seis acabados con fotos reales, instalaciones en pizzerías y un presupuesto por WhatsApp con el acabado elegido.",
+    stack: ["HTML estático", "Three.js", "GSAP", "Cloudflare Workers", "WhatsApp"],
+    modules: ["Horno en 3D con despiece", "Selector de acabados", "Instalaciones reales", "Preguntas frecuentes", "Presupuesto por WhatsApp"],
+    expectedResult: "Qué gana el negocio: el cliente ve cómo quedaría el horno en su local y pide presupuesto con el acabado ya elegido.",
+    note: "Propuesta presentada al negocio. El 3D es una maqueta conceptual.",
+    relatedServices: ["/nichos/web-para-pizzerias", "/servicios/webs-premium-para-negocios", "/nichos/web-para-restaurantes"],
+    url: "https://hornosjava.andresrendon.com",
+    status: "propuesta",
   },
   {
     slug: "barberiaos",

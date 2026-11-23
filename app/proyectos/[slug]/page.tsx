@@ -22,6 +22,14 @@ export function generateMetadata({ params }: Props) {
 export default function ProjectStudyPage({ params }: Props) {
   const project = projectStudies.find((item) => item.slug === params.slug);
   if (!project) notFound();
+  const status = project.status ?? (project.url ? "real" : "demo");
+  const resultado = {
+    real: { eyebrow: "Resultado", title: "Qué ha conseguido el negocio" },
+    producto: { eyebrow: "Resultado", title: "Qué ofrece hoy" },
+    propuesta: { eyebrow: "Propuesta", title: "Qué gana el negocio si la adopta" },
+    demo: { eyebrow: "Resultado esperado", title: "Qué debería mejorar si se implementa en un negocio real" },
+  }[status];
+  const textoBoton = status === "propuesta" ? "Ver la propuesta" : status === "producto" ? "Abrir la app" : "Ver la web publicada";
 
   return (
     <>
@@ -39,7 +47,7 @@ export default function ProjectStudyPage({ params }: Props) {
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{project.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               {project.url ? (
-                <a href={project.url} target="_blank" rel="noopener" className="focus-premium inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink transition hover:-translate-y-0.5 sm:text-base">Ver la web publicada <ArrowRight className="h-4 w-4" /></a>
+                <a href={project.url} target="_blank" rel="noopener" className="focus-premium inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink transition hover:-translate-y-0.5 sm:text-base">{textoBoton} <ArrowRight className="h-4 w-4" /></a>
               ) : (
                 <ButtonLink href="/auditoria-gratis?source=project-study">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
               )}
@@ -89,9 +97,18 @@ export default function ProjectStudyPage({ params }: Props) {
         </div>
       </Section>
 
-      <Section eyebrow={project.url ? "Resultado" : "Resultado esperado"} title={project.url ? "Qué ha conseguido el negocio" : "Qué debería mejorar si se implementa en un negocio real"}>
+      <Section eyebrow={resultado.eyebrow} title={resultado.title}>
         <PremiumCard><p className="text-lg leading-8 text-slate-200">{project.expectedResult}</p></PremiumCard>
       </Section>
+
+      {project.testimonial ? (
+        <Section eyebrow="Testimonio" title="Lo que dice el cliente">
+          <PremiumCard>
+            <blockquote className="text-xl leading-9 text-white">«{project.testimonial.quote}»</blockquote>
+            <p className="mt-4 text-sm text-slate-400">{project.testimonial.author}</p>
+          </PremiumCard>
+        </Section>
+      ) : null}
 
       <Section eyebrow="Enlaces internos" title="Servicios relacionados con este caso">
         <div className="grid gap-4 md:grid-cols-3">
