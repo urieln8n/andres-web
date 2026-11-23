@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { analizarWeb, normalizarUrl, WebBloqueada, type ResultadoAeo } from "@/lib/aeo/analizar";
-import { guardarEnBrevo } from "@/lib/brevo";
+import { enviarEmailBrevo, guardarEnBrevo } from "@/lib/brevo";
+import { asuntoInforme, htmlInforme } from "@/lib/email-informe";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export const runtime = "nodejs";
@@ -89,11 +90,18 @@ export async function POST(request: Request) {
     notaAeo: resultado.nota, nivelAeo: bloqueada ? "revision-manual" : resultado.nivel, problemas, origen: "auditoria-aeo",
   });
 
-  // 3) Aviso opcional a n8n
+  // 3) Email 1: el informe completo que ha pedido (transaccional, sale al momento)
+  const email = await enviarEmailBrevo({
+    para: d.email, nombre: d.nombre, etiqueta: "informe-aeo",
+    asunto: asuntoInforme(resultado, d.negocio, Boolean(bloqueada)),
+    html: htmlInforme(resultado, { nombre: d.nombre, negocio: d.negocio }, Boolean(bloqueada)),
+  });
+
+  // 4) Aviso opcional a n8n
   const webhook = process.env.N8N_NEW_LEAD_WEBHOOK_URL || process.env.LEAD_WEBHOOK_URL;
   if (webhook) {
     fetch(webhook, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ tipo: "auditoria-aeo", leadId, ...d, consentimiento: true, resultado: { nota: resultado.nota, nivel: resultado.nivel, problemas } }), signal: AbortSignal.timeout(5000) }).catch(() => {});
   }
 
-  return NextResponse.json({ resultado, revisionManual: Boolean(bloqueada), guardado: { panel: Boolean(leadId), brevo: brevo.ok } });
+  return NextResponse.json({ resultado, revisionManual: Boolean(bloqueada), guardado: { panel: Boolean(leadId), brevo: brevo.ok, email: email.ok } });
 }

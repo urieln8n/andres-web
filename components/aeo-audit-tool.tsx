@@ -20,7 +20,7 @@ interface Hallazgo { severidad: "critico" | "alto" | "medio" | "bajo"; titulo: s
 interface Respuesta {
   resultado: { url: string; nota: number; nivel: string; ejes: Eje[]; hallazgos: Hallazgo[] };
   revisionManual: boolean;
-  guardado?: { panel: boolean; brevo: boolean };
+  guardado?: { panel: boolean; brevo: boolean; email?: boolean };
 }
 
 const COLOR_NIVEL: Record<string, string> = { excelente: "#34d399", bueno: "#22d3ee", mejorable: "#D6B25E", critico: "#f87171" };
@@ -151,7 +151,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
         )}
 
         <div className="mt-8 rounded-2xl border border-gold/25 bg-gold/10 p-5">
-          <p className="font-semibold text-white">{guardado?.brevo ? `${datos.nombre}, te acabo de enviar el informe completo a ${datos.email}.` : `${datos.nombre}, te enviaré el informe completo a ${datos.email} en menos de 24 horas.`}</p>
+          <p className="font-semibold text-white">{guardado?.email ? `${datos.nombre}, te acabo de enviar el informe completo a ${datos.email}.` : `${datos.nombre}, te enviaré el informe completo a ${datos.email} en menos de 24 horas.`}</p>
           <p className="mt-1 text-sm leading-6 text-slate-300">Si prefieres que te lo explique en 10 minutos, escríbeme por WhatsApp.</p>
           <a href={`https://wa.me/${WHATSAPP}?text=${mensaje}`} target="_blank" rel="noopener noreferrer" className="focus-premium mt-4 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5">
             <MessageCircle className="h-4 w-4" /> Explícamelo por WhatsApp

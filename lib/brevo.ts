@@ -22,12 +22,12 @@ export async function guardarEnBrevo(c: ContactoBrevo): Promise<{ ok: boolean; m
   const lista = Number(process.env.BREVO_LIST_ID);
   if (!clave || !lista) return { ok: false, motivo: "brevo-no-configurado" };
 
-  const atributos: Record<string, string | number> = {
+  const atributos: Record<string, string> = {
     NOMBRE: c.nombre,
     NEGOCIO: c.negocio,
     WEB: c.web,
-    WHATSAPP: c.whatsapp,
-    NOTA_AEO: c.notaAeo,
+    WA_NUMERO: c.whatsapp,
+    NOTA_AEO: String(c.notaAeo),
     NIVEL_AEO: c.nivelAeo,
     PROBLEMA_1: c.problemas[0] || "",
     PROBLEMA_2: c.problemas[1] || "",
@@ -48,6 +48,32 @@ export async function guardarEnBrevo(c: ContactoBrevo): Promise<{ ok: boolean; m
     return { ok: false, motivo: `brevo-${res.status}` };
   } catch (error) {
     console.error("[brevo] Sin respuesta", error instanceof Error ? error.message : error);
+    return { ok: false, motivo: "brevo-sin-respuesta" };
+  }
+}
+
+// Envío transaccional (el informe que la persona ha pedido). Remitente verificado en Brevo.
+export async function enviarEmailBrevo(m: { para: string; nombre: string; asunto: string; html: string; etiqueta: string }): Promise<{ ok: boolean; motivo?: string }> {
+  const clave = process.env.BREVO_API_KEY;
+  if (!clave) return { ok: false, motivo: "brevo-no-configurado" };
+  const remitente = process.env.BREVO_SENDER_EMAIL || "hola@andresrendon.com";
+  try {
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { "api-key": clave, "content-type": "application/json", accept: "application/json" },
+      body: JSON.stringify({
+        sender: { name: "Andrés Rendón", email: remitente },
+        to: [{ email: m.para, name: m.nombre }],
+        replyTo: { email: remitente, name: "Andrés Rendón" },
+        subject: m.asunto, htmlContent: m.html, tags: [m.etiqueta],
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (res.ok) return { ok: true };
+    console.error("[brevo] Error al enviar email", res.status, (await res.text().catch(() => "")).slice(0, 300));
+    return { ok: false, motivo: `brevo-${res.status}` };
+  } catch (error) {
+    console.error("[brevo] Email sin respuesta", error instanceof Error ? error.message : error);
     return { ok: false, motivo: "brevo-sin-respuesta" };
   }
 }
