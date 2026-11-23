@@ -258,8 +258,23 @@ body::after {
     padding: 3rem 0;
   }
 }
+@media (max-width: 640px) {
+  .abanico { height: 17rem; }
+  .abanico__carta { width: 60vw; }
+  .abanico__carta--movil { width: 30vw; }
+  .abanico.abierto .abanico__carta {
+    transform:
+      translate(-50%, -50%)
+      translateX(calc(var(--d) * 17vw * (1 + var(--p) * .3)))
+      translateY(calc(var(--abs) * .7rem))
+      translateZ(calc(var(--abs) * -90px))
+      rotateY(calc(var(--d) * -10deg))
+      rotateZ(calc(var(--d) * (3deg + var(--p) * 2deg)));
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .abanico__carta, .abanico__escena { transition: none; }
+  .abanico__carta { opacity: 1; }
 }
 
 /* Marco de navegador para las capturas de proyectos */

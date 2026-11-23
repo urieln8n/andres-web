@@ -13,16 +13,37 @@ export function HeroAbanico({ piezas }: { piezas: Pieza[] }) {
     const el = ref.current;
     if (!el) return;
     const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    requestAnimationFrame(() => el.classList.add("abierto"));
-    const temporizador = window.setTimeout(() => el.classList.add("listo"), 2200);
-    if (reducido) return () => window.clearTimeout(temporizador);
+    // Se abre cuando entra en pantalla (en el móvil está por debajo del titular)
+    let temporizador = 0;
+    const abrir = () => {
+      el.classList.add("abierto");
+      temporizador = window.setTimeout(() => el.classList.add("listo"), 2200);
+    };
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        if (entradas.some((e) => e.isIntersecting)) {
+          abrir();
+          observador.disconnect();
+        }
+      },
+      { threshold: 0.6 }
+    );
+    observador.observe(el);
+    if (reducido) {
+      return () => {
+        observador.disconnect();
+        window.clearTimeout(temporizador);
+      };
+    }
 
     // Al bajar, el abanico se abre más y se inclina hacia atrás, como si lo dejaras sobre la mesa
     let rafScroll = 0;
     const alScroll = () => {
       cancelAnimationFrame(rafScroll);
       rafScroll = requestAnimationFrame(() => {
-        const p = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.9), 0), 1);
+        // Avance según la posición del abanico en pantalla, no del scroll total
+        const r = el.getBoundingClientRect();
+        const p = Math.min(Math.max((window.innerHeight * 0.75 - r.top) / (window.innerHeight * 0.9), 0), 1);
         el.style.setProperty("--p", p.toFixed(3));
       });
     };
@@ -33,6 +54,7 @@ export function HeroAbanico({ piezas }: { piezas: Pieza[] }) {
         window.removeEventListener("scroll", alScroll);
         cancelAnimationFrame(rafScroll);
         window.clearTimeout(temporizador);
+        observador.disconnect();
       };
     }
     let raf = 0;
@@ -53,6 +75,7 @@ export function HeroAbanico({ piezas }: { piezas: Pieza[] }) {
       cancelAnimationFrame(raf);
       cancelAnimationFrame(rafScroll);
       window.clearTimeout(temporizador);
+      observador.disconnect();
     };
   }, []);
 
