@@ -31,6 +31,12 @@ export function AsistenteWeb() {
   }, [mensajes, pensando, formulario]);
 
   useEffect(() => {
+    const abrir = () => setAbierto(true);
+    window.addEventListener("abrir-asistente", abrir);
+    return () => window.removeEventListener("abrir-asistente", abrir);
+  }, []);
+
+  useEffect(() => {
     if (abierto) entrada.current?.focus();
     const esc = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(false);
     window.addEventListener("keydown", esc);

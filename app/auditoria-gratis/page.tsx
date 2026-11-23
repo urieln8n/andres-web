@@ -64,7 +64,9 @@ export const metadata = createMetadata({
   path: "/auditoria-gratis",
 });
 
-export default function AuditPage() {
+export default function AuditPage({ searchParams }: { searchParams?: { source?: string } }) {
+  // De dónde viene el lead (instagram, asistente-web…): queda guardado en el CRM
+  const origen = (searchParams?.source || "auditoria-gratis").replace(/[^a-z0-9-]/gi, "").slice(0, 40) || "auditoria-gratis";
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
@@ -91,7 +93,7 @@ export default function AuditPage() {
             </p>
           </div>
           <div id="lead-form-auditoria">
-            <LeadForm />
+            <LeadForm source={origen} />
           </div>
         </div>
       </section>

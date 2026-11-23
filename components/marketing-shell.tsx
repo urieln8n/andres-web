@@ -12,6 +12,16 @@ export function MarketingShell({ children }: { children: ReactNode }) {
   // El dashboard tiene su propio layout — no necesita navbar/footer de marketing
   if (pathname.startsWith("/dashboard")) return <>{children}</>;
 
+  // Enlace de la bio de Instagram: sin menú ni pie, solo lo esencial y el asistente
+  if (pathname === "/instagram") {
+    return (
+      <>
+        <main>{children}</main>
+        <AsistenteWeb />
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
