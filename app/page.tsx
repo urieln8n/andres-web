@@ -5,6 +5,7 @@ import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button-link";
 import { PremiumCard } from "@/components/premium-card";
 import { DashboardPreview } from "@/components/dashboard-preview";
+import { GrowthEngineLoader } from "@/components/three/GrowthEngineLoader";
 import { sectors, services } from "@/lib/site-data";
 
 export const metadata = createMetadata({
@@ -148,76 +149,10 @@ const homeFaqs = [
   ["¿BarberíaOS ya es un producto real?", "Es un SaaS vertical y caso demostrativo en construcción para mostrar cómo una barbería puede controlar reservas, clientes, caja, QR, marketing y automatización."],
 ];
 
-const growthEngineCards = [
-  { icon: MessageSquare, label: "Leads 24/7", value: "+32", detail: "Google, Instagram y WhatsApp" },
-  { icon: BrainCircuit, label: "Auditorías IA", value: "12", detail: "Diagnóstico y prioridades" },
-  { icon: Database, label: "CRM 360°", value: "18", detail: "Oportunidades ordenadas" },
-  { icon: Workflow, label: "WhatsApp follow-up", value: "Auto", detail: "Respuesta y seguimiento" },
-  { icon: Search, label: "SEO local", value: "Top", detail: "Servicios, nichos y ciudad" },
-  { icon: Rocket, label: "Propuestas listas", value: "6", detail: "De auditoría a cierre" },
-];
-
-function GrowthEngineHeroPanel() {
-  return (
-    <div className="premium-border spotlight-panel relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/72 p-3 shadow-premium backdrop-blur-xl sm:p-4">
-      <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-300/[.08] blur-3xl" />
-      <div className="absolute -bottom-24 left-10 h-64 w-64 rounded-full bg-gold/[.07] blur-3xl" />
-      <div className="relative z-10 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#070A12]/88 shadow-[inset_0_1px_0_rgba(255,255,255,.07)]">
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-5">
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-gold/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-cyan-300/80" />
-          </div>
-          <span className="rounded-full border border-cyan-300/20 bg-cyan-300/[.08] px-3 py-1 text-[11px] font-semibold text-cyan-100">
-            Growth Engine activo
-          </span>
-        </div>
-
-        <div className="grid gap-4 p-4 sm:p-5">
-          <div className="rounded-[1.25rem] border border-white/10 bg-white/[.035] p-4">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[.22em] text-gold">Sistema comercial</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Andrés Rendón Growth Engine</h2>
-                <p className="mt-2 max-w-md text-sm leading-6 text-slate-400">Captación, auditoría, CRM, WhatsApp IA y propuestas en una ruta comercial medible.</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-ink/70 px-4 py-3 text-right">
-                <p className="text-xs text-slate-500">Pipeline estimado</p>
-                <p className="mt-1 text-2xl font-semibold text-white">38.400 €</p>
-              </div>
-            </div>
-            <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-cyan-300 via-petrol to-gold" />
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-400">
-              {["Nuevo lead", "Auditoría IA", "Follow-up", "Propuesta", "Cierre"].map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/[.035] px-3 py-1.5">{item}</span>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {growthEngineCards.map((card) => (
-              <div key={card.label} className="rounded-[1.15rem] border border-white/10 bg-white/[.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,.055)]">
-                <div className="flex items-start justify-between gap-3">
-                  <card.icon className="h-5 w-5 text-cyan-200" />
-                  <span className="text-lg font-semibold text-white">{card.value}</span>
-                </div>
-                <p className="mt-3 text-sm font-semibold text-white">{card.label}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-400">{card.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function HomePage() {
   return (
     <>
+      <GrowthEngineLoader />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -245,7 +180,7 @@ export default function HomePage() {
               No creo páginas decorativas. Diseño sistemas que captan, ordenan y convierten oportunidades comerciales.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
-              <ButtonLink href="/auditoria-gratis?source=home-hero">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+              <ButtonLink href="/auditoria-aeo">¿Te ve ChatGPT? Auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
               <ButtonLink href="/proyectos" variant="secondary">Ver sistemas creados</ButtonLink>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-1 gap-3 text-sm text-slate-300 sm:mt-10 sm:grid-cols-3">
@@ -256,7 +191,16 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <GrowthEngineHeroPanel />
+          <div className="relative h-[300px] sm:h-[380px] lg:h-[560px]">
+            <div className="absolute bottom-6 left-0 rounded-2xl border border-white/10 bg-ink/60 px-4 py-3 backdrop-blur-md lg:bottom-16 lg:left-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[.2em] text-gold">Motor de crecimiento</p>
+              <p className="mt-1 text-sm text-slate-200">Web 3D · IA · AEO · SEO · WhatsApp · CRM</p>
+            </div>
+            <a href="/auditoria-aeo" className="absolute right-0 top-4 rounded-2xl border border-cyan-300/25 bg-ink/60 px-4 py-3 text-right backdrop-blur-md transition hover:border-cyan-200/50 lg:right-2 lg:top-10">
+              <p className="text-[11px] font-semibold uppercase tracking-[.2em] text-cyan-200">Mi web en la auditoría AEO</p>
+              <p className="mt-1 text-2xl font-semibold text-white">88<span className="text-sm text-slate-400">/100</span></p>
+            </a>
+          </div>
         </div>
       </section>
 
