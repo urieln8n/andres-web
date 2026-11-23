@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { analizarWeb, normalizarUrl, WebBloqueada, type ResultadoAeo } from "@/lib/aeo/analizar";
 import { enviarEmailBrevo, guardarEnBrevo } from "@/lib/brevo";
-import { asuntoInforme, htmlInforme } from "@/lib/email-informe";
+import { asuntoInforme, htmlInforme, textoInforme } from "@/lib/email-informe";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export const runtime = "nodejs";
@@ -95,6 +95,7 @@ export async function POST(request: Request) {
     para: d.email, nombre: d.nombre, etiqueta: "informe-aeo",
     asunto: asuntoInforme(resultado, d.negocio, Boolean(bloqueada)),
     html: htmlInforme(resultado, { nombre: d.nombre, negocio: d.negocio }, Boolean(bloqueada)),
+    texto: textoInforme(resultado, { nombre: d.nombre, negocio: d.negocio }, Boolean(bloqueada)),
   });
 
   // 4) Aviso opcional a n8n

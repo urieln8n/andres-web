@@ -55,3 +55,45 @@ export function htmlInforme(r: ResultadoAeo, d: { nombre: string; negocio: strin
   <tr><td style="background:#f8fafc;padding:16px 28px;font-size:12px;line-height:1.5;color:#94a3b8">Recibes este email porque pediste la auditoría AEO en <a href="${SITE_URL}/auditoria-aeo" style="color:#64748b">andresrendon.com</a>. <a href="${SITE_URL}/politica-privacidad" style="color:#64748b">Privacidad</a>.</td></tr>
 </table></td></tr></table></body></html>`;
 }
+
+// Versión en texto plano del mismo informe. Enviar HTML + texto mejora la entrega (Outlook/Hotmail penaliza solo-HTML).
+export function textoInforme(r: ResultadoAeo, d: { nombre: string; negocio: string }, revisionManual: boolean) {
+  const whatsapp = `${SITE_URL}/whatsapp?texto=${encodeURIComponent(`Hola Andrés, he recibido el informe AEO de ${d.negocio} (${r.nota}/100). ¿Me explicas cómo mejorarlo?`)}`;
+  if (revisionManual) {
+    return [
+      `Hola ${d.nombre},`,
+      "",
+      `He intentado analizar ${r.url} y la web ha rechazado la visita automática. Puede ser una protección anti-bots que también deja fuera a ChatGPT y Perplexity. Lo reviso a mano y te escribo con lo que encuentre.`,
+      "",
+      `Si quieres adelantarlo, escríbeme por WhatsApp: ${whatsapp}`,
+      "",
+      "Un saludo,",
+      "Andrés Rendón",
+    ].join("\n");
+  }
+  const lineas = [
+    `Hola ${d.nombre},`,
+    "",
+    `Aquí tienes el informe completo de ${r.url}. He leído tu web igual que la leen ChatGPT, Perplexity y Claude: sin ejecutar JavaScript.`,
+    "",
+    `Nota: ${r.nota} de 100 (${TEXTO_NIVEL[r.nivel] || r.nivel})`,
+    "",
+    "Nota por punto:",
+    ...r.ejes.map((e) => `- ${e.nombre}: ${e.nota}`),
+  ];
+  if (r.hallazgos.length) {
+    lineas.push("", "Qué arreglaría, por orden:");
+    r.hallazgos.forEach((h, i) => lineas.push("", `${i + 1}. ${TEXTO_SEV[h.severidad]}: ${h.titulo}`, h.detalle, `Esfuerzo estimado: ${h.esfuerzo}`));
+  }
+  lineas.push(
+    "",
+    "¿Te lo explico en 10 minutos? Te digo qué puedes arreglar tú mismo y qué conviene que haga yo. Sin compromiso.",
+    `WhatsApp: ${whatsapp}`,
+    "",
+    "Un saludo,",
+    "Andrés Rendón",
+    "",
+    `Recibes este email porque pediste la auditoría AEO en ${SITE_URL}.`,
+  );
+  return lineas.join("\n");
+}

@@ -65,7 +65,7 @@ export async function guardarEnBrevo(c: ContactoBrevo): Promise<{ ok: boolean; m
 }
 
 // Envío transaccional (el informe que la persona ha pedido). Remitente verificado en Brevo.
-export async function enviarEmailBrevo(m: { para: string; nombre: string; asunto: string; html: string; etiqueta: string }): Promise<{ ok: boolean; motivo?: string }> {
+export async function enviarEmailBrevo(m: { para: string; nombre: string; asunto: string; html: string; texto?: string; etiqueta: string }): Promise<{ ok: boolean; motivo?: string }> {
   const clave = claveBrevo();
   if (!clave) return { ok: false, motivo: "brevo-no-configurado" };
   const remitente = process.env.BREVO_SENDER_EMAIL || "hola@andresrendon.com";
@@ -77,7 +77,7 @@ export async function enviarEmailBrevo(m: { para: string; nombre: string; asunto
         sender: { name: "Andrés Rendón", email: remitente },
         to: [{ email: m.para, name: m.nombre }],
         replyTo: { email: remitente, name: "Andrés Rendón" },
-        subject: m.asunto, htmlContent: m.html, tags: [m.etiqueta],
+        subject: m.asunto, htmlContent: m.html, ...(m.texto ? { textContent: m.texto } : {}), tags: [m.etiqueta],
       }),
       signal: AbortSignal.timeout(8000),
     });
