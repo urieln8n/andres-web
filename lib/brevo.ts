@@ -13,12 +13,24 @@ export interface ContactoBrevo {
   origen: string;
 }
 
+// Lee la clave tolerando errores típicos al pegarla (espacios, comillas o "BREVO_API_KEY=" delante).
+function claveBrevo(): string | undefined {
+  const bruta = process.env.BREVO_API_KEY;
+  if (!bruta) return undefined;
+  return bruta.trim().replace(/^BREVO_API_KEY\s*=\s*/i, "").replace(/^["']|["']$/g, "").trim() || undefined;
+}
+
+// Diagnóstico sin exponer la clave: solo su tipo (prefijo público de Brevo) y su longitud.
+function pistaClave(clave: string) {
+  return `tipo=${clave.slice(0, 8)} longitud=${clave.length}`;
+}
+
 export function brevoConfigurado() {
   return Boolean(process.env.BREVO_API_KEY && process.env.BREVO_LIST_ID);
 }
 
 export async function guardarEnBrevo(c: ContactoBrevo): Promise<{ ok: boolean; motivo?: string }> {
-  const clave = process.env.BREVO_API_KEY;
+  const clave = claveBrevo();
   const lista = Number(process.env.BREVO_LIST_ID);
   if (!clave || !lista) return { ok: false, motivo: "brevo-no-configurado" };
 
@@ -44,7 +56,7 @@ export async function guardarEnBrevo(c: ContactoBrevo): Promise<{ ok: boolean; m
     });
     if (res.ok || res.status === 204) return { ok: true };
     const detalle = await res.text().catch(() => "");
-    console.error("[brevo] Error al crear contacto", res.status, detalle.slice(0, 300));
+    console.error("[brevo] Error al crear contacto", res.status, pistaClave(clave), detalle.slice(0, 300));
     return { ok: false, motivo: `brevo-${res.status}` };
   } catch (error) {
     console.error("[brevo] Sin respuesta", error instanceof Error ? error.message : error);
@@ -54,7 +66,7 @@ export async function guardarEnBrevo(c: ContactoBrevo): Promise<{ ok: boolean; m
 
 // Envío transaccional (el informe que la persona ha pedido). Remitente verificado en Brevo.
 export async function enviarEmailBrevo(m: { para: string; nombre: string; asunto: string; html: string; etiqueta: string }): Promise<{ ok: boolean; motivo?: string }> {
-  const clave = process.env.BREVO_API_KEY;
+  const clave = claveBrevo();
   if (!clave) return { ok: false, motivo: "brevo-no-configurado" };
   const remitente = process.env.BREVO_SENDER_EMAIL || "hola@andresrendon.com";
   try {
@@ -70,7 +82,7 @@ export async function enviarEmailBrevo(m: { para: string; nombre: string; asunto
       signal: AbortSignal.timeout(8000),
     });
     if (res.ok) return { ok: true };
-    console.error("[brevo] Error al enviar email", res.status, (await res.text().catch(() => "")).slice(0, 300));
+    console.error("[brevo] Error al enviar email", res.status, pistaClave(clave), (await res.text().catch(() => "")).slice(0, 300));
     return { ok: false, motivo: `brevo-${res.status}` };
   } catch (error) {
     console.error("[brevo] Email sin respuesta", error instanceof Error ? error.message : error);
