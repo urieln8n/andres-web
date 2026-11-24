@@ -9,8 +9,11 @@ import { projectStudies } from "@/lib/site-data";
 export const metadata = createMetadata({
   path: "/",
   title: "Andrés Rendón | Webs 3D para negocios de Barcelona",
-  description: "Diseño y construyo webs 3D para negocios de Barcelona, preparadas para que te encuentren Google y ChatGPT y para que el cliente te escriba por WhatsApp.",
+  description: "Webs para negocios de Barcelona a precio cerrado: 390 €. Demo gratis antes de pagar, online en 7 días y preparadas para Google, ChatGPT y WhatsApp.",
 });
+
+const WA_NUMERO = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308").replace(/\D/g, "");
+const DEMO_WHATSAPP = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent("Hola Andrés, vengo de tu web y quiero una demo gratis de la web de mi negocio.")}`;
 
 const etiqueta = { real: "Cliente", propuesta: "Propuesta", producto: "Producto propio", demo: "Demo" } as const;
 
@@ -49,11 +52,11 @@ export default function HomePage() {
           </h1>
           <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <p className="max-w-xl text-lg leading-8 text-slate-300">
-              Diseño y construyo webs 3D para negocios de Barcelona. Las preparo para que te encuentren Google y ChatGPT, y para que el cliente te escriba por WhatsApp en un toque.
+              Webs para negocios de Barcelona que traen clientes: que te encuentren en Google y que te escriban por WhatsApp en un toque. <strong className="font-semibold text-white">Precio cerrado: 390 €.</strong> Te enseño una demo gratis antes de pagar nada y en 7 días está online.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="#proyectos">Ver proyectos</ButtonLink>
-              <ButtonLink href="/auditoria-gratis" variant="secondary">Auditoría gratis</ButtonLink>
+              <ButtonLink href={DEMO_WHATSAPP}>Pide tu demo gratis</ButtonLink>
+              <ButtonLink href="#proyectos" variant="secondary">Ver proyectos</ButtonLink>
             </div>
           </div>
         </div>
@@ -170,10 +173,10 @@ export default function HomePage() {
       <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-40">
         <div className="mx-auto max-w-7xl">
           <h2 className="titulo-display max-w-5xl text-balance text-6xl text-white sm:text-8xl lg:text-[8rem]">¿Tu negocio es el siguiente?</h2>
-          <p className="mt-8 max-w-xl text-lg leading-8 text-slate-300">Te reviso la web, la ficha de Google y cómo te ve ChatGPT, y te enseño qué cambiaría. Gratis y sin compromiso.</p>
+          <p className="mt-8 max-w-xl text-lg leading-8 text-slate-300">Escríbeme el nombre de tu negocio y en 48 h te enseño cómo quedaría tu web. Si no te convence, no pagas nada.</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/auditoria-gratis">Pedir la auditoría gratis</ButtonLink>
-            <ButtonLink href="/contacto" variant="secondary">Escribirme</ButtonLink>
+            <ButtonLink href={DEMO_WHATSAPP}>Pide tu demo gratis</ButtonLink>
+            <ButtonLink href="/auditoria-gratis" variant="secondary">O pide una auditoría gratis</ButtonLink>
           </div>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="focus-premium mt-8 inline-block rounded text-slate-300 underline decoration-white/30 underline-offset-4 transition hover:text-white">Sígueme en Instagram: @andresrendon.ai</a>
         </div>
