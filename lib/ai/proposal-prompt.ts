@@ -5,9 +5,9 @@ import type { Lead } from "@/lib/dashboard/types";
 export const PACKAGES = [
   { name: "Auditoría IA Express", price: "Gratis", description: "Diagnóstico completo de presencia digital" },
   { name: "Demo Growth", price: "desde 149€", description: "Demo visual del sistema antes de invertir" },
-  { name: "Web Premium Local", price: "desde 790€", description: "Web premium mobile-first con SEO y captación" },
+  { name: "Web Premium Local", price: "390€ (precio cerrado)", description: "Web premium mobile-first con SEO y captación" },
   { name: "Sistema Digital 360 IA", price: "desde 1.500€", description: "Sistema completo: web, WhatsApp IA, CRM, SEO" },
-  { name: "Mantenimiento y Automatización", price: "desde 97€/mes", description: "Seguimiento mensual, SEO, mejoras y automatizaciones activas" },
+  { name: "Mantenimiento y Automatización", price: "29€/mes", description: "Seguimiento mensual, SEO, mejoras y automatizaciones activas" },
   { name: "Recepcionista IA WhatsApp", price: "desde 79€/mes", description: "Asistente WhatsApp con IA 24/7" },
   { name: "BarberíaOS", price: "a medida", description: "Sistema completo para barberías" },
 ];

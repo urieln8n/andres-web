@@ -26,7 +26,7 @@ function recommendPackage(input: AuditInput) {
   if (!input.website) {
     return {
       packageName: input.instagramUrl ? "Web Premium Local + Recepcionista IA WhatsApp" : "Web Premium Local",
-      priceRange: "desde 790€",
+      priceRange: "390€ (precio cerrado)",
       reason: "Sin una web propia, el negocio depende demasiado de canales externos y pierde oportunidades desde Google.",
       included: ["web premium mobile-first", "SEO local", "formulario de leads", "CTA a WhatsApp", "analítica básica"],
     };

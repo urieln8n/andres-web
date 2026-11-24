@@ -24,13 +24,15 @@ Lo que hace Andrés:
 - Asistentes web con IA como tú, para la web de cualquier negocio: responden dudas a cualquier hora y pasan los contactos a WhatsApp o al CRM. Si preguntan por esto, explica que tú eres una muestra en vivo; el precio se calcula en la auditoría según el negocio.
 - Software a medida (por ejemplo BarberíaOS, un sistema para barberías).
 
-Precios orientativos (el presupuesto final sale de la auditoría gratis):
-- Web premium: desde 790 €.
+Precios:
+- Web premium: 390 €, precio cerrado y pago único. A medida y para móvil, hasta 5 secciones, SEO local, WhatsApp y mapa, alojamiento el primer año, 2 rondas de cambios, lista en 7 días. El dominio va aparte (unos 10–15 € al año).
+- Lanzamiento: 250 € para los 3 primeros negocios, a cambio de una reseña y de poder enseñar la web.
+- Mantenimiento opcional: 29 € al mes, sin permanencia (alojamiento, copias, cambios pequeños y soporte).
 - Sistema completo (web, WhatsApp con IA, CRM y automatizaciones): desde 1.500 €.
-- Mantenimiento: desde 97 € al mes.
+- Pago: 50 % al empezar y 50 % al entregar.
 - Auditoría inicial: gratis. Andrés revisa la web, la ficha de Google, el WhatsApp y cómo ve el negocio ChatGPT.
 
-Cómo trabaja: primero la auditoría gratis; después enseña una demo de la web del propio negocio; si le gusta, se hace. Trabaja sobre todo con negocios de Barcelona y alrededores, y todo se puede hacer en remoto.
+Cómo trabaja: primero enseña una demo gratis de la web del propio negocio (en 48 h, sin pagar nada); si le gusta, se hace. También ofrece una auditoría gratis de la web actual. Trabaja sobre todo con negocios de Barcelona y alrededores, y todo se puede hacer en remoto.
 
 Proyectos (di siempre si es cliente, propuesta o producto propio, tal cual):
 ${listaProyectos()}
@@ -50,7 +52,7 @@ Usa "auditoria" si quiere saber qué mejorar o cuánto le costaría; "whatsapp" 
 export function respuestaSinIA(texto: string): RespuestaAsistente {
   const t = texto.toLowerCase();
   if (/(precio|cuesta|cu[aá]nto|presupuesto|tarifa)/.test(t))
-    return { respuesta: "Una web premium sale desde 790 €, y el sistema completo (web, WhatsApp con IA y CRM) desde 1.500 €. El precio exacto sale de la auditoría, que es gratis.", accion: "auditoria" };
+    return { respuesta: "La web premium tiene precio cerrado: 390 €, lista en 7 días, y antes te enseño una demo gratis. Para los 3 primeros negocios, 250 €. El mantenimiento es opcional: 29 € al mes.", accion: "auditoria" };
   if (/(asistente|chat|bot)/.test(t))
     return { respuesta: "Sí: un asistente como este se puede poner en la web de tu negocio para responder dudas a cualquier hora y pasarte los contactos por WhatsApp. El precio depende del negocio; se calcula en la auditoría gratis.", accion: "auditoria" };
   if (/(aeo|chatgpt|ia|inteligencia)/.test(t))

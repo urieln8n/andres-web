@@ -31,13 +31,13 @@ function buildDemoProposal(lead: Lead, audit?: AuditContext | null): ProposalRes
   const pkg = offerNameFromText(audit?.recommendedOffer);
   const price =
     pkg === "Web Premium Local"
-      ? "desde 790€"
+      ? "390€ (precio cerrado)"
       : pkg === "Demo Growth"
         ? "desde 149€"
         : pkg === "Recepcionista IA WhatsApp"
           ? "desde 79€/mes"
           : pkg === "Mantenimiento y Automatización"
-            ? "desde 97€/mes"
+            ? "29€/mes"
             : "desde 1.500€";
 
   return {

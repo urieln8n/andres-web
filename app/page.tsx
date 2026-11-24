@@ -21,15 +21,15 @@ const queHago = [
 ];
 
 const precios = [
-  { nombre: "Web premium", detalle: "Web a medida con SEO local, WhatsApp y formulario", precio: "desde 790 €" },
+  { nombre: "Web premium · precio cerrado", detalle: "A medida y para móvil, hasta 5 secciones, SEO local, WhatsApp y mapa. Lista en 7 días", precio: "390 €" },
+  { nombre: "Mantenimiento", detalle: "Alojamiento, copias, cambios pequeños cada mes y soporte. Sin permanencia", precio: "29 €/mes" },
   { nombre: "Sistema completo", detalle: "Web, asistente o WhatsApp con IA, CRM y automatizaciones", precio: "desde 1.500 €" },
-  { nombre: "Mantenimiento", detalle: "Cambios, mejoras y soporte cada mes", precio: "desde 97 €/mes" },
 ];
 
 const preguntas = [
   { question: "¿Trabajas solo en Barcelona?", answer: "Trabajo sobre todo con negocios de Barcelona y alrededores, pero todo se puede hacer en remoto." },
   { question: "¿Qué incluye la auditoría gratis?", answer: "Reviso tu web, tu ficha de Google, tu WhatsApp y cómo te ven los asistentes de IA, y te digo qué cambiar primero." },
-  { question: "¿Cuánto tarda una web?", answer: "Depende del alcance. Antes de empezar te enseño una demo de tu propia web para que decidas con algo real delante." },
+  { question: "¿Cuánto tarda una web?", answer: "La web premium, 7 días desde que apruebas la demo. Antes de pagar nada te enseño una demo de tu propia web para que decidas con algo real delante." },
 ];
 
 export default function HomePage() {
@@ -135,7 +135,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 border-t border-white/10 pt-10 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <h2 className="titulo-display text-5xl text-white sm:text-7xl">Precios</h2>
-            <p className="mt-5 max-w-sm leading-7 text-slate-400">Orientativos. El presupuesto final sale de la auditoría, que es gratis.</p>
+            <p className="mt-5 max-w-sm leading-7 text-slate-400">La web tiene precio cerrado: sabes lo que pagas antes de empezar, y antes te enseño una demo gratis. Lanzamiento: 250 € para los 3 primeros negocios, a cambio de una reseña. El dominio va aparte.</p>
           </div>
           <dl className="divide-y divide-white/10 border-y border-white/10">
             {precios.map((p) => (
