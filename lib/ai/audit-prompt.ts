@@ -18,9 +18,9 @@ export interface AuditInput {
 const packages = [
   "Auditoría IA Express — Gratis",
   "Demo Growth — desde 149€",
-  "Web Premium Local — desde 790€",
+  "Web Premium Local — 390€ (precio cerrado)",
   "Sistema Digital 360 IA — desde 1.500€",
-  "Mantenimiento y Automatización — desde 97€/mes",
+  "Mantenimiento y Automatización — 29€/mes",
   "Recepcionista IA WhatsApp — desde 79€/mes",
   "BarberíaOS — solo para barberías, peluquerías, barber shop o similar",
 ];
