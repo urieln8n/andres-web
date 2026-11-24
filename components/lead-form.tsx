@@ -24,7 +24,7 @@ const budgetOptions = [
   "Mensual / mantenimiento",
 ];
 
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34600000000";
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
 
 export function LeadForm({ source = "auditoria-gratis" }: { source?: string }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");

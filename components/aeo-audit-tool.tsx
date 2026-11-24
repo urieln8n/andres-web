@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, MessageCircle, ShieldAlert } from "lucide-react";
 
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34600000000";
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
 
 type Campo = "web" | "negocio" | "nombre" | "email" | "whatsapp";
 const PASOS: { campo: Campo; titulo: string; ayuda: string; tipo: string; placeholder: string; autoComplete: string }[] = [

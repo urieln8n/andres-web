@@ -2,10 +2,10 @@ import Link from "next/link";
 import { legalLinks } from "@/components/legal-page";
 import { INSTAGRAM_URL } from "@/lib/seo";
 
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34600000000";
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
 
 export function Footer() {
-  const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola Andrés, quiero solicitar una auditoría gratis para mi negocio.")}`;
+  const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola Andrés, quiero una demo gratis de la web de mi negocio.")}`;
   return (
     <footer className="border-t border-white/10 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1.2fr_.65fr_.65fr_.8fr]">
