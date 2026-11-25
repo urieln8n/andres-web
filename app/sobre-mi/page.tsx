@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Bot, MessageCircle, Rocket, ScanSearch, Wrench } from "lucide-react";
 import { createMetadata, INSTAGRAM_URL, personJsonLd } from "@/lib/seo";
 import { ButtonLink } from "@/components/button-link";
+import { FranjaDirecto } from "@/components/franja-directo";
 
 export const metadata = createMetadata({
   title: "Sobre Andrés Fabián Rendón Ramírez | Webs 3D con IA en Barcelona",
@@ -23,6 +24,7 @@ const pasos = [
 const herramientas = ["Claude", "ChatGPT", "VS Code", "Next.js", "Three.js", "Cloudflare", "Supabase", "Brevo"];
 
 const productos = [
+  { nombre: "AI Market", texto: "Terminal de datos que sigue qué cambia en la IA: GitHub, Hugging Face y servidores MCP. Lo construyo en directo.", href: "https://aimarket.andresrendon.com", externo: true },
   { nombre: "Auditor IA (AEO)", texto: "Mi motor propio: mide si ChatGPT, Perplexity y Claude pueden leer y citar una web.", href: "/auditoria-aeo", externo: false },
   { nombre: "Lumbrera", texto: "App gratuita para aprender Génesis jugando, sola o en grupo con PIN.", href: "https://genesis.andresrendon.com", externo: true },
   { nombre: "Web Rescue OS", texto: "Diagnóstico de seguridad y salud web con panel de control.", href: "https://webrescure.andresrendon.com", externo: true },
@@ -127,7 +129,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl border-t border-[rgba(142,166,255,.14)] pt-10">
           <h2 className="titulo-display text-5xl text-white sm:text-7xl">Lo que construyo <span className="ig-degradado">para mí</span></h2>
           <p className="mt-5 max-w-xl leading-7 text-slate-400">Además de webs para clientes, creo mis propias herramientas. Es la mejor forma de probar lo que vendo.</p>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {productos.map((p) => {
               const contenido = (
                 <>
@@ -145,6 +147,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <FranjaDirecto />
 
       {/* CIERRE */}
       <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-32">

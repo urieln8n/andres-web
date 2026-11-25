@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Bot, ScanSearch, Sparkles } from "lucide-react";
 import { createMetadata, faqJsonLd, INSTAGRAM_URL } from "@/lib/seo";
 import { ButtonLink } from "@/components/button-link";
+import { FranjaDirecto } from "@/components/franja-directo";
 import { HeroAbanico } from "@/components/home/hero-abanico";
 import { projectStudies } from "@/lib/site-data";
 
@@ -120,6 +121,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <FranjaDirecto />
 
       {/* QUÉ HAGO */}
       <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
