@@ -30,8 +30,8 @@ export default function InstagramPage() {
       </header>
 
       <nav className="mt-8 grid gap-3" aria-label="Enlaces principales">
-        <Link href="/auditoria-gratis?source=instagram" className="focus-premium rounded-2xl bg-lima-300 px-5 py-4 text-center font-semibold text-ink transition active:scale-[.98]">
-          Auditoría gratis de tu web
+        <Link href="/auditoria-aeo?source=instagram" className="focus-premium rounded-2xl bg-lima-300 px-5 py-4 text-center font-semibold text-ink transition active:scale-[.98]">
+          ¿Te recomienda ChatGPT? Analiza tu web gratis
         </Link>
         <a href={`/whatsapp?texto=${encodeURIComponent(textoWhatsApp)}`} className="focus-premium rounded-2xl border border-white/15 bg-white/[.04] px-5 py-4 text-center font-semibold text-white transition active:scale-[.98]">
           Escríbeme por WhatsApp
@@ -39,8 +39,8 @@ export default function InstagramPage() {
         <AbrirAsistente className="focus-premium rounded-2xl border border-white/15 bg-white/[.04] px-5 py-4 text-center font-semibold text-white transition active:scale-[.98]">
           Pregúntale a mi asistente con IA
         </AbrirAsistente>
-        <Link href="/auditoria-aeo?source=instagram" className="focus-premium rounded-2xl border border-white/15 bg-white/[.04] px-5 py-4 text-center font-semibold text-white transition active:scale-[.98]">
-          ¿Te ve ChatGPT? Compruébalo gratis
+        <Link href="/auditoria-gratis?source=instagram" className="focus-premium rounded-2xl border border-white/15 bg-white/[.04] px-5 py-4 text-center font-semibold text-white transition active:scale-[.98]">
+          Revisión completa de tu negocio
         </Link>
       </nav>
 

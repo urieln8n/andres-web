@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { analizarWeb, normalizarUrl, WebBloqueada, type ResultadoAeo } from "@/lib/aeo/analizar";
+import { analizarConMotor } from "@/lib/aeo/motor";
 import { enviarEmailBrevo, guardarEnBrevo } from "@/lib/brevo";
 import { asuntoInforme, htmlInforme, textoInforme } from "@/lib/email-informe";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export const runtime = "nodejs";
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 const entrada = z.object({
   web: z.string().trim().min(4, "Escribe la dirección de tu web").max(300),
@@ -39,7 +40,11 @@ export async function POST(request: Request) {
   let resultado: ResultadoAeo | null = null;
   let bloqueada = 0;
   try {
-    resultado = await analizarWeb(d.web);
+    // Motor nuevo (auditoria.andresrendon.com); si falla, el motor antiguo de esta web como respaldo
+    resultado = await analizarConMotor(d.web).catch((e) => {
+      console.warn("[auditoria-aeo] motor nuevo no disponible, uso el respaldo:", e instanceof Error ? e.message : e);
+      return analizarWeb(d.web);
+    });
   } catch (error) {
     if (error instanceof WebBloqueada) bloqueada = error.status;
     else {
