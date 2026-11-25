@@ -1,103 +1,161 @@
-import { ArrowRight, Bot, BrainCircuit, CheckCircle2, Database, Globe2, Search } from "lucide-react";
-import { createMetadata, personJsonLd } from "@/lib/seo";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Bot, MessageCircle, Rocket, ScanSearch, Wrench } from "lucide-react";
+import { createMetadata, INSTAGRAM_URL, personJsonLd } from "@/lib/seo";
 import { ButtonLink } from "@/components/button-link";
-import { PremiumCard } from "@/components/premium-card";
-import { Section } from "@/components/section";
 
 export const metadata = createMetadata({
-  title: "Sobre Andrés Fabián Rendón Ramírez | Consultor IA para negocios locales",
-  description: "Quién es Andrés Fabián Rendón Ramírez: consultor IA, automatización, webs premium, SEO local, CRM, dashboards y BarberíaOS en Barcelona.",
+  title: "Sobre Andrés Fabián Rendón Ramírez | Webs 3D con IA en Barcelona",
+  description: "Quién soy y cómo trabajo: webs 3D creadas con IA para negocios de Barcelona, auditoría AEO con motor propio, demo gratis antes de pagar y web online en 7 días.",
   path: "/sobre-mi",
 });
 
-const pillars = [
-  { icon: Globe2, title: "Webs premium", text: "Diseño interfaces claras, rápidas y elegantes que transmiten confianza y guían hacia contacto real." },
-  { icon: Search, title: "SEO local", text: "Construyo arquitectura de páginas por servicio, nicho y ciudad para captar demanda con intención comercial." },
-  { icon: BrainCircuit, title: "IA y automatización", text: "Uso IA para responder, clasificar, recordar y reducir trabajo manual sin perder control humano." },
-  { icon: Database, title: "CRM y dashboards", text: "Ordeno oportunidades, estados, valor estimado, próximos pasos y métricas para vender con más control." },
+const WA_NUMERO = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308").replace(/\D/g, "");
+const WHATSAPP = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent("Hola Andrés, he leído tu página «Sobre mí» y quiero hablar de la web de mi negocio.")}`;
+
+const pasos = [
+  { icono: ScanSearch, titulo: "1 · Audito tu web", texto: "La paso por mi auditor de IA: 8 ejes, los crawlers de ChatGPT, Perplexity y Claude, y la capa de Cloudflare. Sabes qué falla y cuánto cuesta arreglarlo." },
+  { icono: Bot, titulo: "2 · Demo gratis", texto: "Antes de pagar nada, te enseño cómo quedaría tu web con tu marca, tus fotos y tus servicios. Decides con algo real delante." },
+  { icono: Rocket, titulo: "3 · Online en 7 días", texto: "Web rápida, pensada para el móvil, con WhatsApp en un toque y preparada para Google y para la IA desde el primer día." },
+  { icono: Wrench, titulo: "4 · La cuido contigo", texto: "Cambios, copias y una auditoría cada mes para ver la nota subir. Sin permanencia." },
 ];
 
-const vision = [
-  "Los negocios locales no compiten solo por precio: compiten por confianza, velocidad y seguimiento.",
-  "Una web premium debe explicar la oferta, captar el lead y conectarse a una operación comercial.",
-  "La IA tiene sentido cuando responde mejor, ordena datos y permite que el dueño tome decisiones con menos ruido.",
+const herramientas = ["Claude", "ChatGPT", "VS Code", "Next.js", "Three.js", "Cloudflare", "Supabase", "Brevo"];
+
+const productos = [
+  { nombre: "Auditor IA (AEO)", texto: "Mi motor propio: mide si ChatGPT, Perplexity y Claude pueden leer y citar una web.", href: "/auditoria-aeo", externo: false },
+  { nombre: "Lumbrera", texto: "App gratuita para aprender Génesis jugando, sola o en grupo con PIN.", href: "https://genesis.andresrendon.com", externo: true },
+  { nombre: "Web Rescue OS", texto: "Diagnóstico de seguridad y salud web con panel de control.", href: "https://webrescure.andresrendon.com", externo: true },
 ];
 
 export default function AboutPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }} />
-      <section className="px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pt-40">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+
+      {/* QUIÉN SOY */}
+      <section className="overflow-x-clip px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[auto_1fr] lg:gap-20">
+          <div className="mx-auto">
+            <div className="ig-avatar" style={{ width: 280, height: 280, padding: 5 }}>
+              <div className="ig-avatar__foto">
+                <Image src="/andres.webp" alt="Andrés Rendón, Andrés AI Studio" fill sizes="280px" priority className="object-cover object-top" />
+              </div>
+            </div>
+            <p className="mt-6 text-center"><span className="ig-chip"><span className="ig-punto" aria-hidden="true" /> IA · Disponible para proyectos</span></p>
+          </div>
           <div>
-            <p className="premium-kicker text-sm">Sobre mí</p>
-            <h1 className="mt-5 text-balance text-5xl font-semibold tracking-tight text-white md:text-6xl">
-              Soy Andrés Fabián Rendón Ramírez y construyo sistemas digitales para negocios que quieren captar mejor.
+            <p className="font-mono text-sm uppercase tracking-[.16em] text-lima-300">Sobre mí · Andrés AI Studio</p>
+            <h1 className="titulo-display mt-5 text-balance text-5xl text-white sm:text-7xl">
+              Soy Andrés. Hago webs <span className="ig-degradado">con IA</span> para que te encuentren y te escriban.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-              Trabajo en la intersección entre diseño premium, SEO local, automatización con IA, CRM, dashboards y producto SaaS. Mi foco es ayudar a negocios locales, autónomos y empresas a dejar de depender de mensajes sueltos y convertir su presencia digital en un sistema comercial.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
+              Vivo en L&apos;Hospitalet y trabajo con negocios de Barcelona. Llevo años construyendo cada día con VS Code, ChatGPT y Claude: así diseño webs 3D que se recuerdan, y así he creado mi propio auditor para medir si la IA puede leer y recomendar tu negocio.
             </p>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+              No vendo humo: <strong className="font-semibold text-white">te enseño una demo gratis antes de pagar</strong>, el precio es cerrado y cada mejora se mide con una nota.
+            </p>
+            <p className="mt-6 h-5" aria-hidden="true"><span className="ig-terminal" style={{ ["--ch" as string]: "29ch" }}>› construyendo con Claude y IA…</span></p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/auditoria-gratis?source=sobre-mi">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
-              <ButtonLink href="/casos/barberiaos" variant="secondary">Ver BarberíaOS</ButtonLink>
+              <ButtonLink href="/auditoria-aeo?source=sobre-mi"><ScanSearch className="h-4 w-4" /> ¿Te recomienda ChatGPT? Compruébalo</ButtonLink>
+              <ButtonLink href={WHATSAPP} variant="secondary"><MessageCircle className="h-4 w-4" /> Escríbeme por WhatsApp</ButtonLink>
             </div>
           </div>
-          <PremiumCard className="bg-cyan-300/[.06]">
-            <Bot className="h-10 w-10 text-cyan-300" />
-            <h2 className="mt-5 text-3xl font-semibold text-white">Qué construyo</h2>
-            <p className="mt-4 leading-7 text-slate-300">
-              Webs premium, sistemas de reservas, CRM visuales, automatizaciones WhatsApp, dashboards comerciales, páginas SEO y SaaS verticales como BarberíaOS.
-            </p>
-          </PremiumCard>
         </div>
       </section>
 
-      <Section eyebrow="Por qué IA, web y SEO" title="Porque captar clientes ya no depende de una sola pieza.">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((item) => (
-            <PremiumCard key={item.title}>
-              <item.icon className="mb-5 h-8 w-8 text-cyan-300" />
-              <h2 className="text-xl font-semibold text-white">{item.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
-            </PremiumCard>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="BarberíaOS" title="Un SaaS vertical para demostrar cómo puede operar un negocio local con sistema propio.">
-        <div className="grid gap-5 lg:grid-cols-[.95fr_1.05fr]">
-          <PremiumCard>
-            <h2 className="text-3xl font-semibold text-white">Qué es BarberíaOS</h2>
-            <p className="mt-4 leading-7 text-slate-300">
-              BarberíaOS es un sistema para barberías con reservas, clientes, caja, QR, dashboard, marketing y automatizaciones. Lo uso como prueba real de una tesis: un negocio local puede funcionar con tecnología propia, no solo con Instagram y WhatsApp.
-            </p>
-          </PremiumCard>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {["Reservas", "Clientes", "Caja", "QR", "Dashboard", "Automatizaciones"].map((item) => (
-              <div key={item} className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/[.045] p-5 text-slate-200">
-                <CheckCircle2 className="h-5 w-5 text-cyan-300" />
-                {item}
+      {/* CÓMO TRABAJO */}
+      <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl border-t border-[rgba(142,166,255,.14)] pt-10">
+          <h2 className="titulo-display text-5xl text-white sm:text-7xl">Cómo <span className="ig-degradado">trabajo</span></h2>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {pasos.map((p) => (
+              <div key={p.titulo} className="cristal cristal-hover rounded-3xl p-7">
+                <span className="icono-ia"><p.icono className="h-6 w-6" /></span>
+                <h3 className="mt-6 text-xl font-semibold text-white">{p.titulo}</h3>
+                <p className="mt-3 leading-7 text-slate-400">{p.texto}</p>
               </div>
             ))}
           </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Visión" title="Ayudar a negocios locales a competir con sistemas digitales, no con improvisación.">
-        <div className="grid gap-5 md:grid-cols-3">
-          {vision.map((item) => (
-            <PremiumCard key={item}><p className="leading-7 text-slate-200">{item}</p></PremiumCard>
-          ))}
-        </div>
-      </Section>
-
-      <section className="px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="premium-border spotlight-panel mx-auto max-w-5xl rounded-[2rem] bg-white/[.06] p-8 text-center shadow-premium md:p-12">
-          <p className="premium-kicker text-sm">Auditoría gratis</p>
-          <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">Te digo qué mejorar primero para captar más clientes sin gastar a ciegas.</h2>
-          <div className="mt-7 flex justify-center">
-            <ButtonLink href="/auditoria-gratis?source=sobre-mi-final">Solicitar auditoría gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+          <div className="mt-10 flex flex-wrap gap-2" aria-label="Herramientas con las que trabajo">
+            {herramientas.map((h) => (
+              <span key={h} className="rounded-full border border-[rgba(142,166,255,.25)] bg-white/[.03] px-4 py-1.5 font-mono text-xs text-slate-300">{h}</span>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* CASO REAL */}
+      <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl border-t border-[rgba(142,166,255,.14)] pt-10">
+          <p className="text-sm text-lima-300">Caso real</p>
+          <h2 className="titulo-display mt-3 text-5xl text-white sm:text-7xl">Avancés Campus</h2>
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.25fr_1fr]">
+            <a href="https://avancescampus.andresrendon.com" target="_blank" rel="noopener" className="group block" aria-label="Abrir la web de Avancés Campus">
+              <div className="marco transition duration-500 group-hover:-translate-y-1">
+                <div className="marco__barra"><span /><span /><span /></div>
+                <div className="relative aspect-[16/10]">
+                  <Image src="/proyectos-avancescampus.webp" alt="Web 3D de Avancés Campus" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover object-top" />
+                </div>
+              </div>
+            </a>
+            <div>
+              <p className="leading-8 text-slate-300">
+                Un taller de Barcelona que fabrica avancés a medida para caravanas tenía una web antigua, difícil de leer para buscadores e IA y sin un camino claro para pedir presupuesto. Le hice una web nueva con una caravana en 3D, sus modelos y un presupuesto que se envía por WhatsApp ya escrito.
+              </p>
+              <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="cristal rounded-2xl p-5">
+                  <dt className="text-sm text-slate-400">Nota en mi auditor IA</dt>
+                  <dd className="titulo-display ig-degradado mt-1 text-5xl">92/100</dd>
+                </div>
+                <div className="cristal rounded-2xl p-5">
+                  <dt className="text-sm text-slate-400">Escáner de Cloudflare</dt>
+                  <dd className="mt-2 text-lg font-semibold text-white">Nivel 3 · «Agent-Readable»</dd>
+                </div>
+              </dl>
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+                <Link href="/proyectos/avances-campus" className="focus-premium rounded text-white underline decoration-white/30 underline-offset-4 transition hover:decoration-lima-300">Ver el caso completo</Link>
+                <a href="https://avancescampus.andresrendon.com" target="_blank" rel="noopener" className="focus-premium inline-flex items-center gap-1 rounded text-slate-300 transition hover:text-white">Ver la web <ArrowUpRight className="h-4 w-4" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCTOS PROPIOS */}
+      <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl border-t border-[rgba(142,166,255,.14)] pt-10">
+          <h2 className="titulo-display text-5xl text-white sm:text-7xl">Lo que construyo <span className="ig-degradado">para mí</span></h2>
+          <p className="mt-5 max-w-xl leading-7 text-slate-400">Además de webs para clientes, creo mis propias herramientas. Es la mejor forma de probar lo que vendo.</p>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {productos.map((p) => {
+              const contenido = (
+                <>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-lima-300">Producto propio</p>
+                  <h3 className="mt-2 flex items-center justify-between gap-2 text-2xl font-semibold text-white">{p.nombre} <ArrowUpRight className="h-5 w-5 shrink-0 text-slate-400" /></h3>
+                  <p className="mt-3 leading-7 text-slate-400">{p.texto}</p>
+                </>
+              );
+              return p.externo ? (
+                <a key={p.nombre} href={p.href} target="_blank" rel="noopener" className="cristal cristal-hover focus-premium block rounded-3xl p-7">{contenido}</a>
+              ) : (
+                <Link key={p.nombre} href={p.href} className="cristal cristal-hover focus-premium block rounded-3xl p-7">{contenido}</Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CIERRE */}
+      <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+        <div className="cristal mx-auto max-w-5xl rounded-[2rem] p-8 text-center md:p-14">
+          <h2 className="titulo-display text-balance text-5xl text-white sm:text-6xl">¿Hablamos de <span className="ig-degradado">tu negocio</span>?</h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-slate-300">Empieza por la auditoría gratis o escríbeme directamente. Te respondo yo, no un bot.</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <ButtonLink href="/auditoria-aeo?source=sobre-mi-final">Auditoría IA gratis <ArrowRight className="h-4 w-4" /></ButtonLink>
+            <ButtonLink href={WHATSAPP} variant="secondary">Escríbeme por WhatsApp</ButtonLink>
+          </div>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="focus-premium mt-8 inline-block rounded text-slate-300 underline decoration-white/30 underline-offset-4 transition hover:text-white">Sígueme en Instagram: @andresrendon.ai</a>
         </div>
       </section>
     </>
