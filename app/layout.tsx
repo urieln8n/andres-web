@@ -19,8 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([personJsonLd(), organizationJsonLd(), websiteJsonLd()]) }}
         />
-        <div className="fixed inset-0 -z-20 bg-radial-premium" />
-        <div className="noise pointer-events-none fixed inset-0 -z-10 opacity-[.12]" />
+        <div className="ig-fondo" aria-hidden="true">
+          <div className="ig-aurora" />
+          <div className="ig-red" />
+        </div>
+        <div className="noise pointer-events-none fixed inset-0 -z-10 opacity-[.08]" />
         <MarketingShell>{children}</MarketingShell>
       </body>
     </html>

@@ -105,7 +105,7 @@ export function AsistenteWeb() {
         onClick={() => setAbierto((a) => !a)}
         aria-expanded={abierto}
         aria-controls="asistente-panel"
-        className="focus-premium fixed bottom-5 right-5 z-50 flex items-center gap-2.5 rounded-full bg-lima-300 py-3 pl-3.5 pr-5 text-sm font-semibold text-ink shadow-[0_18px_50px_rgba(0,0,0,.5),0_0_0_1px_rgba(142,166,255,.5)] transition hover:-translate-y-0.5"
+        className="focus-premium fixed bottom-5 right-5 z-50 flex items-center gap-2.5 btn-ia rounded-full py-3 pl-3.5 pr-5 text-sm font-semibold transition hover:-translate-y-0.5"
       >
         {abierto ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
         {abierto ? "Cerrar" : "Pregúntame"}

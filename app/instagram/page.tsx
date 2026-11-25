@@ -24,11 +24,6 @@ export default function InstagramPage() {
 
   return (
     <div className="relative mx-auto min-h-svh max-w-md px-5 pb-28 pt-10">
-      <div className="ig-fondo" aria-hidden="true">
-        <div className="ig-aurora" />
-        <div className="ig-red" />
-      </div>
-
       <header className="text-center">
         <div className="ig-avatar">
           <div className="ig-avatar__foto">
@@ -44,7 +39,7 @@ export default function InstagramPage() {
           Webs 3D creadas con IA para negocios de Barcelona. Que te encuentren Google y ChatGPT, y que te escriban por WhatsApp.
         </p>
         <p className="mt-4 h-5" aria-hidden="true">
-          <span className="ig-terminal">› analizando tu web con IA…</span>
+          <span className="ig-terminal" style={{ ["--ch" as string]: "27ch" }}>› analizando tu web con IA…</span>
         </p>
       </header>
 

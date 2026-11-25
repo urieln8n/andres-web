@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Bot, ScanSearch, Sparkles } from "lucide-react";
 import { createMetadata, faqJsonLd, INSTAGRAM_URL } from "@/lib/seo";
 import { ButtonLink } from "@/components/button-link";
 import { HeroAbanico } from "@/components/home/hero-abanico";
@@ -18,9 +18,9 @@ const DEMO_WHATSAPP = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent("Hol
 const etiqueta = { real: "Cliente", propuesta: "Propuesta", producto: "Producto propio", demo: "Demo" } as const;
 
 const queHago = [
-  { titulo: "Webs que se recuerdan", texto: "Webs 3D o editoriales, rápidas y pensadas primero para el móvil. Tu producto, tu local o tu oficio en el centro." },
-  { titulo: "Que te encuentren", texto: "SEO local y AEO: tu negocio bien explicado para Google, Maps y las respuestas de ChatGPT, Perplexity o Gemini." },
-  { titulo: "Que te escriban", texto: "Un asistente con IA en tu web, como el de abajo a la derecha, y WhatsApp con el mensaje ya escrito. Cada contacto, ordenado en un CRM." },
+  { icono: Sparkles, titulo: "Webs que se recuerdan", texto: "Webs 3D o editoriales, rápidas y pensadas primero para el móvil. Tu producto, tu local o tu oficio en el centro." },
+  { icono: ScanSearch, titulo: "Que te encuentren", texto: "SEO local y AEO: tu negocio bien explicado para Google, Maps y las respuestas de ChatGPT, Perplexity o Gemini." },
+  { icono: Bot, titulo: "Que te escriban", texto: "Un asistente con IA en tu web, como el de abajo a la derecha, y WhatsApp con el mensaje ya escrito. Cada contacto, ordenado en un CRM." },
 ];
 
 const precios = [
@@ -46,10 +46,14 @@ export default function HomePage() {
       {/* PORTADA */}
       <section className="relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 sm:pt-14 lg:px-8 lg:pb-24">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm text-slate-400">Andrés Rendón, Barcelona</p>
-          <h1 className="titulo-display mt-5 max-w-5xl text-balance text-[3.4rem] text-white sm:text-8xl lg:text-[7.4rem]">
-            Webs que tus clientes recuerdan.
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="ig-chip"><span className="ig-punto" aria-hidden="true" /> IA · Disponible para proyectos</span>
+            <span className="text-sm text-slate-400">Andrés AI Studio · Barcelona</span>
+          </div>
+          <h1 className="titulo-display mt-6 max-w-5xl text-balance text-[3.4rem] text-white sm:text-8xl lg:text-[7.4rem]">
+            Webs que tus clientes <span className="ig-degradado">recuerdan.</span>
           </h1>
+          <p className="mt-6 h-5" aria-hidden="true"><span className="ig-terminal" style={{ ["--ch" as string]: "24ch" }}>› creando tu web con IA…</span></p>
           <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <p className="max-w-xl text-lg leading-8 text-slate-300">
               Webs para negocios de Barcelona que traen clientes: que te encuentren en Google y que te escriban por WhatsApp en un toque. <strong className="font-semibold text-white">Precio cerrado: 390 €.</strong> Te enseño una demo gratis antes de pagar nada y en 7 días está online.
@@ -69,7 +73,7 @@ export default function HomePage() {
       <section id="proyectos" className="scroll-mt-24 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-10">
-            <h2 className="titulo-display text-5xl text-white sm:text-7xl">Proyectos <span className="text-slate-600">{destacados.length}</span></h2>
+            <h2 className="titulo-display text-5xl text-white sm:text-7xl">Proyectos <span className="ig-degradado">{destacados.length}</span></h2>
             <p className="max-w-md text-slate-400">Webs publicadas para negocios reales, propuestas y productos propios. Cada uno dice lo que es.</p>
           </div>
 
@@ -120,11 +124,12 @@ export default function HomePage() {
       {/* QUÉ HAGO */}
       <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-7xl border-t border-white/10 pt-10">
-          <h2 className="titulo-display text-5xl text-white sm:text-7xl">Qué hago</h2>
-          <div className="mt-14 grid gap-12 md:grid-cols-3">
+          <h2 className="titulo-display text-5xl text-white sm:text-7xl">Qué hago <span className="ig-degradado">con IA</span></h2>
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
             {queHago.map((q) => (
-              <div key={q.titulo}>
-                <h3 className="text-2xl font-semibold tracking-tight text-white">{q.titulo}</h3>
+              <div key={q.titulo} className="cristal cristal-hover rounded-3xl p-7">
+                <span className="icono-ia"><q.icono className="h-6 w-6" /></span>
+                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-white">{q.titulo}</h3>
                 <p className="mt-3 leading-7 text-slate-400">{q.texto}</p>
               </div>
             ))}
@@ -140,14 +145,14 @@ export default function HomePage() {
             <h2 className="titulo-display text-5xl text-white sm:text-7xl">Precios</h2>
             <p className="mt-5 max-w-sm leading-7 text-slate-400">La web tiene precio cerrado: sabes lo que pagas antes de empezar, y antes te enseño una demo gratis. Lanzamiento: 250 € para los 3 primeros negocios, a cambio de una reseña. El dominio va aparte.</p>
           </div>
-          <dl className="divide-y divide-white/10 border-y border-white/10">
+          <dl className="cristal divide-y divide-[rgba(142,166,255,.14)] rounded-3xl px-7">
             {precios.map((p) => (
               <div key={p.nombre} className="grid gap-1 py-6 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8">
                 <dt>
                   <span className="block text-xl font-semibold text-white">{p.nombre}</span>
                   <span className="mt-1 block text-sm text-slate-400">{p.detalle}</span>
                 </dt>
-                <dd className="titulo-display text-3xl text-white sm:text-4xl">{p.precio}</dd>
+                <dd className="titulo-display ig-degradado text-3xl sm:text-4xl">{p.precio}</dd>
               </div>
             ))}
           </dl>
@@ -156,7 +161,7 @@ export default function HomePage() {
 
       {/* PREGUNTAS */}
       <section className="px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl divide-y divide-white/10 border-y border-white/10">
+        <div className="cristal mx-auto max-w-3xl divide-y divide-[rgba(142,166,255,.14)] rounded-3xl px-7">
           {preguntas.map((f) => (
             <details key={f.question} className="group py-5">
               <summary className="focus-premium flex cursor-pointer list-none items-center justify-between gap-6 rounded text-lg font-medium text-white">
@@ -172,7 +177,7 @@ export default function HomePage() {
       {/* CIERRE */}
       <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-40">
         <div className="mx-auto max-w-7xl">
-          <h2 className="titulo-display max-w-5xl text-balance text-6xl text-white sm:text-8xl lg:text-[8rem]">¿Tu negocio es el siguiente?</h2>
+          <h2 className="titulo-display max-w-5xl text-balance text-6xl text-white sm:text-8xl lg:text-[8rem]">¿Tu negocio es <span className="ig-degradado">el siguiente?</span></h2>
           <p className="mt-8 max-w-xl text-lg leading-8 text-slate-300">Escríbeme el nombre de tu negocio y en 48 h te enseño cómo quedaría tu web. Si no te convence, no pagas nada.</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={DEMO_WHATSAPP}>Pide tu demo gratis</ButtonLink>
