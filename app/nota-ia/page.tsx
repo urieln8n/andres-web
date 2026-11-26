@@ -8,6 +8,7 @@ export const metadata = createMetadata({
   title: "¿Te ve ChatGPT? Comprueba tu web gratis",
   description: "Mira en 10 segundos si ChatGPT puede leer tu web y recomendarte. Gratis y sin registrarte.",
   path: "/nota-ia",
+  image: "/nota-ia/opengraph-image",
 });
 
 const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
