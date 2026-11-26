@@ -15,11 +15,11 @@ export default async function Imagen({ params }: { params: { dominio: string } }
 
   return new ImageResponse(
     (
-      <div style={{ display: "flex", width: "100%", height: "100%", background: "#0b0b0c", color: "white", display: "flex", flexDirection: "column", padding: 64, position: "relative" }}>
-        <div style={{ display: "flex", position: "absolute", inset: 0, background: "radial-gradient(60% 60% at 90% 0%, rgba(245,197,24,.18), transparent 70%)", display: "flex" }} />
+      <div style={{ display: "flex", width: "100%", height: "100%", background: "#0b0b0c", color: "white", flexDirection: "column", padding: 64, position: "relative" }}>
+        <div style={{ display: "flex", position: "absolute", inset: 0, background: "radial-gradient(60% 60% at 90% 0%, rgba(245,197,24,.18), transparent 70%)" }} />
         <div style={{ display: "flex", fontSize: 30, color: "#f5c518", letterSpacing: 4, fontWeight: 700 }}>¿TE VE CHATGPT?</div>
         <div style={{ display: "flex", flex: 1, alignItems: "center", gap: 64 }}>
-          <div style={{ display: "flex", width: 300, height: 300, borderRadius: 300, border: `22px solid ${color}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ display: "flex", width: 300, height: 300, borderRadius: 300, border: `22px solid ${color}`, flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
             <div style={{ display: "flex", fontSize: 120, fontWeight: 800, lineHeight: 1 }}>{n ? n.nota : "?"}</div>
             <div style={{ display: "flex", fontSize: 30, color: "#b9b4a5" }}>de 100</div>
           </div>
