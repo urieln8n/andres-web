@@ -1,5 +1,7 @@
 "use client";
 
+import { CompartirNota } from "@/components/compartir-nota";
+import { SelloEmbed } from "@/components/sello-embed";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Loader2, Lock, MessageCircle, ShieldAlert } from "lucide-react";
@@ -8,7 +10,7 @@ const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
 
 interface Eje { id: string; nombre: string; peso: number; nota: number }
 interface Principal { severidad: "critico" | "alto" | "medio" | "bajo"; titulo: string; detalle: string }
-interface Comprobacion { url: string; nota: number; nivel: string; ejes: Eje[]; principales: Principal[]; total: number }
+interface Comprobacion { url: string; dominio: string | null; nota: number; nivel: string; ejes: Eje[]; principales: Principal[]; total: number }
 type Datos = { negocio: string; nombre: string; email: string; whatsapp: string };
 
 const COLOR_NIVEL: Record<string, string> = { excelente: "#34d399", bueno: "#8ea6ff", mejorable: "#8ea6ff", critico: "#f87171" };
@@ -95,6 +97,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
             <p className="mt-2 break-all text-sm text-slate-400">{comp.url}</p>
           </div>
         </div>
+        {comp.dominio && <CompartirNota dominio={comp.dominio} nota={comp.nota} />}
 
         <div className="mt-8 grid gap-3">
           {comp.ejes.map((e) => (
@@ -123,6 +126,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
           </div>
         )}
 
+        {comp.dominio && comp.nota >= 70 && <SelloEmbed dominio={comp.dominio} />}
         <PedirInforme web={comp.url} origen={origen} nota={comp.nota} />
         <p className="mt-4 text-xs leading-5 text-slate-500">Análisis automático de la página que nos diste, sin ejecutar JavaScript. Mide las condiciones para que la IA te lea y te cite; nadie puede garantizar que un modelo concreto te cite.</p>
         <Volver onClick={() => { setEstado("inicio"); setComp(null); setWeb(""); }} />

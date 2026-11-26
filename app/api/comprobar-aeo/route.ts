@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { analizarWeb, WebBloqueada, type ResultadoAeo } from "@/lib/aeo/analizar";
 import { analizarConMotor } from "@/lib/aeo/motor";
+import { revalidateTag } from "next/cache";
+import { etiquetaNota, limpiarDominio } from "@/lib/aeo/nota-publica";
 
 // Comprobación instantánea: solo la web, sin datos personales. No guarda nada.
 // El informe completo por email sigue en /api/auditoria-aeo.
@@ -36,9 +38,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: motivo }, { status: 422 });
   }
 
+  // La página para compartir vuelve a calcular la nota con esta comprobación como la más reciente
+  const dominio = limpiarDominio(r.url);
+  if (dominio) revalidateTag(etiquetaNota(dominio));
+
   // En pantalla: nota, ejes y los 3 problemas principales. El detalle de cómo arreglar cada uno va en el informe por email.
   return NextResponse.json({
     url: r.url,
+    dominio,
     nota: r.nota,
     nivel: r.nivel,
     ejes: r.ejes,
