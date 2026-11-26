@@ -14,7 +14,7 @@ const entrada = z.object({
   nombre: z.string().trim().min(2, "Escribe tu nombre").max(80),
   negocio: z.string().trim().min(2, "Escribe el nombre de tu negocio").max(120),
   email: z.string().trim().email("Revisa tu email").max(160),
-  whatsapp: z.string().trim().regex(/^[+\d][\d\s().-]{7,20}$/, "Revisa tu WhatsApp"),
+  whatsapp: z.union([z.literal(""), z.string().trim().regex(/^[+\d][\d\s().-]{7,20}$/, "Revisa tu WhatsApp")]).optional().default(""),
   consentimiento: z.literal(true, { errorMap: () => ({ message: "Necesitamos tu permiso para enviarte el informe" }) }),
   empresa_web: z.string().max(0).optional(), // trampa para robots: debe llegar vacío
 });
