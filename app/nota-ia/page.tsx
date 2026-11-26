@@ -13,6 +13,14 @@ export const metadata = createMetadata({
 const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
 const MENSAJE = encodeURIComponent("Hola Andrés, no tengo web todavía. ¿Me cuentas cómo empezar?");
 
+const IAS = [
+  { nombre: "ChatGPT", color: "#34d399" },
+  { nombre: "Perplexity", color: "#2dd4bf" },
+  { nombre: "Gemini", color: "#8ea6ff" },
+  { nombre: "Claude", color: "#fb923c" },
+  { nombre: "Google", color: "#facc15" },
+];
+
 export default function NotaIaInicio() {
   return (
     <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 md:pt-24">
@@ -20,7 +28,14 @@ export default function NotaIaInicio() {
       <p className="mt-3 max-w-2xl text-lg leading-snug text-slate-300 md:text-xl">
         Tus clientes ya se lo preguntan a la IA. <span className="text-cyan-300">Y la IA solo recomienda a quien puede leer.</span>
       </p>
-      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[.1em] text-slate-500 sm:text-xs sm:tracking-[.18em]">ChatGPT · Perplexity · Gemini · Claude · Google</p>
+      <ul className="mt-4 flex flex-wrap gap-2" aria-label="Buscadores con IA que medimos">
+        {IAS.map((ia) => (
+          <li key={ia.nombre} className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[.04] px-3 py-1 text-xs font-semibold text-slate-200">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ background: ia.color }} />
+            {ia.nombre}
+          </li>
+        ))}
+      </ul>
 
       <div className="mt-5"><AeoAuditTool origen="nota-ia" compacto /></div>
       <div className="mt-4 flex flex-col gap-2 text-sm">
