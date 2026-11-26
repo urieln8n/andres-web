@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { AeoAuditTool } from "@/components/aeo-audit-tool";
 import { createMetadata } from "@/lib/seo";
 
@@ -10,16 +10,26 @@ export const metadata = createMetadata({
   path: "/nota-ia",
 });
 
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
+const MENSAJE = encodeURIComponent("Hola Andrés, no tengo web todavía. ¿Me cuentas cómo empezar?");
+
 export default function NotaIaInicio() {
   return (
-    <main className="mx-auto max-w-3xl px-5 pb-24 pt-24 md:pt-32">
+    <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 md:pt-24">
       <h1 className="font-display text-4xl font-semibold text-white md:text-5xl">¿Te ve ChatGPT?</h1>
       <p className="mt-3 max-w-2xl text-lg leading-snug text-slate-300 md:text-xl">
         Tus clientes ya se lo preguntan a la IA. <span className="text-cyan-300">Y la IA solo recomienda a quien puede leer.</span>
       </p>
+      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[.1em] text-slate-500 sm:text-xs sm:tracking-[.18em]">ChatGPT · Perplexity · Gemini · Claude · Google</p>
 
-      <div className="mt-6"><AeoAuditTool origen="nota-ia" compacto /></div>
-      <p className="mt-3 text-sm text-slate-400">Gratis, sin registrarte y en unos segundos. Si pasas de 70, te llevas el sello «Legible por IA».</p>
+      <div className="mt-5"><AeoAuditTool origen="nota-ia" compacto /></div>
+      <div className="mt-4 flex flex-col gap-2 text-sm">
+        <p className="text-slate-400">Gratis y en unos segundos. Para ver la nota no te pedimos ningún dato personal. Si pasas de 70, te llevas el sello «Legible por IA».</p>
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <Link href="/nota-ia/andresrendon.com" className="font-semibold text-cyan-200 underline underline-offset-4">Ver un ejemplo</Link>
+          <a href={`https://wa.me/${WHATSAPP}?text=${MENSAJE}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 underline underline-offset-4"><MessageCircle className="h-4 w-4" /> ¿No tienes web? Escríbeme</a>
+        </div>
+      </div>
 
       <section className="mt-12 flex flex-col gap-5 rounded-[1.75rem] border border-white/10 bg-white/[.03] p-6 sm:flex-row sm:items-center" aria-label="Quién está detrás">
         <Image src="/andres.webp" alt="Andrés Rendón" width={72} height={72} className="h-[72px] w-[72px] shrink-0 rounded-full object-cover ring-2 ring-cyan-300/40" />
