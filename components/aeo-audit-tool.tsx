@@ -21,7 +21,7 @@ const ANALIZANDO = ["Comprobando si los buscadores de IA pueden entrar…", "Ley
 
 const webValida = (v: string) => /^(https?:\/\/)?[^\s/]+\.[^\s]{2,}/i.test(v.trim());
 
-export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) {
+export function AeoAuditTool({ origen = "auditoria-aeo", compacto = false }: { origen?: string; compacto?: boolean }) {
   const [web, setWeb] = useState("");
   const [estado, setEstado] = useState<"inicio" | "analizando" | "resultado" | "bloqueada">("inicio");
   const [error, setError] = useState("");
@@ -137,9 +137,15 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
   return (
     <Marco>
       <form onSubmit={(e) => { e.preventDefault(); comprobar(); }} noValidate>
-        <label htmlFor="aeo-web" className="block text-2xl font-semibold text-white md:text-3xl">¿Te ve ChatGPT? Pega tu web.</label>
-        <p className="mt-2 text-sm text-slate-400">La leemos como la lee la IA: sin ejecutar JavaScript. Sin registrarte.</p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        {compacto ? (
+          <label htmlFor="aeo-web" className="block text-base font-semibold text-white">Escribe la dirección de tu web</label>
+        ) : (
+          <>
+            <label htmlFor="aeo-web" className="block text-2xl font-semibold text-white md:text-3xl">¿Te ve ChatGPT? Pega tu web.</label>
+            <p className="mt-2 text-sm text-slate-400">La leemos como la lee la IA: sin ejecutar JavaScript. Sin registrarte.</p>
+          </>
+        )}
+        <div className={`${compacto ? "mt-3" : "mt-6"} flex flex-col gap-3 sm:flex-row`}>
           <input
             ref={input} id="aeo-web" name="web" type="url" inputMode="url" autoComplete="url" placeholder="tunegocio.com" value={web}
             onChange={(e) => { setWeb(e.target.value); setError(""); }} aria-invalid={Boolean(error)} aria-describedby="aeo-error"
@@ -151,11 +157,11 @@ export function AeoAuditTool({ origen = "auditoria-aeo" }: { origen?: string }) 
         </div>
         <p id="aeo-error" className="mt-3 min-h-[1.25rem] text-sm text-red-300" role="alert">{error}</p>
       </form>
-      <ul className="mt-6 grid gap-2 border-t border-white/10 pt-6 text-sm text-slate-400 sm:grid-cols-3">
+      {!compacto && <ul className="mt-6 grid gap-2 border-t border-white/10 pt-6 text-sm text-slate-400 sm:grid-cols-3">
         {["Gratis y sin registro", "Tu nota de 0 a 100 al momento", "Sin llamadas comerciales"].map((t) => (
           <li key={t} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> {t}</li>
         ))}
-      </ul>
+      </ul>}
     </Marco>
   );
 }
