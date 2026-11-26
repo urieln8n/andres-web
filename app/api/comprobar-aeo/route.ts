@@ -3,6 +3,7 @@ import { z } from "zod";
 import { analizarWeb, WebBloqueada, type ResultadoAeo } from "@/lib/aeo/analizar";
 import { analizarConMotor } from "@/lib/aeo/motor";
 import { revalidateTag } from "next/cache";
+import { registrarEvento } from "@/lib/aeo/eventos";
 import { etiquetaNota, limpiarDominio } from "@/lib/aeo/nota-publica";
 
 // Comprobación instantánea: solo la web, sin datos personales. No guarda nada.
@@ -10,7 +11,7 @@ import { etiquetaNota, limpiarDominio } from "@/lib/aeo/nota-publica";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const entrada = z.object({ web: z.string().trim().min(4, "Escribe la dirección de tu web").max(300) });
+const entrada = z.object({ web: z.string().trim().min(4, "Escribe la dirección de tu web").max(300), pagina: z.string().max(40).optional(), canal: z.string().max(40).optional() });
 
 // Freno básico por IP (por instancia): 10 comprobaciones cada 10 minutos
 const usos = new Map<string, number[]>();
@@ -41,6 +42,7 @@ export async function POST(request: Request) {
   // La página para compartir vuelve a calcular la nota con esta comprobación como la más reciente
   const dominio = limpiarDominio(r.url);
   if (dominio) revalidateTag(etiquetaNota(dominio));
+  await registrarEvento({ tipo: "comprobacion", pagina: parsed.data.pagina, canal: parsed.data.canal, dominio, nota: r.nota });
 
   // En pantalla: nota, ejes y los 3 problemas principales. El detalle de cómo arreglar cada uno va en el informe por email.
   return NextResponse.json({

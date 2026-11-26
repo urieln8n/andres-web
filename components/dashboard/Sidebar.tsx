@@ -12,7 +12,7 @@ import {
   Zap,
   X,
   Menu,
-} from "lucide-react";
+ BarChart3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { logoutAction } from "@/app/dashboard/actions";
@@ -21,6 +21,7 @@ const NAV = [
   { href: "/dashboard", label: "Resumen", icon: LayoutDashboard, exact: true },
   { href: "/dashboard/leads", label: "Leads", icon: Users },
   { href: "/dashboard/auditorias", label: "Auditorías", icon: FileSearch },
+  { href: "/dashboard/nota-ia", label: "Nota IA", icon: BarChart3 },
   { href: "/dashboard/propuestas", label: "Propuestas", icon: FileText },
   { href: "/dashboard/seguimientos", label: "Seguimientos", icon: CalendarClock },
 ];

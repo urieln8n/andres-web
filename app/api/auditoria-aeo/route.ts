@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { registrarEvento } from "@/lib/aeo/eventos";
+import { limpiarDominio } from "@/lib/aeo/nota-publica";
 import { analizarWeb, normalizarUrl, WebBloqueada, type ResultadoAeo } from "@/lib/aeo/analizar";
 import { analizarConMotor } from "@/lib/aeo/motor";
 import { enviarEmailBrevo, guardarEnBrevo } from "@/lib/brevo";
@@ -16,6 +18,8 @@ const entrada = z.object({
   email: z.string().trim().email("Revisa tu email").max(160),
   whatsapp: z.union([z.literal(""), z.string().trim().regex(/^[+\d][\d\s().-]{7,20}$/, "Revisa tu WhatsApp")]).optional().default(""),
   consentimiento: z.literal(true, { errorMap: () => ({ message: "Necesitamos tu permiso para enviarte el informe" }) }),
+  origen: z.string().max(40).optional(),
+  canal: z.string().max(40).optional(),
   empresa_web: z.string().max(0).optional(), // trampa para robots: debe llegar vacío
 });
 
@@ -109,5 +113,6 @@ export async function POST(request: Request) {
     fetch(webhook, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ tipo: "auditoria-aeo", leadId, ...d, consentimiento: true, resultado: { nota: resultado.nota, nivel: resultado.nivel, problemas } }), signal: AbortSignal.timeout(5000) }).catch(() => {});
   }
 
+  await registrarEvento({ tipo: "informe", pagina: parsed.data.origen, canal: parsed.data.canal, dominio: limpiarDominio(resultado.url || parsed.data.web), nota: bloqueada ? null : resultado.nota });
   return NextResponse.json({ resultado, revisionManual: Boolean(bloqueada), guardado: { panel: Boolean(leadId), brevo: brevo.ok, email: email.ok } });
 }

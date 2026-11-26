@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { WhatsappSinWeb } from "@/components/whatsapp-sin-web";
 import { AeoAuditTool } from "@/components/aeo-audit-tool";
 import { createMetadata } from "@/lib/seo";
 
@@ -10,9 +11,6 @@ export const metadata = createMetadata({
   path: "/nota-ia",
   image: "/nota-ia/opengraph-image",
 });
-
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "34645466308";
-const MENSAJE = encodeURIComponent("Hola Andrés, no tengo web todavía. ¿Me cuentas cómo empezar?");
 
 const IAS = [
   { nombre: "ChatGPT", color: "#34d399" },
@@ -43,7 +41,7 @@ export default function NotaIaInicio() {
         <p className="text-slate-400">Gratis y en unos segundos. Para ver la nota no te pedimos ningún dato personal. Si pasas de 70, te llevas el sello «Legible por IA».</p>
         <div className="flex flex-wrap gap-x-5 gap-y-2">
           <Link href="/nota-ia/andresrendon.com" className="font-semibold text-cyan-200 underline underline-offset-4">Ver un ejemplo</Link>
-          <a href={`https://wa.me/${WHATSAPP}?text=${MENSAJE}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 underline underline-offset-4"><MessageCircle className="h-4 w-4" /> ¿No tienes web? Escríbeme</a>
+          <WhatsappSinWeb />
         </div>
       </div>
 

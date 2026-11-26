@@ -2,6 +2,7 @@
 
 import { CompartirNota } from "@/components/compartir-nota";
 import { SelloEmbed } from "@/components/sello-embed";
+import { canalActual, enviarEvento } from "@/lib/aeo/evento-cliente";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Loader2, Lock, MessageCircle, ShieldAlert } from "lucide-react";
@@ -30,6 +31,8 @@ export function AeoAuditTool({ origen = "auditoria-aeo", compacto = false }: { o
   const [bloqueo, setBloqueo] = useState(0);
   const input = useRef<HTMLInputElement>(null);
 
+  useEffect(() => { enviarEvento("visita", origen); }, [origen]);
+
   useEffect(() => {
     if (estado !== "analizando") return;
     const t = setInterval(() => setFrase((f) => Math.min(f + 1, ANALIZANDO.length - 1)), 1600);
@@ -40,7 +43,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo", compacto = false }: { o
     if (!webValida(web)) { setError("Escribe una dirección como tunegocio.com"); input.current?.focus(); return; }
     setError(""); setEstado("analizando"); setFrase(0);
     try {
-      const res = await fetch("/api/comprobar-aeo", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ web }) });
+      const res = await fetch("/api/comprobar-aeo", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ web, pagina: origen, canal: canalActual() }) });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || "No he podido analizar tu web. Inténtalo de nuevo.");
       if (json.bloqueada) { setBloqueo(json.bloqueada); setEstado("bloqueada"); }
@@ -97,7 +100,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo", compacto = false }: { o
             <p className="mt-2 break-all text-sm text-slate-400">{comp.url}</p>
           </div>
         </div>
-        {comp.dominio && <CompartirNota dominio={comp.dominio} nota={comp.nota} />}
+        {comp.dominio && <CompartirNota dominio={comp.dominio} nota={comp.nota} pagina={origen} />}
 
         <div className="mt-8 grid gap-3">
           {comp.ejes.map((e) => (
@@ -126,7 +129,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo", compacto = false }: { o
           </div>
         )}
 
-        {comp.dominio && comp.nota >= 70 && <SelloEmbed dominio={comp.dominio} />}
+        {comp.dominio && comp.nota >= 70 && <SelloEmbed dominio={comp.dominio} pagina={origen} />}
         <PedirInforme web={comp.url} origen={origen} nota={comp.nota} />
         <p className="mt-4 text-xs leading-5 text-slate-500">Análisis automático de la página que nos diste, sin ejecutar JavaScript. Mide las condiciones para que la IA te lea y te cite; nadie puede garantizar que un modelo concreto te cite.</p>
         <Volver onClick={() => { setEstado("inicio"); setComp(null); setWeb(""); }} />
@@ -184,7 +187,7 @@ function PedirInforme({ web, origen, nota }: { web: string; origen: string; nota
     try {
       const res = await fetch("/api/auditoria-aeo", {
         method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ web, ...d, whatsapp: d.whatsapp.trim(), consentimiento: true, empresa_web: trampa.current?.value || "", origen }),
+        body: JSON.stringify({ web, ...d, whatsapp: d.whatsapp.trim(), consentimiento: true, empresa_web: trampa.current?.value || "", origen, canal: canalActual() }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || "No he podido enviarte el informe. Inténtalo de nuevo.");
@@ -196,7 +199,7 @@ function PedirInforme({ web, origen, nota }: { web: string; origen: string; nota
 
   const mensaje = encodeURIComponent(`Hola Andrés, he comprobado ${web} en tu auditor${nota != null ? ` y me ha salido ${nota}/100` : ""}. ¿Me explicas cómo mejorarla?`);
   const botonWa = (
-    <a href={`https://wa.me/${WHATSAPP}?text=${mensaje}`} target="_blank" rel="noopener noreferrer" className="focus-premium mt-4 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5">
+    <a onClick={() => enviarEvento("whatsapp", origen)} href={`https://wa.me/${WHATSAPP}?text=${mensaje}`} target="_blank" rel="noopener noreferrer" className="focus-premium mt-4 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5">
       <MessageCircle className="h-4 w-4" /> Explícamelo por WhatsApp
     </a>
   );
