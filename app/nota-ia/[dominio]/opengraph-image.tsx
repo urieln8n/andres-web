@@ -10,14 +10,14 @@ export const contentType = "image/png";
 export default async function Imagen({ params }: { params: { dominio: string } }) {
   const dominio = limpiarDominio(params.dominio) || "tu web";
   const n = dominio === "tu web" ? null : await notaPublica(dominio).catch(() => null);
-  const color = n ? NIVEL_COLOR[n.nivel] || "#8ea6ff" : "#f5c518";
+  const color = n ? NIVEL_COLOR[n.nivel] || "#8ea6ff" : "#8EA6FF";
   const frase = !n ? "Comprueba si la IA puede leer tu web" : n.nota >= UMBRAL_SELLO ? "La IA puede leer esta web" : n.nota >= 50 ? "La IA lee esta web a medias" : "Para la IA, esta web casi no existe";
 
   return new ImageResponse(
     (
-      <div style={{ display: "flex", width: "100%", height: "100%", background: "#0b0b0c", color: "white", flexDirection: "column", padding: 64, position: "relative" }}>
-        <div style={{ display: "flex", position: "absolute", inset: 0, background: "radial-gradient(60% 60% at 90% 0%, rgba(245,197,24,.18), transparent 70%)" }} />
-        <div style={{ display: "flex", fontSize: 30, color: "#f5c518", letterSpacing: 4, fontWeight: 700 }}>¿TE VE CHATGPT?</div>
+      <div style={{ display: "flex", width: "100%", height: "100%", background: "linear-gradient(135deg, #0F1440 0%, #080808 70%)", color: "white", flexDirection: "column", padding: 64, position: "relative" }}>
+        <div style={{ display: "flex", position: "absolute", inset: 0, background: "radial-gradient(60% 60% at 90% 0%, rgba(142,166,255,.16), transparent 70%)" }} />
+        <div style={{ display: "flex", fontSize: 30, color: "#8EA6FF", letterSpacing: 4, fontWeight: 700 }}>¿TE VE CHATGPT?</div>
         <div style={{ display: "flex", flex: 1, alignItems: "center", gap: 64 }}>
           <div style={{ display: "flex", width: 300, height: 300, borderRadius: 300, border: `22px solid ${color}`, flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
             <div style={{ display: "flex", fontSize: 120, fontWeight: 800, lineHeight: 1 }}>{n ? n.nota : "?"}</div>
@@ -31,7 +31,7 @@ export default async function Imagen({ params }: { params: { dominio: string } }
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#b9b4a5" }}>
           <div style={{ display: "flex" }}>Comprueba la tuya gratis en andresrendon.com</div>
-          <div style={{ display: "flex", color: "#f5c518", fontWeight: 700 }}>Andrés AI Studio</div>
+          <div style={{ display: "flex", color: "#8EA6FF", fontWeight: 700 }}>Andrés AI Studio</div>
         </div>
       </div>
     ),

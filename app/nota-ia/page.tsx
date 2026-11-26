@@ -6,7 +6,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: "¿Te ve ChatGPT? Comprueba tu web gratis",
-  description: "Pega tu web y en segundos sabrás si ChatGPT, Perplexity, Claude y Google pueden leerla. Nota de 0 a 100, sin registrarte.",
+  description: "Mira en 10 segundos si ChatGPT puede leer tu web y recomendarte. Gratis y sin registrarte.",
   path: "/nota-ia",
 });
 
