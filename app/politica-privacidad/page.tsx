@@ -30,6 +30,14 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
+        <h2>Herramienta «¿Te ve ChatGPT?» (andresrendon.com/nota-ia)</h2>
+        <p>Para calcular la nota solo se pide la dirección de una web. Se analiza su página pública de forma automática y no se piden datos personales.</p>
+        <p>Cada web comprobada tiene una página pública con su nota (andresrendon.com/nota-ia/dominio), no indexada en buscadores, y un sello que su titular puede poner en su web. La nota se guarda en caché un máximo de un día. Si eres titular de una web y quieres que retiremos su página, escríbenos al email de privacidad.</p>
+        <p>Para medir el uso de la herramienta se registran estadísticas sin cookies y sin guardar nada en tu dispositivo: qué acción se hizo (visita, comprobación, informe, clic en WhatsApp, compartir o sello), la página, el canal de procedencia indicado en el enlace (por ejemplo, ?o=tarjeta), la fecha y, en las comprobaciones, la web pública analizada y su nota. No se guarda la dirección IP. La IP solo se usa de forma temporal en memoria para limitar abusos. La base legal es el interés legítimo en mantener y mejorar el servicio.</p>
+        <p>Si pides el informe completo, se tratan tu nombre, el nombre de tu negocio, tu email y, si lo das, tu WhatsApp, para enviarte el informe y responderte. Solo recibirás consejos y novedades por email si marcas esa casilla aparte; puedes darte de baja en cualquier momento desde el propio email.</p>
+      </section>
+
+      <section>
         <h2>Finalidades del tratamiento</h2>
         <p>Los datos se tratan para responder solicitudes, preparar auditorías gratuitas, contactar con la persona interesada, analizar necesidades comerciales indicadas por el usuario y enviar información relacionada con los servicios solicitados.</p>
         <p>No se usarán los datos para comunicaciones comerciales no solicitadas sin una base legal adecuada.</p>
@@ -48,7 +56,7 @@ export default function PrivacyPolicyPage() {
       <section>
         <h2>Destinatarios y proveedores tecnológicos</h2>
         <p>Los datos no se venden a terceros. Pueden tratarse mediante proveedores técnicos necesarios para alojar la web, recibir formularios, almacenar leads o activar automatizaciones.</p>
-        <p>Si se configuran en el proyecto, pueden intervenir servicios como Vercel para hosting y despliegue, Supabase para base de datos o CRM, y herramientas de automatización como webhooks o n8n. Estos proveedores deberán usarse bajo sus condiciones y acuerdos aplicables.</p>
+        <p>Intervienen estos proveedores: Vercel (alojamiento de la web), Supabase (base de datos de contactos y estadísticas, servidores en la Unión Europea), Brevo (envío del informe por email y, solo con tu consentimiento, comunicaciones comerciales) y Cloudflare (motor de análisis de webs). Si se configuran, también pueden intervenir herramientas de automatización como n8n. Cada proveedor trata los datos según sus condiciones y acuerdos de tratamiento.</p>
       </section>
 
       <section>

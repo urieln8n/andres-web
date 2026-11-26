@@ -1,15 +1,9 @@
 // Estadísticas desde el navegador: sin cookies ni datos personales.
-// El canal sale de ?o= en la dirección (tarjeta, whatsapp, instagram…) y se recuerda solo en esta pestaña.
+// El canal sale de ?o= en la dirección (tarjeta, whatsapp, instagram…). No se guarda nada en el dispositivo.
 export function canalActual(): string {
   if (typeof window === "undefined") return "directo";
-  try {
-    const o = new URLSearchParams(window.location.search).get("o");
-    const limpio = o && /^[a-z0-9-]{1,24}$/i.test(o) ? o.toLowerCase() : null;
-    if (limpio) sessionStorage.setItem("nota-ia-canal", limpio);
-    return limpio || sessionStorage.getItem("nota-ia-canal") || "directo";
-  } catch {
-    return "directo";
-  }
+  const o = new URLSearchParams(window.location.search).get("o");
+  return o && /^[a-z0-9-]{1,24}$/i.test(o) ? o.toLowerCase() : "directo";
 }
 
 export function enviarEvento(tipo: "visita" | "whatsapp" | "compartir" | "sello", pagina: string) {

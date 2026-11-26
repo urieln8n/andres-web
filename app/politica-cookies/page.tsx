@@ -21,7 +21,8 @@ export default function CookiePolicyPage() {
 
       <section>
         <h2>Uso actual de cookies</h2>
-        <p>Actualmente esta web no tiene configurado un sistema de analítica activa ni cookies no esenciales desde el código del proyecto. Por ello no se muestra un banner invasivo de consentimiento.</p>
+        <p>Actualmente esta web no usa cookies no esenciales ni guarda información en tu dispositivo con fines de analítica o publicidad. Por ello no se muestra un banner de consentimiento.</p>
+        <p>La herramienta «¿Te ve ChatGPT?» registra estadísticas de uso propias sin cookies y sin almacenamiento en el dispositivo; se explican en la política de privacidad.</p>
         <p>Si en el futuro se activan cookies analíticas, publicitarias o de terceros no necesarias, se deberá implementar un banner o panel de consentimiento adecuado antes de cargarlas.</p>
       </section>
 

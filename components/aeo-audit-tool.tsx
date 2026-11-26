@@ -172,6 +172,7 @@ export function AeoAuditTool({ origen = "auditoria-aeo", compacto = false }: { o
 function PedirInforme({ web, origen, nota }: { web: string; origen: string; nota: number | null }) {
   const [d, setD] = useState<Datos>({ negocio: "", nombre: "", email: "", whatsapp: "" });
   const [consentimiento, setConsentimiento] = useState(false);
+  const [comerciales, setComerciales] = useState(false);
   const [estado, setEstado] = useState<"form" | "enviando" | "enviado">("form");
   const [enviadoYa, setEnviadoYa] = useState(false);
   const [error, setError] = useState("");
@@ -187,7 +188,7 @@ function PedirInforme({ web, origen, nota }: { web: string; origen: string; nota
     try {
       const res = await fetch("/api/auditoria-aeo", {
         method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ web, ...d, whatsapp: d.whatsapp.trim(), consentimiento: true, empresa_web: trampa.current?.value || "", origen, canal: canalActual() }),
+        body: JSON.stringify({ web, ...d, whatsapp: d.whatsapp.trim(), consentimiento: true, comerciales, empresa_web: trampa.current?.value || "", origen, canal: canalActual() }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || "No he podido enviarte el informe. Inténtalo de nuevo.");
@@ -228,7 +229,11 @@ function PedirInforme({ web, origen, nota }: { web: string; origen: string; nota
       <input ref={trampa} name="empresa_web" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 opacity-0" />
       <label className="mt-4 flex items-start gap-3 text-sm leading-6 text-slate-300">
         <input type="checkbox" checked={consentimiento} onChange={(e) => { setConsentimiento(e.target.checked); setError(""); }} className="mt-1 h-4 w-4 accent-cyan-300" />
-        <span>Acepto la <Link href="/politica-privacidad" className="text-cyan-200 underline">política de privacidad</Link> y recibir por email el informe y consejos relacionados. Puedes darte de baja cuando quieras.</span>
+        <span>He leído la <Link href="/politica-privacidad" className="text-cyan-200 underline">política de privacidad</Link> y quiero recibir el informe por email.</span>
+      </label>
+      <label className="mt-2 flex items-start gap-3 text-sm leading-6 text-slate-400">
+        <input type="checkbox" checked={comerciales} onChange={(e) => setComerciales(e.target.checked)} className="mt-1 h-4 w-4 accent-cyan-300" />
+        <span>Opcional: quiero recibir consejos y novedades por email. Puedo darme de baja cuando quiera.</span>
       </label>
       <p className="mt-2 min-h-[1.25rem] text-sm text-red-300" role="alert">{error}</p>
       <button type="submit" disabled={estado === "enviando"} className="focus-premium mt-2 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 disabled:opacity-60">

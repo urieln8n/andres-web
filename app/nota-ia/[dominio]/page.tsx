@@ -70,7 +70,7 @@ export default async function NotaIa({ params }: Props) {
       <h2 className="mt-16 font-display text-3xl font-semibold text-white">¿Y tu web? Compruébala gratis</h2>
       <p className="mt-2 text-slate-400">Sin registrarte. Tu nota de 0 a 100 en unos segundos.</p>
       <div className="mt-6"><AeoAuditTool origen="nota-ia" /></div>
-      <p className="mt-6 text-xs leading-5 text-slate-500">Análisis automático de la portada, sin ejecutar JavaScript, como la leen los buscadores con IA. Mide las condiciones para que la IA lea y cite una web; nadie puede garantizar que un modelo concreto la cite.</p>
+      <p className="mt-6 text-xs leading-5 text-slate-500">Análisis automático de la portada, sin ejecutar JavaScript, como la leen los buscadores con IA. Mide las condiciones para que la IA lea y cite una web; nadie puede garantizar que un modelo concreto la cite. ChatGPT, Perplexity, Gemini, Claude y Google son marcas de sus respectivos titulares; esta herramienta no está afiliada a ellas.</p>
     </main>
   );
 }

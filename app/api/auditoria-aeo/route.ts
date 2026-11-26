@@ -18,6 +18,7 @@ const entrada = z.object({
   email: z.string().trim().email("Revisa tu email").max(160),
   whatsapp: z.union([z.literal(""), z.string().trim().regex(/^[+\d][\d\s().-]{7,20}$/, "Revisa tu WhatsApp")]).optional().default(""),
   consentimiento: z.literal(true, { errorMap: () => ({ message: "Necesitamos tu permiso para enviarte el informe" }) }),
+  comerciales: z.boolean().optional().default(false),
   origen: z.string().max(40).optional(),
   canal: z.string().max(40).optional(),
   empresa_web: z.string().max(0).optional(), // trampa para robots: debe llegar vacío
@@ -94,7 +95,8 @@ export async function POST(request: Request) {
   }
 
   // 2) Brevo: contacto en la lista del embudo (dispara la secuencia de emails)
-  const brevo = await guardarEnBrevo({
+  // Solo entra en la lista (y en la secuencia de emails) quien lo ha marcado aparte
+  const brevo = !d.comerciales ? { ok: false, motivo: "sin-consentimiento-comercial" } : await guardarEnBrevo({
     email: d.email, nombre: d.nombre, negocio: d.negocio, web: resultado.url, whatsapp: d.whatsapp,
     notaAeo: resultado.nota, nivelAeo: bloqueada ? "revision-manual" : resultado.nivel, problemas, origen: "auditoria-aeo",
   });

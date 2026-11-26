@@ -56,6 +56,7 @@ export default function NotaIaInicio() {
           </div>
         </div>
       </section>
+      <p className="mt-10 text-xs leading-5 text-slate-500">ChatGPT, Perplexity, Gemini, Claude y Google son marcas de sus respectivos titulares. Esta herramienta es independiente y no está afiliada a ninguna de ellas.</p>
     </main>
   );
 }
